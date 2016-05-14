@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
+@interface IVQQuestionsViewController : UIViewController
 
+-(void)addNewQuestionWithTitle:(NSString *)questionTitle;
 
 @end
 
