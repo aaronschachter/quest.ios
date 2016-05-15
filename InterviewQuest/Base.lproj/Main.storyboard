@@ -50,7 +50,7 @@
                             <constraint firstAttribute="trailingMargin" secondItem="kBY-lk-dJ5" secondAttribute="trailing" id="rX6-Ve-ZOb"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="InterviewQuest" id="M7X-FA-dgW">
+                    <navigationItem key="navigationItem" title="Questions" id="M7X-FA-dgW">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="kRS-8F-aUV">
                             <connections>
                                 <segue destination="8DP-ID-aoA" kind="presentation" id="9lT-Dg-Mu9"/>
