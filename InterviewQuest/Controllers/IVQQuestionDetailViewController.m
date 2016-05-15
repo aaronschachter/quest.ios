@@ -12,6 +12,7 @@
 @interface IVQQuestionDetailViewController ()
 
 @property (weak, nonatomic) IBOutlet UITextView *questionTitleTextView;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *addQuestionBarButtonItem;
 
 @end
 
@@ -22,6 +23,9 @@
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if (sender != self.addQuestionBarButtonItem) {
+        return;
+    }
     IVQQuestionsViewController *destVC = (IVQQuestionsViewController *)segue.destinationViewController;
     [destVC addNewQuestionWithTitle:self.questionTitleTextView.text];
 }

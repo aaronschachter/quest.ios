@@ -105,6 +105,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="addQuestionBarButtonItem" destination="SBA-Z3-JVC" id="iin-BB-r4R"/>
                         <outlet property="questionTitleTextView" destination="9u4-1F-EcT" id="MVf-Bg-qsR"/>
                     </connections>
                 </viewController>
