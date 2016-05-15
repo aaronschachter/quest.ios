@@ -12,7 +12,7 @@
 
 @interface IVQQuestionsViewController () <UITableViewDataSource, UITableViewDelegate>
 
-@property (strong, nonatomic) NSMutableArray *questions;
+@property (strong, nonatomic) NSArray *questions;
 @property (weak, nonatomic) IBOutlet UITableView *questionsTableView;
 @property (strong, nonatomic) Firebase *questionsRef;
 
@@ -25,27 +25,36 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    self.questions = [[NSMutableArray alloc] init];
+    self.questions = [[NSArray alloc] init];
     self.questionsTableView.delegate = self;
     self.questionsTableView.dataSource = self;
     NSString* cellIdentifier = @"questionCell";
     [self.questionsTableView registerClass:[UITableViewCell class] forCellReuseIdentifier:cellIdentifier];
     self.questionsRef = [[Firebase alloc] initWithUrl:@"https://blinding-heat-7380.firebaseio.com/questions"];
     [self.questionsRef observeEventType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
-        
         NSDictionary *questions = (NSDictionary *)snapshot.value;
-        NSLog(@"%@", questions);
-        [questions enumerateKeysAndObjectsUsingBlock:^(id key, id questionDict, BOOL *stop) {
-            NSDictionary *question = (NSDictionary *)questionDict;
-            [self.questions addObject:question[@"title"]];
-        }];
-        [self.questionsTableView reloadData];
+        [self loadQuestionsFromDictionary:questions];
     } withCancelBlock:^(NSError *error) {
         NSLog(@"%@", error.description);
     }];
 }
 
 #pragma mark - IVQQuestionListViewController
+
+- (void)loadQuestionsFromDictionary:(NSDictionary *)questionsDict {
+    self.questions = [[NSArray alloc] init];
+    NSMutableArray *questions = [[NSMutableArray alloc] init];
+    [questionsDict enumerateKeysAndObjectsUsingBlock:^(id key, id questionDict, BOOL *stop) {
+        NSMutableDictionary *question = (NSMutableDictionary *)questionDict;
+        question[@"id"] = key;
+        [questions addObject:question];
+    }];
+    NSSortDescriptor *sortDescriptor;
+    sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"created_at" ascending:NO];
+    NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
+    self.questions = [questions sortedArrayUsingDescriptors:sortDescriptors];
+    [self.questionsTableView reloadData];
+}
 
 - (void)addNewQuestionWithTitle:(NSString *)questionTitle {
     NSString *currentTimestamp = [NSString stringWithFormat:@"%.0f", [[NSDate date]timeIntervalSince1970] * 1000];
@@ -72,7 +81,8 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView
          cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"questionCell" forIndexPath:indexPath];
-    cell.textLabel.text = self.questions[indexPath.row];
+    NSDictionary *question = (NSDictionary *)self.questions[indexPath.row];
+    cell.textLabel.text = question[@"title"];
     return cell;
 }
 
