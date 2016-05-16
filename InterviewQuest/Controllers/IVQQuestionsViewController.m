@@ -7,6 +7,7 @@
 //
 
 #import "IVQQuestionsViewController.h"
+#import "IVQQuestion.h"
 #import "IVQQuestionDetailViewController.h"
 #import <Firebase/Firebase.h>
 
@@ -45,12 +46,14 @@
     self.questions = [[NSArray alloc] init];
     NSMutableArray *questions = [[NSMutableArray alloc] init];
     [questionsDict enumerateKeysAndObjectsUsingBlock:^(id key, id questionDict, BOOL *stop) {
-        NSMutableDictionary *question = (NSMutableDictionary *)questionDict;
-        question[@"id"] = key;
+        IVQQuestion *question = [[IVQQuestion alloc] init];
+        question.questionId = key;
+        question.title = questionDict[@"title"];
+        question.createdAt = questionDict[@"created_at"];
         [questions addObject:question];
     }];
     NSSortDescriptor *sortDescriptor;
-    sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"created_at" ascending:NO];
+    sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"createdAt" ascending:NO];
     NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
     self.questions = [questions sortedArrayUsingDescriptors:sortDescriptors];
     [self.questionsTableView reloadData];
@@ -81,8 +84,8 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView
          cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"questionCell" forIndexPath:indexPath];
-    NSDictionary *question = (NSDictionary *)self.questions[indexPath.row];
-    cell.textLabel.text = question[@"title"];
+    IVQQuestion *question = (IVQQuestion *)self.questions[indexPath.row];
+    cell.textLabel.text = question.title;
     return cell;
 }
 
