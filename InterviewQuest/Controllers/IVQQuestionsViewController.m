@@ -89,4 +89,14 @@
     return cell;
 }
 
+
+#pragma mark - UITableViewDelegate
+
+- (void)tableView:(UITableView *)tableView
+didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    IVQQuestion *question = (IVQQuestion *)self.questions[indexPath.row];
+    IVQQuestionDetailViewController *destVC = [[IVQQuestionDetailViewController alloc] initWithQuestion:question];
+    [self.navigationController pushViewController:destVC animated:YES];
+}
+
 @end
