@@ -3,7 +3,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Questions-->
@@ -50,13 +49,7 @@
                             <constraint firstAttribute="trailing" secondItem="kBY-lk-dJ5" secondAttribute="trailing" id="rX6-Ve-ZOb"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Questions" id="M7X-FA-dgW">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="kRS-8F-aUV">
-                            <connections>
-                                <segue destination="8DP-ID-aoA" kind="presentation" id="9lT-Dg-Mu9"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Questions" id="M7X-FA-dgW"/>
                     <connections>
                         <outlet property="questionsTableView" destination="kBY-lk-dJ5" id="6hN-D0-tU5"/>
                     </connections>
@@ -64,55 +57,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1084" y="-337"/>
-        </scene>
-        <!--New Question-->
-        <scene sceneID="ST0-qf-q9J">
-            <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="AgH-sB-jGR" customClass="IVQQuestionDetailViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="9Db-ZF-Fjd"/>
-                        <viewControllerLayoutGuide type="bottom" id="a1g-g6-4v1"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Mf1-e7-7h3">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="9u4-1F-EcT">
-                                <rect key="frame" x="28" y="72" width="544" height="520"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="9u4-1F-EcT" secondAttribute="trailing" constant="8" id="Drq-GU-n1u"/>
-                            <constraint firstItem="9u4-1F-EcT" firstAttribute="top" secondItem="9Db-ZF-Fjd" secondAttribute="bottom" constant="8" id="G3H-zw-UO6"/>
-                            <constraint firstItem="9u4-1F-EcT" firstAttribute="leading" secondItem="Mf1-e7-7h3" secondAttribute="leadingMargin" constant="8" id="GTx-gj-niY"/>
-                            <constraint firstItem="a1g-g6-4v1" firstAttribute="top" secondItem="9u4-1F-EcT" secondAttribute="bottom" constant="8" id="O6A-4f-iba"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" title="New Question" id="Afp-Sg-wpV">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="fmR-k0-hkt">
-                            <connections>
-                                <segue destination="dGk-qg-vMR" kind="unwind" unwindAction="dismissModal:" id="U9Q-0u-Bi3"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="SBA-Z3-JVC">
-                            <connections>
-                                <segue destination="dGk-qg-vMR" kind="unwind" unwindAction="dismissModal:" id="tP7-vk-M67"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                    <connections>
-                        <outlet property="addQuestionBarButtonItem" destination="SBA-Z3-JVC" id="iin-BB-r4R"/>
-                        <outlet property="questionTitleTextView" destination="9u4-1F-EcT" id="MVf-Bg-qsR"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ykD-pl-6cm" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="dGk-qg-vMR" userLabel="Exit" sceneMemberID="exit"/>
-            </objects>
-            <point key="canvasLocation" x="1896" y="398"/>
         </scene>
         <!--Questions Navigation Controller-->
         <scene sceneID="ecL-wM-U7q">
@@ -131,24 +75,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3vr-b1-dMe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="333" y="-337"/>
-        </scene>
-        <!--New Question Navigation Controller-->
-        <scene sceneID="16i-3d-zgM">
-            <objects>
-                <navigationController title="New Question Navigation Controller" automaticallyAdjustsScrollViewInsets="NO" id="8DP-ID-aoA" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ew4-bc-ppP">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="AgH-sB-jGR" kind="relationship" relationship="rootViewController" id="Zhg-gm-jFc"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="7OL-qa-5MX" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1084" y="398"/>
         </scene>
     </scenes>
 </document>

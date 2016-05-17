@@ -36,7 +36,7 @@
     return self;
 }
 
-#pragma mark - IVQQuestionDetailViewController
+#pragma mark - UIViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -47,35 +47,46 @@
 
     if (self.question.questionId) {
         NSLog(@"%@", self.question.questionId);
-        self.title = @"Edit";
+        self.title = @"Edit Question";
     }
     else {
+        self.title = @"Add Question";
         self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancelButtonTapped:)];
     }
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(doneButtonTapped:)];
     self.navigationItem.rightBarButtonItem.enabled = NO;
 }
 
+#pragma mark - IVQQuestionDetailViewController
+
+- (void)cancelButtonTapped:(id)sender {
+    [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+}
+
 - (void)doneButtonTapped:(id)sender {
+    NSString *currentTimestamp = [NSString stringWithFormat:@"%.0f", [[NSDate date]timeIntervalSince1970] * 1000];
+    NSString *questionTitle = self.questionTitleTextView.text;
     if (self.question.questionId) {
         Firebase *questionRef = [self.questionsRef childByAppendingPath:self.question.questionId];
         Firebase *titleRef = [questionRef childByAppendingPath:@"title"];
-        [titleRef setValue:self.questionTitleTextView.text withCompletionBlock:^(NSError *error, Firebase *ref) {
+        [titleRef setValue:questionTitle withCompletionBlock:^(NSError *error, Firebase *ref) {
             [self.navigationController popViewControllerAnimated:YES];
+        }];
+    }
+    else {
+        NSDictionary *newQuestion = @{
+                                      @"created_at": currentTimestamp,
+                                      @"title": questionTitle,
+                                      };
+        Firebase *newQuestionRef = [self.questionsRef childByAutoId];
+        [newQuestionRef setValue:newQuestion withCompletionBlock:^(NSError *error, Firebase *ref) {
+            [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
         }];
     }
 }
 
 - (void)textChanged:(id)sender {
     self.navigationItem.rightBarButtonItem.enabled = YES;
-}
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue senderd:(id)sender {
-    if (sender != self.addQuestionBarButtonItem) {
-        return;
-    }
-    IVQQuestionsViewController *destVC = (IVQQuestionsViewController *)segue.destinationViewController;
-    [destVC addNewQuestionWithTitle:self.questionTitleTextView.text];
 }
 
 - (void)textViewDidChange:(UITextView *)textView {

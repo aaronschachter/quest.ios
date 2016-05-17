@@ -29,6 +29,9 @@
     self.questions = [[NSArray alloc] init];
     self.questionsTableView.delegate = self;
     self.questionsTableView.dataSource = self;
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addButtonTapped:)];
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
+
     NSString* cellIdentifier = @"questionCell";
     [self.questionsTableView registerClass:[UITableViewCell class] forCellReuseIdentifier:cellIdentifier];
     self.questionsRef = [[Firebase alloc] initWithUrl:@"https://blinding-heat-7380.firebaseio.com/questions"];
@@ -41,6 +44,13 @@
 }
 
 #pragma mark - IVQQuestionListViewController
+
+- (void)addButtonTapped:(id)sender {
+    IVQQuestion *question = [[IVQQuestion alloc] init];
+    IVQQuestionDetailViewController *destVC = [[IVQQuestionDetailViewController alloc] initWithQuestion:question];
+    UINavigationController *navDestVC = [[UINavigationController alloc] initWithRootViewController:destVC];
+    [self.navigationController presentViewController:navDestVC animated:YES completion:nil];
+}
 
 - (void)loadQuestionsFromDictionary:(NSDictionary *)questionsDict {
     self.questions = [[NSArray alloc] init];
@@ -57,22 +67,6 @@
     NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
     self.questions = [questions sortedArrayUsingDescriptors:sortDescriptors];
     [self.questionsTableView reloadData];
-}
-
-- (void)addNewQuestionWithTitle:(NSString *)questionTitle {
-    NSString *currentTimestamp = [NSString stringWithFormat:@"%.0f", [[NSDate date]timeIntervalSince1970] * 1000];
-    NSDictionary *newQuestion = @{
-                            @"created_at": currentTimestamp,
-                            @"title": questionTitle,
-                            };
-    Firebase *newQuestionRef = [self.questionsRef childByAutoId];
-    [newQuestionRef setValue:newQuestion];
-}
-
-#pragma mark - IBActions
-
-- (IBAction)dismissModal:(UIStoryboardSegue *)sender {
-    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark - UITableViewDataSource
