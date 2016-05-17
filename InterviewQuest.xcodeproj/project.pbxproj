@@ -272,6 +272,7 @@
 				TargetAttributes = {
 					B2B2120C1CE79087009244D6 = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = 7UK3DU72Q2;
 					};
 					B2B212251CE79087009244D6 = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -532,10 +533,13 @@
 			baseConfigurationReference = 48E4808F4C6819F89604552E /* Pods-InterviewQuest.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = InterviewQuest/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.newschoololdschool.InterviewQuest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -544,10 +548,13 @@
 			baseConfigurationReference = C035AEFA8A9D46EEC346CCE6 /* Pods-InterviewQuest.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = InterviewQuest/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.newschoololdschool.InterviewQuest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
