@@ -10,7 +10,5 @@
 
 @interface IVQQuestionsViewController : UIViewController
 
--(void)addNewQuestionWithTitle:(NSString *)questionTitle;
-
 @end
 

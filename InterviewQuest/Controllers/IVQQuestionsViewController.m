@@ -13,9 +13,10 @@
 
 @interface IVQQuestionsViewController () <UITableViewDataSource, UITableViewDelegate>
 
-@property (strong, nonatomic) NSArray *questions;
-@property (weak, nonatomic) IBOutlet UITableView *questionsTableView;
 @property (strong, nonatomic) Firebase *questionsRef;
+@property (strong, nonatomic) NSArray *questions;
+
+@property (weak, nonatomic) IBOutlet UITableView *questionsTableView;
 
 @end
 
@@ -82,7 +83,6 @@
     cell.textLabel.text = question.title;
     return cell;
 }
-
 
 #pragma mark - UITableViewDelegate
 
