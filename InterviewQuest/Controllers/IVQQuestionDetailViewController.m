@@ -8,10 +8,14 @@
 
 #import "IVQQuestionDetailViewController.h"
 #import "IVQQuestionsViewController.h"
+#import <Firebase/Firebase.h>
 
 @interface IVQQuestionDetailViewController () <UITextViewDelegate>
 
 @property (strong, nonatomic) IVQQuestion *question;
+
+// @todo DRY with IVQAPI singleton class.
+@property (strong, nonatomic) Firebase *questionsRef;
 
 @property (weak, nonatomic) IBOutlet UITextView *questionTitleTextView;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *addQuestionBarButtonItem;
@@ -39,8 +43,10 @@
     
     self.questionTitleTextView.text = self.question.title;
     self.questionTitleTextView.delegate = self;
+    self.questionsRef = [[Firebase alloc] initWithUrl:@"https://blinding-heat-7380.firebaseio.com/questions"];
 
     if (self.question.questionId) {
+        NSLog(@"%@", self.question.questionId);
         self.title = @"Edit";
     }
     else {
@@ -52,7 +58,11 @@
 
 - (void)doneButtonTapped:(id)sender {
     if (self.question.questionId) {
-        [self.navigationController popViewControllerAnimated:YES];
+        Firebase *questionRef = [self.questionsRef childByAppendingPath:self.question.questionId];
+        Firebase *titleRef = [questionRef childByAppendingPath:@"title"];
+        [titleRef setValue:self.questionTitleTextView.text withCompletionBlock:^(NSError *error, Firebase *ref) {
+            [self.navigationController popViewControllerAnimated:YES];
+        }];
     }
 }
 

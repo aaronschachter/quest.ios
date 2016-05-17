@@ -66,7 +66,7 @@
                             @"title": questionTitle,
                             };
     Firebase *newQuestionRef = [self.questionsRef childByAutoId];
-    [newQuestionRef setValue: newQuestion];
+    [newQuestionRef setValue:newQuestion];
 }
 
 #pragma mark - IBActions
