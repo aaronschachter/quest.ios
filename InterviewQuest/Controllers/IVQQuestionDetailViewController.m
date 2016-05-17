@@ -48,6 +48,10 @@
     if (self.question.questionId) {
         NSLog(@"%@", self.question.questionId);
         self.title = @"Edit Question";
+        self.navigationController.toolbarHidden = NO;
+        UIBarButtonItem *trashBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:self action:@selector(trashButtonTapped:)];
+        NSArray *items = [NSArray arrayWithObjects:trashBarButtonItem, nil];
+        self.toolbarItems = items;
     }
     else {
         self.title = @"Add Question";
@@ -57,13 +61,13 @@
     self.navigationItem.rightBarButtonItem.enabled = NO;
 }
 
-#pragma mark - IVQQuestionDetailViewController
+#pragma mark - IBAction
 
-- (void)cancelButtonTapped:(id)sender {
+- (IBAction)cancelButtonTapped:(id)sender {
     [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (void)doneButtonTapped:(id)sender {
+- (IBAction)doneButtonTapped:(id)sender {
     NSString *currentTimestamp = [NSString stringWithFormat:@"%.0f", [[NSDate date]timeIntervalSince1970] * 1000];
     NSString *questionTitle = self.questionTitleTextView.text;
     if (self.question.questionId) {
@@ -74,16 +78,31 @@
         }];
     }
     else {
-        NSDictionary *newQuestion = @{
-                                      @"created_at": currentTimestamp,
-                                      @"title": questionTitle,
-                                      };
+        NSDictionary *newQuestion = @{@"created_at": currentTimestamp, @"title": questionTitle};
         Firebase *newQuestionRef = [self.questionsRef childByAutoId];
         [newQuestionRef setValue:newQuestion withCompletionBlock:^(NSError *error, Firebase *ref) {
             [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
         }];
     }
 }
+
+- (IBAction)trashButtonTapped:(id)sender {
+    UIAlertController *confirmDeleteAlertController = [UIAlertController alertControllerWithTitle:@"Delete Question?" message:@"This cannot be undone." preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *deleteAction = [UIAlertAction actionWithTitle:@"Delete" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * action) {
+        Firebase *questionRef = [self.questionsRef childByAppendingPath:self.question.questionId];
+        [questionRef removeValueWithCompletionBlock:^(NSError *error, Firebase *ref) {
+            [self.navigationController popViewControllerAnimated:YES];
+        }];
+        
+    }];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
+    }];
+    [confirmDeleteAlertController addAction:deleteAction];
+    [confirmDeleteAlertController addAction:cancelAction];
+    [self presentViewController:confirmDeleteAlertController animated:YES completion:nil];
+}
+
+#pragma mark - IVQQuestionDetailViewController
 
 - (void)textChanged:(id)sender {
     self.navigationItem.rightBarButtonItem.enabled = YES;
