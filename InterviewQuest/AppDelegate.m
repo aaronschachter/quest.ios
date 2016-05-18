@@ -7,7 +7,8 @@
 //
 
 #import "AppDelegate.h"
-#import "IVQQuestionsViewController.h";
+#import "IVQQuestionsViewController.h"
+#import "IVQHomeViewController.h"
 
 @interface AppDelegate ()
 
@@ -19,9 +20,8 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     [self.window makeKeyAndVisible];
-    IVQQuestionsViewController *questionsViewController = [[IVQQuestionsViewController alloc] initWithNibName:@"IVQQuestionsView" bundle:nil];
-    questionsViewController.title = @"Questions";
-    self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:questionsViewController];
+    IVQHomeViewController *viewController = [[IVQHomeViewController alloc] initWithNibName:@"IVQHomeView" bundle:nil];
+    self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:viewController];
 
     return YES;
 }

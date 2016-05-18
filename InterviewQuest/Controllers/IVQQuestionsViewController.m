@@ -30,6 +30,8 @@
     self.questions = [[NSArray alloc] init];
     self.questionsTableView.delegate = self;
     self.questionsTableView.dataSource = self;
+
+    self.title = @"Questions";
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addButtonTapped:)];
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
 

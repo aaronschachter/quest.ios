@@ -18,6 +18,8 @@
 		B2B212361CE79087009244D6 /* InterviewQuestUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = B2B212351CE79087009244D6 /* InterviewQuestUITests.m */; };
 		B2B2124A1CE7B79D009244D6 /* IVQQuestionDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2B212491CE7B79D009244D6 /* IVQQuestionDetailViewController.m */; };
 		B2C0458C1CEC224B00F797FF /* IVQQuestionsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B2C0458B1CEC224B00F797FF /* IVQQuestionsView.xib */; };
+		B2C0458E1CEC272C00F797FF /* IVQHomeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B2C0458D1CEC272C00F797FF /* IVQHomeView.xib */; };
+		B2C045911CEC286E00F797FF /* IVQHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2C045901CEC286E00F797FF /* IVQHomeViewController.m */; };
 		C0B96235F20D1EF0F59CAD01 /* libPods-InterviewQuest.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 665920793CC2D446EE814397 /* libPods-InterviewQuest.a */; };
 /* End PBXBuildFile section */
 
@@ -62,6 +64,9 @@
 		B2B212481CE7B79D009244D6 /* IVQQuestionDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IVQQuestionDetailViewController.h; path = Controllers/IVQQuestionDetailViewController.h; sourceTree = "<group>"; };
 		B2B212491CE7B79D009244D6 /* IVQQuestionDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IVQQuestionDetailViewController.m; path = Controllers/IVQQuestionDetailViewController.m; sourceTree = "<group>"; };
 		B2C0458B1CEC224B00F797FF /* IVQQuestionsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = IVQQuestionsView.xib; path = Views/IVQQuestionsView.xib; sourceTree = "<group>"; };
+		B2C0458D1CEC272C00F797FF /* IVQHomeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = IVQHomeView.xib; path = Views/IVQHomeView.xib; sourceTree = "<group>"; };
+		B2C0458F1CEC286E00F797FF /* IVQHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IVQHomeViewController.h; path = Controllers/IVQHomeViewController.h; sourceTree = "<group>"; };
+		B2C045901CEC286E00F797FF /* IVQHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IVQHomeViewController.m; path = Controllers/IVQHomeViewController.m; sourceTree = "<group>"; };
 		C035AEFA8A9D46EEC346CCE6 /* Pods-InterviewQuest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InterviewQuest.release.xcconfig"; path = "Pods/Target Support Files/Pods-InterviewQuest/Pods-InterviewQuest.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -174,6 +179,8 @@
 		B2B212431CE7B5E9009244D6 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				B2C0458F1CEC286E00F797FF /* IVQHomeViewController.h */,
+				B2C045901CEC286E00F797FF /* IVQHomeViewController.m */,
 				B2B212161CE79087009244D6 /* IVQQuestionsViewController.h */,
 				B2B212171CE79087009244D6 /* IVQQuestionsViewController.m */,
 				B2B212481CE7B79D009244D6 /* IVQQuestionDetailViewController.h */,
@@ -185,6 +192,7 @@
 		B2B212471CE7B66D009244D6 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				B2C0458D1CEC272C00F797FF /* IVQHomeView.xib */,
 				B2C0458B1CEC224B00F797FF /* IVQQuestionsView.xib */,
 				B21434941CE96C5D00AE90E5 /* IVQQuestionDetailView.xib */,
 				B2B2121E1CE79087009244D6 /* LaunchScreen.storyboard */,
@@ -312,6 +320,7 @@
 				B21434951CE96C5D00AE90E5 /* IVQQuestionDetailView.xib in Resources */,
 				B2B212201CE79087009244D6 /* LaunchScreen.storyboard in Resources */,
 				B2C0458C1CEC224B00F797FF /* IVQQuestionsView.xib in Resources */,
+				B2C0458E1CEC272C00F797FF /* IVQHomeView.xib in Resources */,
 				B2B2121D1CE79087009244D6 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -389,6 +398,7 @@
 				B2B212151CE79087009244D6 /* AppDelegate.m in Sources */,
 				B2B2124A1CE7B79D009244D6 /* IVQQuestionDetailViewController.m in Sources */,
 				B2B212121CE79087009244D6 /* main.m in Sources */,
+				B2C045911CEC286E00F797FF /* IVQHomeViewController.m in Sources */,
 				B21434991CE96FD000AE90E5 /* IVQQuestion.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
