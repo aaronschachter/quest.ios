@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="IVQQuestionsViewController">
+            <connections>
+                <outlet property="questionsTableView" destination="zPd-3O-7fu" id="pcG-C6-j3f"/>
+                <outlet property="view" destination="iN0-l3-epB" id="eXK-LC-l64"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="zPd-3O-7fu">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <connections>
+                        <outlet property="dataSource" destination="iN0-l3-epB" id="ExP-Dd-LoV"/>
+                        <outlet property="delegate" destination="iN0-l3-epB" id="qKI-gd-58B"/>
+                    </connections>
+                </tableView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="zPd-3O-7fu" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="JEw-MZ-5au"/>
+                <constraint firstAttribute="bottom" secondItem="zPd-3O-7fu" secondAttribute="bottom" id="dJf-8M-9N1"/>
+                <constraint firstItem="zPd-3O-7fu" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="dNn-qh-AQp"/>
+                <constraint firstAttribute="trailing" secondItem="zPd-3O-7fu" secondAttribute="trailing" id="p07-hS-Y07"/>
+            </constraints>
+        </view>
+    </objects>
+</document>
