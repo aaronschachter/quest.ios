@@ -61,6 +61,12 @@
     self.navigationItem.rightBarButtonItem.enabled = NO;
 }
 
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+
+    [self.navigationController setToolbarHidden:YES animated:YES];
+}
+
 #pragma mark - IBAction
 
 - (IBAction)cancelButtonTapped:(id)sender {
