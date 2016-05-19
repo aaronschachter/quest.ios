@@ -47,6 +47,7 @@
     self.currentQuestionNumber++;
     if (self.currentQuestionNumber == self.questions.count - 1) {
         self.questionTitleLabel.text = @"Quest completed! You earned 10 coins.";
+        self.questionTitleLabel.textColor = [UIColor greenColor];
         [self.nextButton setTitle:@"Done" forState:UIControlStateNormal];
         self.gameCompleted = YES;
         return;
