@@ -7,6 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="IVQHomeViewController">
             <connections>
+                <outlet property="startButtonTouchUpInside" destination="ga4-tD-Hvw" id="wvZ-KD-V4s"/>
                 <outlet property="view" destination="iN0-l3-epB" id="yvk-l8-Yxa"/>
             </connections>
         </placeholder>
@@ -21,11 +22,19 @@
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E9f-bR-mup">
-                    <rect key="frame" x="271.5" y="526" width="57" height="30"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E9f-bR-mup" userLabel="Settings Button">
+                    <rect key="frame" x="271" y="526" width="57" height="30"/>
                     <state key="normal" title="Settings"/>
                     <connections>
                         <action selector="settingsButtonTouchUpInside:" destination="-1" eventType="touchUpInside" id="VhV-kI-ZXn"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ga4-tD-Hvw" userLabel="Start Button">
+                    <rect key="frame" x="255" y="276" width="90" height="48"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                    <state key="normal" title="START"/>
+                    <connections>
+                        <action selector="startButtonTouchUpInside:" destination="-1" eventType="touchUpInside" id="tXs-K9-vqJ"/>
                     </connections>
                 </button>
             </subviews>
@@ -35,6 +44,8 @@
                 <constraint firstItem="SLF-wu-VWS" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="7LS-E8-PZM"/>
                 <constraint firstItem="SLF-wu-VWS" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="88" id="HbQ-yK-rEh"/>
                 <constraint firstItem="E9f-bR-mup" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Pry-LW-2LI"/>
+                <constraint firstItem="ga4-tD-Hvw" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="asz-dm-ty9"/>
+                <constraint firstItem="ga4-tD-Hvw" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="vUT-FE-1em"/>
             </constraints>
         </view>
     </objects>
