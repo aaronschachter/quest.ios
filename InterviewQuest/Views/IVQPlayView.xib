@@ -7,6 +7,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="IVQPlayViewController">
             <connections>
+                <outlet property="nextButton" destination="qYS-dI-s2z" id="cqH-0U-u3j"/>
+                <outlet property="questionTitleLabel" destination="344-O7-SsU" id="Oxf-Ss-fF5"/>
                 <outlet property="view" destination="iN0-l3-epB" id="TV0-vR-sMU"/>
             </connections>
         </placeholder>
@@ -15,17 +17,28 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Next question" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="344-O7-SsU">
-                    <rect key="frame" x="247" y="289" width="106" height="21"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Question title" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="344-O7-SsU">
+                    <rect key="frame" x="16" y="88" width="568" height="29"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qYS-dI-s2z">
+                    <rect key="frame" x="284" y="482" width="32" height="30"/>
+                    <state key="normal" title="Next"/>
+                    <connections>
+                        <action selector="nextButtonTouchUpInside:" destination="-1" eventType="touchUpInside" id="7Ui-ez-AhU"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="qYS-dI-s2z" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="2P0-eN-mfq"/>
+                <constraint firstItem="344-O7-SsU" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="88" id="Fud-NS-045"/>
+                <constraint firstAttribute="bottom" secondItem="qYS-dI-s2z" secondAttribute="bottom" constant="88" id="MHQ-2C-dB7"/>
+                <constraint firstItem="344-O7-SsU" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="Tgi-oz-ikp"/>
                 <constraint firstItem="344-O7-SsU" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="XXr-Wq-Lve"/>
-                <constraint firstItem="344-O7-SsU" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="pd0-mk-wY2"/>
+                <constraint firstAttribute="trailing" secondItem="344-O7-SsU" secondAttribute="trailing" constant="16" id="jta-9t-B1u"/>
             </constraints>
         </view>
     </objects>

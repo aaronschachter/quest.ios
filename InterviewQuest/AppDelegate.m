@@ -9,8 +9,13 @@
 #import "AppDelegate.h"
 #import "IVQQuestionsViewController.h"
 #import "IVQHomeViewController.h"
+#import "IVQQuestion.h"
+#import <Firebase/Firebase.h>
+#import "AppDelegate.h"
 
 @interface AppDelegate ()
+
+@property (strong, nonatomic, readwrite) NSArray *questions;
 
 @end
 
@@ -18,6 +23,26 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    Firebase *questionsRef = [[Firebase alloc] initWithUrl:@"https://blinding-heat-7380.firebaseio.com/questions"];
+    [questionsRef observeEventType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
+        NSDictionary *questionsDict = (NSDictionary *)snapshot.value;
+        self.questions = [[NSArray alloc] init];
+        NSMutableArray *questions = [[NSMutableArray alloc] init];
+        [questionsDict enumerateKeysAndObjectsUsingBlock:^(id key, id questionDict, BOOL *stop) {
+            IVQQuestion *question = [[IVQQuestion alloc] init];
+            question.questionId = key;
+            question.title = questionDict[@"title"];
+            question.createdAt = questionDict[@"created_at"];
+            [questions addObject:question];
+        }];
+        NSSortDescriptor *sortDescriptor;
+        sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"createdAt" ascending:NO];
+        NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
+        self.questions = [questions sortedArrayUsingDescriptors:sortDescriptors];
+    } withCancelBlock:^(NSError *error) {
+        NSLog(@"%@", error.description);
+    }];
+
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     [self.window makeKeyAndVisible];
     IVQHomeViewController *viewController = [[IVQHomeViewController alloc] initWithNibName:@"IVQHomeView" bundle:nil];

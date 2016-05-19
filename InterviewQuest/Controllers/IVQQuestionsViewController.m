@@ -10,6 +10,7 @@
 #import "IVQQuestion.h"
 #import "IVQQuestionDetailViewController.h"
 #import <Firebase/Firebase.h>
+#import "AppDelegate.h"
 
 @interface IVQQuestionsViewController () <UITableViewDataSource, UITableViewDelegate>
 
@@ -37,13 +38,15 @@
 
     NSString* cellIdentifier = @"questionCell";
     [self.questionsTableView registerClass:[UITableViewCell class] forCellReuseIdentifier:cellIdentifier];
-    self.questionsRef = [[Firebase alloc] initWithUrl:@"https://blinding-heat-7380.firebaseio.com/questions"];
-    [self.questionsRef observeEventType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
-        NSDictionary *questions = (NSDictionary *)snapshot.value;
-        [self loadQuestionsFromDictionary:questions];
-    } withCancelBlock:^(NSError *error) {
-        NSLog(@"%@", error.description);
-    }];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+
+    self.questions = [[NSArray alloc] init];
+    __block AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    self.questions = appDelegate.questions;
+    [self.questionsTableView reloadData];
 }
 
 #pragma mark - IVQQuestionListViewController
@@ -53,23 +56,6 @@
     IVQQuestionDetailViewController *destVC = [[IVQQuestionDetailViewController alloc] initWithQuestion:question];
     UINavigationController *navDestVC = [[UINavigationController alloc] initWithRootViewController:destVC];
     [self.navigationController presentViewController:navDestVC animated:YES completion:nil];
-}
-
-- (void)loadQuestionsFromDictionary:(NSDictionary *)questionsDict {
-    self.questions = [[NSArray alloc] init];
-    NSMutableArray *questions = [[NSMutableArray alloc] init];
-    [questionsDict enumerateKeysAndObjectsUsingBlock:^(id key, id questionDict, BOOL *stop) {
-        IVQQuestion *question = [[IVQQuestion alloc] init];
-        question.questionId = key;
-        question.title = questionDict[@"title"];
-        question.createdAt = questionDict[@"created_at"];
-        [questions addObject:question];
-    }];
-    NSSortDescriptor *sortDescriptor;
-    sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"createdAt" ascending:NO];
-    NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
-    self.questions = [questions sortedArrayUsingDescriptors:sortDescriptors];
-    [self.questionsTableView reloadData];
 }
 
 #pragma mark - UITableViewDataSource

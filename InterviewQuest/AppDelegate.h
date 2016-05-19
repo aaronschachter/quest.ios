@@ -10,6 +10,7 @@
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
+@property (strong, nonatomic, readonly) NSArray *questions;
 @property (strong, nonatomic) UIWindow *window;
 
 
