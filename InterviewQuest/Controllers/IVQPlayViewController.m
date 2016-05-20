@@ -69,9 +69,7 @@
     }
     self.currentQuestionNumber++;
     if (self.currentQuestionNumber == self.questions.count - 1) {
-        self.questionTitleLabel.text = @"Quest completed! You earned 10 coins.";
-        self.questionTitleLabel.textColor = [UIColor greenColor];
-        [self.nextButton setTitle:@"Done" forState:UIControlStateNormal];
+        [self animateQuestionLabelText:@"Quest completed! You earned 10 coins."];
         self.nextButton.hidden = NO;
         self.gameCompleted = YES;
         self.navigationItem.rightBarButtonItem = nil;
@@ -98,9 +96,20 @@
 
 - (void)loadCurrentQuestion {
     if (self.questions.count > 0) {
+
         IVQQuestion *question = (IVQQuestion *)self.questions[self.currentQuestionNumber];
-        self.questionTitleLabel.text = question.title;
+        [self animateQuestionLabelText:question.title];
     }
+}
+
+- (void)animateQuestionLabelText:(NSString *)text {
+    // http://stackoverflow.com/a/16367409/1470725
+    CATransition *animation = [CATransition animation];
+    animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    animation.type = kCATransitionFade;
+    animation.duration = 0.25;
+    [self.questionTitleLabel.layer addAnimation:animation forKey:@"kCATransitionFade"];
+    self.questionTitleLabel.text = text;
 }
 
 @end
