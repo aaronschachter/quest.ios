@@ -35,6 +35,26 @@
     self.currentQuestionNumber = 0;
     self.gameCompleted = NO;
     [self loadCurrentQuestion];
+    self.nextButton.hidden = YES;
+
+    UISwipeGestureRecognizer *swipeLeft = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(didSwipe:)];
+    swipeLeft.direction = UISwipeGestureRecognizerDirectionLeft;
+    [self.view addGestureRecognizer:swipeLeft];
+    
+    UISwipeGestureRecognizer *swipeRight = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(didSwipe:)];
+    swipeRight.direction = UISwipeGestureRecognizerDirectionRight;
+    [self.view addGestureRecognizer:swipeRight];
+}
+
+- (void)didSwipe:(UISwipeGestureRecognizer*)swipe{
+    
+    if (swipe.direction == UISwipeGestureRecognizerDirectionLeft) {
+        NSLog(@"Swipe Left");
+    }
+    else if (swipe.direction == UISwipeGestureRecognizerDirectionRight) {
+        NSLog(@"Swipe Right");
+    }
+    [self nextButtonTouchUpInside:self.view];
 }
 
 #pragma mark - IBAction
@@ -49,6 +69,7 @@
         self.questionTitleLabel.text = @"Quest completed! You earned 10 coins.";
         self.questionTitleLabel.textColor = [UIColor greenColor];
         [self.nextButton setTitle:@"Done" forState:UIControlStateNormal];
+        self.nextButton.hidden = NO;
         self.gameCompleted = YES;
         return;
     }
