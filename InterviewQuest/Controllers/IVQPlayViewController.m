@@ -31,6 +31,8 @@
     [super viewDidLoad];
     
     __block AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    self.title = @"InterviewQuest";
+
     self.questions = appDelegate.questions;
     self.currentQuestionNumber = 0;
     self.gameCompleted = NO;

@@ -20,13 +20,13 @@
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Question title" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="344-O7-SsU">
                     <rect key="frame" x="44" y="288" width="512" height="24"/>
                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qYS-dI-s2z">
-                    <rect key="frame" x="278" y="476" width="44" height="36"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qYS-dI-s2z" userLabel="Done Button">
+                    <rect key="frame" x="275" y="476" width="50" height="36"/>
                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
-                    <state key="normal" title="Next"/>
+                    <state key="normal" title="Done"/>
                     <connections>
                         <action selector="nextButtonTouchUpInside:" destination="-1" eventType="touchUpInside" id="7Ui-ez-AhU"/>
                     </connections>

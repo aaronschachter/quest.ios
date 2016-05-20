@@ -12,6 +12,10 @@
 
 @interface IVQHomeViewController ()
 
+@property (weak, nonatomic) IBOutlet UILabel *headlineLabel;
+
+@property (weak, nonatomic) IBOutlet UILabel *instructionsLabel;
+
 @property (weak, nonatomic) IBOutlet UIButton *startButtonTouchUpInside;
 
 - (IBAction)settingsButtonTouchUpInside:(id)sender;
@@ -26,7 +30,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    self.title = @"InterviewQuest";
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
+    self.instructionsLabel.text = @"Can you answer the question?\nSwipe right for YES, swipe left for NO";
 }
 
 #pragma mark - IBActions
