@@ -13,9 +13,7 @@
 @interface IVQHomeViewController ()
 
 @property (weak, nonatomic) IBOutlet UILabel *headlineLabel;
-
 @property (weak, nonatomic) IBOutlet UILabel *instructionsLabel;
-
 @property (weak, nonatomic) IBOutlet UIButton *startButtonTouchUpInside;
 
 - (IBAction)settingsButtonTouchUpInside:(id)sender;
@@ -44,7 +42,8 @@
 
 - (IBAction)startButtonTouchUpInside:(id)sender {
     IVQPlayViewController *viewController = [[IVQPlayViewController alloc] initWithNibName:@"IVQPlayView" bundle:nil];
-    [self.navigationController pushViewController:viewController animated:YES];
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:viewController];
+    [self.navigationController presentViewController:navigationController animated:YES completion:nil];
 }
 
 @end

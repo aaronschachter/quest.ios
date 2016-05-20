@@ -32,7 +32,8 @@
     
     __block AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
     self.title = @"InterviewQuest";
-
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPause target:self action:@selector(pauseButtonTapped:)];
+    
     self.questions = appDelegate.questions;
     self.currentQuestionNumber = 0;
     self.gameCompleted = NO;
@@ -63,7 +64,7 @@
 
 - (IBAction)nextButtonTouchUpInside:(id)sender {
     if (self.gameCompleted) {
-        [self.navigationController popViewControllerAnimated:YES];
+        [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
         return;
     }
     self.currentQuestionNumber++;
@@ -73,10 +74,24 @@
         [self.nextButton setTitle:@"Done" forState:UIControlStateNormal];
         self.nextButton.hidden = NO;
         self.gameCompleted = YES;
+        self.navigationItem.rightBarButtonItem = nil;
         return;
     }
     [self loadCurrentQuestion];
     
+}
+
+- (IBAction)pauseButtonTapped:(id)sender {
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Quest paused" message:@"Continue?" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *endGameAction = [UIAlertAction actionWithTitle:@"End quest"style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+        [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+    }];
+    UIAlertAction *continueAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        NSLog(@"OK action");
+    }];
+    [alertController addAction:endGameAction];
+    [alertController addAction:continueAction];
+    [self presentViewController:alertController animated:YES completion:nil];
 }
 
 #pragma mark - IVQPlayViewController
