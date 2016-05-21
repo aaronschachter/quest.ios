@@ -4,7 +4,8 @@
 # use_frameworks!
 
 target 'InterviewQuest' do
-pod 'Firebase', '>= 2.5.1'
+    pod 'Firebase', '>= 2.5.1'
+    pod 'Toast', '>= 3.0'
 end
 
 target 'InterviewQuestTests' do

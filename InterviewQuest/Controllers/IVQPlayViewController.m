@@ -9,12 +9,15 @@
 #import "IVQPlayViewController.h"
 #import "AppDelegate.h"
 #import "IVQQuestion.h"
+#import <Toast/UIView+Toast.h>
 
 @interface IVQPlayViewController ()
 
 @property (assign, nonatomic) BOOL gameCompleted;
 @property (strong, nonatomic) NSArray *questions;
 @property (assign, nonatomic) NSInteger currentQuestionNumber;
+@property (assign, nonatomic) NSInteger countNo;
+@property (assign, nonatomic) NSInteger countYes;
 
 @property (weak, nonatomic) IBOutlet UIButton *nextButton;
 @property (weak, nonatomic) IBOutlet UILabel *questionTitleLabel;
@@ -36,6 +39,8 @@
     
     self.questions = appDelegate.questions;
     self.currentQuestionNumber = 0;
+    self.countYes = 0;
+    self.countNo = 0;
     self.gameCompleted = NO;
     [self loadCurrentQuestion];
     self.nextButton.hidden = YES;
@@ -50,13 +55,17 @@
 }
 
 - (void)didSwipe:(UISwipeGestureRecognizer*)swipe{
-    
+    NSString *message;
     if (swipe.direction == UISwipeGestureRecognizerDirectionLeft) {
-        NSLog(@"Swipe Left");
+        message = @"No, I don't have a good answer.";
+        self.countNo++;
+
     }
     else if (swipe.direction == UISwipeGestureRecognizerDirectionRight) {
-        NSLog(@"Swipe Right");
+        message = @"Yes, I can answer!";
+        self.countYes++;
     }
+    [self.view makeToast:message duration:0.5 position:CSToastPositionBottom];
     [self nextButtonTouchUpInside:self.view];
 }
 
@@ -69,7 +78,8 @@
     }
     self.currentQuestionNumber++;
     if (self.currentQuestionNumber == self.questions.count - 1) {
-        [self animateQuestionLabelText:@"Quest completed! You earned 10 coins."];
+        NSString *gameOverText = [NSString stringWithFormat:@"Quest complete!\nYes: %li\nNo: %li", self.countYes, self.countNo];
+        [self animateQuestionLabelText:gameOverText];
         self.nextButton.hidden = NO;
         self.gameCompleted = YES;
         self.navigationItem.rightBarButtonItem = nil;
