@@ -9,11 +9,11 @@
 #import "IVQHomeViewController.h"
 #import "IVQPlayViewController.h"
 #import "IVQQuestionsViewController.h"
+#import <ionicons/IonIcons.h>
 
 @interface IVQHomeViewController ()
 
 @property (weak, nonatomic) IBOutlet UILabel *headlineLabel;
-@property (weak, nonatomic) IBOutlet UILabel *instructionsLabel;
 @property (weak, nonatomic) IBOutlet UIButton *startButtonTouchUpInside;
 
 - (IBAction)settingsButtonTouchUpInside:(id)sender;
@@ -30,7 +30,10 @@
 
     self.title = @"InterviewQuest";
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
-    self.instructionsLabel.text = @"Can you answer the question?\nSwipe right for YES, swipe left for NO";
+    UIImage *gearImage = [IonIcons imageWithIcon:ion_ios_gear size:22.0f color:self.view.tintColor];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:gearImage style:UIBarButtonItemStylePlain target:self action:@selector(settingsButtonTouchUpInside:)];
+    
+    self.headlineLabel.text = @"Practice job interview questions.";
 }
 
 #pragma mark - IBActions
