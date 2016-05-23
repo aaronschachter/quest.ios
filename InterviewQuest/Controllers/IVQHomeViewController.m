@@ -29,11 +29,11 @@
     [super viewDidLoad];
 
     self.title = @"InterviewQuest";
-    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
-    UIImage *gearImage = [IonIcons imageWithIcon:ion_ios_gear size:22.0f color:self.view.tintColor];
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:gearImage style:UIBarButtonItemStylePlain target:self action:@selector(settingsButtonTouchUpInside:)];
-    
     self.headlineLabel.text = @"Practice job interview questions.";
+
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
+    UIImage *gearImage = [IonIcons imageWithIcon:ion_ios_gear_outline size:22.0f color:self.view.tintColor];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:gearImage style:UIBarButtonItemStylePlain target:self action:@selector(settingsButtonTouchUpInside:)];
 }
 
 #pragma mark - IBActions

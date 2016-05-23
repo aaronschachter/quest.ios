@@ -10,6 +10,7 @@
 #import "AppDelegate.h"
 #import "IVQQuestion.h"
 #import <Toast/UIView+Toast.h>
+#import <ionicons/IonIcons.h>
 
 @interface IVQPlayViewController ()
 
@@ -35,7 +36,8 @@
     
     __block AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
     self.title = @"InterviewQuest";
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPause target:self action:@selector(pauseButtonTapped:)];
+    UIImage *gearImage = [IonIcons imageWithIcon:ion_ios_pause_outline size:22.0f color:self.view.tintColor];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:gearImage style:UIBarButtonItemStylePlain target:self action:@selector(pauseButtonTapped:)];
     
     self.questions = appDelegate.questions;
     self.currentQuestionNumber = 0;
