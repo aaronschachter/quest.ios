@@ -1,6 +1,7 @@
 #import "IVQGameViewController.h"
 #import "AppDelegate.h"
 #import "IVQQuestion.h"
+#import "IVQGameQuestionTableViewCell.h"
 #import <Toast/UIView+Toast.h>
 #import <ionicons/IonIcons.h>
 
@@ -25,12 +26,13 @@
     
     __block AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
     self.title = @"InterviewQuest";
-    UIImage *gearImage = [IonIcons imageWithIcon:ion_ios_pause_outline size:22.0f color:self.view.tintColor];
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:gearImage style:UIBarButtonItemStylePlain target:self action:@selector(pauseButtonTapped:)];
+    UIImage *menuImage = [IonIcons imageWithIcon:ion_ios_more size:22.0f color:self.view.tintColor];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:menuImage style:UIBarButtonItemStylePlain target:self action:@selector(pauseButtonTapped:)];
 
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"questionCell"];
+    [self.tableView registerNib:[UINib nibWithNibName:@"IVQGameQuestionTableViewCell" bundle:nil] forCellReuseIdentifier:@"questionCell"];
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.scrollEnabled = NO;
     
     self.questions = appDelegate.questions;
@@ -40,12 +42,17 @@
     self.gameCompleted = NO;
 }
 
+- (void)dismiss {
+    [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+}
+
 #pragma mark - IBAction
 
 - (IBAction)pauseButtonTapped:(id)sender {
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Quest paused" message:@"Continue?" preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *endGameAction = [UIAlertAction actionWithTitle:@"End quest"style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
         [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+        [self dismiss];
     }];
     UIAlertAction *continueAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
         NSLog(@"OK action");
@@ -63,6 +70,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row == self.questions.count) {
+        [self dismiss];
         return;
     }
     NSIndexPath *nextIndexPath = [NSIndexPath indexPathForRow:indexPath.row+1 inSection:0];
@@ -72,13 +80,13 @@
 #pragma mark - UITableViewDataSource
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"questionCell" forIndexPath:indexPath];
+    IVQGameQuestionTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"questionCell" forIndexPath:indexPath];
     if (indexPath.row == self.questions.count) {
-        cell.textLabel.text = @"Done";
+        cell.questionLabelText = @"Done";
     }
     else {
         IVQQuestion *question = (IVQQuestion *)self.questions[indexPath.row];
-        cell.textLabel.text = question.title;
+        cell.questionLabelText = question.title;
     }
     return cell;
 }
