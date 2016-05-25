@@ -38,6 +38,7 @@
 - (IBAction)startButtonTouchUpInside:(id)sender {
     IVQGameViewController *viewController = [[IVQGameViewController alloc] initWithNibName:@"IVQGameView" bundle:nil];
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:viewController];
+    navigationController.navigationBar.translucent = NO;
     [self.navigationController presentViewController:navigationController animated:YES completion:nil];
 }
 

@@ -46,7 +46,9 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     [self.window makeKeyAndVisible];
     IVQHomeViewController *viewController = [[IVQHomeViewController alloc] initWithNibName:@"IVQHomeView" bundle:nil];
-    self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:viewController];
+    UINavigationController *navigationContoller = [[UINavigationController alloc] initWithRootViewController:viewController];
+    navigationContoller.navigationBar.translucent = NO;
+    self.window.rootViewController = navigationContoller;
 
     return YES;
 }
