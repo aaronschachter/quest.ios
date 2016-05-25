@@ -4,7 +4,7 @@
 #import <Toast/UIView+Toast.h>
 #import <ionicons/IonIcons.h>
 
-@interface IVQGameViewController ()
+@interface IVQGameViewController () <UITableViewDelegate, UITableViewDataSource>
 
 @property (assign, nonatomic) BOOL gameCompleted;
 @property (strong, nonatomic) NSArray *questions;
@@ -12,10 +12,7 @@
 @property (assign, nonatomic) NSInteger countNo;
 @property (assign, nonatomic) NSInteger countYes;
 
-@property (weak, nonatomic) IBOutlet UIButton *nextButton;
-@property (weak, nonatomic) IBOutlet UILabel *questionTitleLabel;
-
-- (IBAction)nextButtonTouchUpInside:(id)sender;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end
 
@@ -30,58 +27,20 @@
     self.title = @"InterviewQuest";
     UIImage *gearImage = [IonIcons imageWithIcon:ion_ios_pause_outline size:22.0f color:self.view.tintColor];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:gearImage style:UIBarButtonItemStylePlain target:self action:@selector(pauseButtonTapped:)];
+
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"questionCell"];
+    self.tableView.scrollEnabled = NO;
     
     self.questions = appDelegate.questions;
     self.currentQuestionNumber = 0;
     self.countYes = 0;
     self.countNo = 0;
     self.gameCompleted = NO;
-    [self loadCurrentQuestion];
-    self.nextButton.hidden = YES;
-
-    UISwipeGestureRecognizer *swipeLeft = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(didSwipe:)];
-    swipeLeft.direction = UISwipeGestureRecognizerDirectionLeft;
-    [self.view addGestureRecognizer:swipeLeft];
-    
-    UISwipeGestureRecognizer *swipeRight = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(didSwipe:)];
-    swipeRight.direction = UISwipeGestureRecognizerDirectionRight;
-    [self.view addGestureRecognizer:swipeRight];
-}
-
-- (void)didSwipe:(UISwipeGestureRecognizer*)swipe{
-    NSString *message;
-    if (swipe.direction == UISwipeGestureRecognizerDirectionLeft) {
-        message = @"No, I don't have a good answer.";
-        self.countNo++;
-
-    }
-    else if (swipe.direction == UISwipeGestureRecognizerDirectionRight) {
-        message = @"Yes, I can answer!";
-        self.countYes++;
-    }
-    [self.view makeToast:message duration:0.5 position:CSToastPositionBottom];
-    [self nextButtonTouchUpInside:self.view];
 }
 
 #pragma mark - IBAction
-
-- (IBAction)nextButtonTouchUpInside:(id)sender {
-    if (self.gameCompleted) {
-        [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
-        return;
-    }
-    self.currentQuestionNumber++;
-    if (self.currentQuestionNumber == self.questions.count - 1) {
-        NSString *gameOverText = [NSString stringWithFormat:@"Quest complete!\nYes: %li\nNo: %li", self.countYes, self.countNo];
-        [self animateQuestionLabelText:gameOverText];
-        self.nextButton.hidden = NO;
-        self.gameCompleted = YES;
-        self.navigationItem.rightBarButtonItem = nil;
-        return;
-    }
-    [self loadCurrentQuestion];
-    
-}
 
 - (IBAction)pauseButtonTapped:(id)sender {
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Quest paused" message:@"Continue?" preferredStyle:UIAlertControllerStyleAlert];
@@ -96,24 +55,37 @@
     [self presentViewController:alertController animated:YES completion:nil];
 }
 
-#pragma mark - IVQPlayViewController
+#pragma mark - UITableViewDelegate
 
-- (void)loadCurrentQuestion {
-    if (self.questions.count > 0) {
-
-        IVQQuestion *question = (IVQQuestion *)self.questions[self.currentQuestionNumber];
-        [self animateQuestionLabelText:question.title];
-    }
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return tableView.bounds.size.height - 44;
 }
 
-- (void)animateQuestionLabelText:(NSString *)text {
-    // http://stackoverflow.com/a/16367409/1470725
-    CATransition *animation = [CATransition animation];
-    animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-    animation.type = kCATransitionFade;
-    animation.duration = 0.25;
-    [self.questionTitleLabel.layer addAnimation:animation forKey:@"kCATransitionFade"];
-    self.questionTitleLabel.text = text;
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.row == self.questions.count) {
+        return;
+    }
+    NSIndexPath *nextIndexPath = [NSIndexPath indexPathForRow:indexPath.row+1 inSection:0];
+    [self.tableView scrollToRowAtIndexPath:nextIndexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
+}
+
+#pragma mark - UITableViewDataSource
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"questionCell" forIndexPath:indexPath];
+    if (indexPath.row == self.questions.count) {
+        cell.textLabel.text = @"Done";
+    }
+    else {
+        IVQQuestion *question = (IVQQuestion *)self.questions[indexPath.row];
+        cell.textLabel.text = question.title;
+    }
+    return cell;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    // Add 1 for our GameOver cell.
+    return self.questions.count + 1;
 }
 
 @end

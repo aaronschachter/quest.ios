@@ -1,11 +1,3 @@
-//
-//  IVQHomeViewController.m
-//  InterviewQuest
-//
-//  Created by Aaron Schachter on 5/17/16.
-//  Copyright © 2016 New School Old School. All rights reserved.
-//
-
 #import "IVQHomeViewController.h"
 #import "IVQGameViewController.h"
 #import "IVQQuestionsViewController.h"

@@ -7,8 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="IVQGameViewController">
             <connections>
-                <outlet property="nextButton" destination="qYS-dI-s2z" id="cqH-0U-u3j"/>
-                <outlet property="questionTitleLabel" destination="344-O7-SsU" id="Oxf-Ss-fF5"/>
+                <outlet property="tableView" destination="hIb-M0-aLL" id="nC5-4b-ak3"/>
                 <outlet property="view" destination="iN0-l3-epB" id="TV0-vR-sMU"/>
             </connections>
         </placeholder>
@@ -17,29 +16,17 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Question title" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="344-O7-SsU">
-                    <rect key="frame" x="44" y="288" width="512" height="24"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qYS-dI-s2z" userLabel="Done Button">
-                    <rect key="frame" x="275" y="476" width="50" height="36"/>
-                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
-                    <state key="normal" title="Done"/>
-                    <connections>
-                        <action selector="nextButtonTouchUpInside:" destination="-1" eventType="touchUpInside" id="7Ui-ez-AhU"/>
-                    </connections>
-                </button>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="hIb-M0-aLL">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </tableView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="qYS-dI-s2z" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="2P0-eN-mfq"/>
-                <constraint firstAttribute="bottom" secondItem="qYS-dI-s2z" secondAttribute="bottom" constant="88" id="MHQ-2C-dB7"/>
-                <constraint firstItem="344-O7-SsU" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="Qdd-EC-cUK"/>
-                <constraint firstItem="344-O7-SsU" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="XXr-Wq-Lve"/>
-                <constraint firstItem="344-O7-SsU" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="44" id="a3X-vW-Vqc"/>
-                <constraint firstAttribute="trailing" secondItem="344-O7-SsU" secondAttribute="trailing" constant="44" id="dmx-bI-H2i"/>
+                <constraint firstItem="hIb-M0-aLL" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="0YX-Jb-JgR"/>
+                <constraint firstAttribute="bottom" secondItem="hIb-M0-aLL" secondAttribute="bottom" id="Lez-Ly-jXp"/>
+                <constraint firstAttribute="trailing" secondItem="hIb-M0-aLL" secondAttribute="trailing" id="gh6-6z-nyp"/>
+                <constraint firstItem="hIb-M0-aLL" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="zxM-Li-Hi9"/>
             </constraints>
         </view>
     </objects>
