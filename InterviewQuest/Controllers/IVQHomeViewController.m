@@ -7,7 +7,7 @@
 //
 
 #import "IVQHomeViewController.h"
-#import "IVQPlayViewController.h"
+#import "IVQGameViewController.h"
 #import "IVQQuestionsViewController.h"
 #import <ionicons/IonIcons.h>
 
@@ -44,7 +44,7 @@
 }
 
 - (IBAction)startButtonTouchUpInside:(id)sender {
-    IVQPlayViewController *viewController = [[IVQPlayViewController alloc] initWithNibName:@"IVQPlayView" bundle:nil];
+    IVQGameViewController *viewController = [[IVQGameViewController alloc] initWithNibName:@"IVQGameView" bundle:nil];
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:viewController];
     [self.navigationController presentViewController:navigationController animated:YES completion:nil];
 }

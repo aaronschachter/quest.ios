@@ -1,18 +1,10 @@
-//
-//  IVQPlayViewController.m
-//  InterviewQuest
-//
-//  Created by Aaron Schachter on 5/18/16.
-//  Copyright © 2016 New School Old School. All rights reserved.
-//
-
-#import "IVQPlayViewController.h"
+#import "IVQGameViewController.h"
 #import "AppDelegate.h"
 #import "IVQQuestion.h"
 #import <Toast/UIView+Toast.h>
 #import <ionicons/IonIcons.h>
 
-@interface IVQPlayViewController ()
+@interface IVQGameViewController ()
 
 @property (assign, nonatomic) BOOL gameCompleted;
 @property (strong, nonatomic) NSArray *questions;
@@ -27,7 +19,7 @@
 
 @end
 
-@implementation IVQPlayViewController
+@implementation IVQGameViewController
 
 #pragma mark - UIViewController
 

@@ -5,7 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="IVQPlayViewController">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="IVQGameViewController">
             <connections>
                 <outlet property="nextButton" destination="qYS-dI-s2z" id="cqH-0U-u3j"/>
                 <outlet property="questionTitleLabel" destination="344-O7-SsU" id="Oxf-Ss-fF5"/>
