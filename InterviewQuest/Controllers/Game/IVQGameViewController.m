@@ -2,7 +2,7 @@
 #import "AppDelegate.h"
 #import "IVQQuestion.h"
 #import "IVQGameQuestionTableViewCell.h"
-#import <Toast/UIView+Toast.h>
+#import "IVQGameOverViewController.h"
 #import <ionicons/IonIcons.h>
 
 @interface IVQGameViewController () <UITableViewDelegate, UITableViewDataSource, IVQGameQuestionTableViewCellDelegate>
@@ -29,10 +29,11 @@
     self.title = @"InterviewQuest";
     UIImage *menuImage = [IonIcons imageWithIcon:ion_ios_more size:22.0f color:self.view.tintColor];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:menuImage style:UIBarButtonItemStylePlain target:self action:@selector(pauseButtonTapped:)];
-
+  
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self.tableView registerNib:[UINib nibWithNibName:@"IVQGameQuestionTableViewCell" bundle:nil] forCellReuseIdentifier:@"questionCell"];
+    [self.tableView registerNib:[UINib nibWithNibName:@"IVQGameOverTableViewCell" bundle:nil] forCellReuseIdentifier:@"gameOverCell"];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.scrollEnabled = NO;
     
@@ -46,6 +47,25 @@
 
 - (void)dismiss {
     [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)answerQuestionCell:(IVQGameQuestionTableViewCell *)cell answer:(BOOL)answer {
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+    if (answer) {
+        self.countYes++;
+        [cell setYes];
+    }
+    else {
+        self.countNo++;
+        [cell setNo];
+    }
+    if (indexPath.row < self.questions.count - 1) {
+        [self scrollToNextQuestionFromIndexPath:indexPath];
+    }
+    else {
+        IVQGameOverViewController *viewController = [[IVQGameOverViewController alloc] initWithNibName:@"IVQGameOverView" bundle:nil];
+        [self.navigationController pushViewController:viewController animated:YES];
+    }
 }
 
 #pragma mark - IBAction
@@ -81,46 +101,34 @@
     }
 }
 
+// Use tableView:willDisplayCell:forRowAtIndexPath: for changing cell background color.
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    [(IVQGameQuestionTableViewCell *)cell resetToolbar];
+}
+
 #pragma mark - UITableViewDataSource
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     IVQGameQuestionTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"questionCell" forIndexPath:indexPath];
     cell.delegate = self;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    if (indexPath.row == self.questions.count) {
-        cell.questionLabelText = @"Done";
-    }
-    else {
-        IVQQuestion *question = (IVQQuestion *)self.questions[indexPath.row];
-        cell.questionLabelText = question.title;
-    }
+    IVQQuestion *question = (IVQQuestion *)self.questions[indexPath.row];
+    cell.questionLabelText = question.title;
     return cell;
 }
 
-// Use tableView:willDisplayCell:forRowAtIndexPath: for changing cell background color.
-- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-    [(IVQGameQuestionTableViewCell *)cell resetToolbar];
-}
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    // Add 1 for our GameOver cell.
-    return self.questions.count + 1;
+    return self.questions.count;
 }
 
 #pragma mark - IVQGameQuestionTableViewCellDelegate
 
 - (void)didClickNoButtonForCell:(IVQGameQuestionTableViewCell *)cell {
-    NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
-    self.countNo++;
-    [cell setNo];
-    [self scrollToNextQuestionFromIndexPath:indexPath];
+    [self answerQuestionCell:cell answer:NO];
 }
 
 - (void)didClickYesButtonForCell:(IVQGameQuestionTableViewCell *)cell {
-    NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
-    self.countYes++;
-    [cell setYes];
-    [self scrollToNextQuestionFromIndexPath:indexPath];
+    [self answerQuestionCell:cell answer:YES];
 }
 
 @end
