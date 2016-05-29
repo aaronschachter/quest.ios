@@ -59,12 +59,14 @@
         self.countNo++;
         [cell setNo];
     }
-    if (indexPath.row < [self numberOfQuestionsInGame] - 1) {
-        [self scrollToNextQuestionFromIndexPath:indexPath];
-    }
-    else {
+
+    NSInteger lastQuestionIndex = [self numberOfQuestionsInGame] - 1;
+    if (indexPath.row == lastQuestionIndex) {
         IVQGameOverViewController *viewController = [[IVQGameOverViewController alloc] initWithNibName:@"IVQGameOverView" bundle:nil];
         [self.navigationController pushViewController:viewController animated:YES];
+    }
+    else {
+        [self scrollToNextQuestionFromIndexPath:indexPath];
     }
 }
 
