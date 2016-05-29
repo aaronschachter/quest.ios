@@ -1,10 +1,12 @@
 #import "IVQGameOverViewController.h"
 #import "AppDelegate.h"
-#import "IVQQuestion.h"
+#import "IVQGame.h"
+#import "IVQGameQuestion.h"
 #import "IVQGameOverQuestionTableViewCell.h"
 
 @interface IVQGameOverViewController () <UITableViewDelegate, UITableViewDataSource>
 
+@property (strong, nonatomic) IVQGame *game;
 @property (strong, nonatomic) NSArray *questions;
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -13,10 +15,24 @@
 
 @implementation IVQGameOverViewController
 
+#pragma mark - NSObject
+
+- (instancetype)initWithGame:(IVQGame *)game {
+    self = [super initWithNibName:@"IVQGameOverView" bundle:nil];
+    
+    if (self) {
+        _game = game;
+    }
+    
+    return self;
+}
+
+
+#pragma mark - UIViewController
+
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    __block AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
     self.title = @"Quest complete";
 
     [self.navigationItem setHidesBackButton:YES animated:YES];
@@ -27,8 +43,6 @@
     [self.tableView registerNib:[UINib nibWithNibName:@"IVQGameOverQuestionTableViewCell" bundle:nil] forCellReuseIdentifier:@"questionCell"];
     self.tableView.estimatedRowHeight = 85.0;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
-
-    self.questions = appDelegate.questions;
 }
 
 - (void)dismiss {
@@ -38,15 +52,16 @@
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.questions.count;
+    return self.game.gameQuestions.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView
          cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     IVQGameOverQuestionTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"questionCell" forIndexPath:indexPath];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    IVQQuestion *question = (IVQQuestion *)self.questions[indexPath.row];
-    cell.questionLabelText = question.title;
+    IVQGameQuestion *gameQuestion = (IVQGameQuestion *)self.game.gameQuestions[indexPath.row];
+    cell.questionLabelText = gameQuestion.question.title;
+    cell.answer = gameQuestion.answer;
     return cell;
 }
 

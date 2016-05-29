@@ -1,13 +1,15 @@
 #import "IVQGameViewController.h"
 #import "AppDelegate.h"
-#import "IVQQuestion.h"
 #import "IVQGameQuestionTableViewCell.h"
 #import "IVQGameOverViewController.h"
+#import "IVQGame.h"
+#import "IVQGameQuestion.h"
 #import <ionicons/IonIcons.h>
 
 @interface IVQGameViewController () <UITableViewDelegate, UITableViewDataSource, IVQGameQuestionTableViewCellDelegate>
 
 @property (assign, nonatomic) BOOL gameCompleted;
+@property (strong, nonatomic) IVQGame *game;
 @property (strong, nonatomic) NSArray *questions;
 @property (assign, nonatomic) NSInteger currentQuestionNumber;
 @property (assign, nonatomic) NSInteger countNo;
@@ -37,6 +39,7 @@
     self.tableView.scrollEnabled = NO;
     
     self.questions = appDelegate.questions;
+    self.game = [[IVQGame alloc] initWithQuestions:self.questions];
     self.answers = [[NSMutableArray alloc] init];
     self.currentQuestionNumber = 0;
     self.countYes = 0;
@@ -50,18 +53,18 @@
 
 - (void)answerQuestionCell:(IVQGameQuestionTableViewCell *)cell answer:(BOOL)answer {
     NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+    IVQGameQuestion *gameQuestion = self.game.gameQuestions[indexPath.row];
+    gameQuestion.answer = answer;
     if (answer) {
-        self.countYes++;
         [cell setYes];
     }
     else {
-        self.countNo++;
         [cell setNo];
     }
 
     NSInteger lastQuestionIndex = [self numberOfQuestionsInGame] - 1;
     if (indexPath.row == lastQuestionIndex) {
-        IVQGameOverViewController *viewController = [[IVQGameOverViewController alloc] initWithNibName:@"IVQGameOverView" bundle:nil];
+        IVQGameOverViewController *viewController = [[IVQGameOverViewController alloc] initWithGame:self.game];
         [self.navigationController pushViewController:viewController animated:YES];
     }
     else {
@@ -117,8 +120,8 @@
     IVQGameQuestionTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"questionCell" forIndexPath:indexPath];
     cell.delegate = self;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    IVQQuestion *question = (IVQQuestion *)self.questions[indexPath.row];
-    cell.questionLabelText = question.title;
+    IVQGameQuestion *gameQuestion = self.game.gameQuestions[indexPath.row];
+    cell.questionLabelText = gameQuestion.question.title;
     return cell;
 }
 
