@@ -59,13 +59,17 @@
         self.countNo++;
         [cell setNo];
     }
-    if (indexPath.row < self.questions.count - 1) {
+    if (indexPath.row < [self numberOfQuestionsInGame] - 1) {
         [self scrollToNextQuestionFromIndexPath:indexPath];
     }
     else {
         IVQGameOverViewController *viewController = [[IVQGameOverViewController alloc] initWithNibName:@"IVQGameOverView" bundle:nil];
         [self.navigationController pushViewController:viewController animated:YES];
     }
+}
+
+- (NSInteger)numberOfQuestionsInGame {
+    return self.questions.count;
 }
 
 #pragma mark - IBAction
@@ -95,12 +99,6 @@
     return tableView.bounds.size.height - 44;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.row == self.questions.count) {
-        [self dismiss];
-    }
-}
-
 // Use tableView:willDisplayCell:forRowAtIndexPath: for changing cell background color.
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
     [(IVQGameQuestionTableViewCell *)cell resetToolbar];
@@ -118,7 +116,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.questions.count;
+    return [self numberOfQuestionsInGame];
 }
 
 #pragma mark - IVQGameQuestionTableViewCellDelegate
