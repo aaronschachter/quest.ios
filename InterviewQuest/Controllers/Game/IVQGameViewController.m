@@ -98,6 +98,12 @@
 #pragma mark - UITableViewDelegate
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSInteger lastQuestionIndex = [self numberOfQuestionsInGame] - 1;
+    // @todo Last cell has some weird sizing issues.
+    if (indexPath.row == lastQuestionIndex) {
+        // This gets rid of the previous cell appearing at the top of the last cell.. but the toolbar placement is still not consistent.
+        return tableView.bounds.size.height;
+    }
     return tableView.bounds.size.height - 44;
 }
 
