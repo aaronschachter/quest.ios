@@ -24,7 +24,7 @@
 		B2B2124A1CE7B79D009244D6 /* IVQQuestionDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2B212491CE7B79D009244D6 /* IVQQuestionDetailViewController.m */; };
 		B2B776921CF955F1009E77F4 /* IVQGameOverView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B2B776911CF955F1009E77F4 /* IVQGameOverView.xib */; };
 		B2B776951CF95673009E77F4 /* IVQGameOverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2B776941CF95673009E77F4 /* IVQGameOverViewController.m */; };
-		B2C0458C1CEC224B00F797FF /* VQQuestionsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B2C0458B1CEC224B00F797FF /* VQQuestionsView.xib */; };
+		B2C0458C1CEC224B00F797FF /* IVQQuestionsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B2C0458B1CEC224B00F797FF /* IVQQuestionsView.xib */; };
 		B2C0458E1CEC272C00F797FF /* IVQHomeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B2C0458D1CEC272C00F797FF /* IVQHomeView.xib */; };
 		B2C045911CEC286E00F797FF /* IVQHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2C045901CEC286E00F797FF /* IVQHomeViewController.m */; };
 		DCDACFB598CB4B8BCBF01B62 /* libPods-InterviewQuestTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F104FBEE8FF13605AF3A1D09 /* libPods-InterviewQuestTests.a */; };
@@ -81,7 +81,7 @@
 		B2B776911CF955F1009E77F4 /* IVQGameOverView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = IVQGameOverView.xib; path = Views/Game/IVQGameOverView.xib; sourceTree = "<group>"; };
 		B2B776931CF95673009E77F4 /* IVQGameOverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IVQGameOverViewController.h; path = Controllers/Game/IVQGameOverViewController.h; sourceTree = "<group>"; };
 		B2B776941CF95673009E77F4 /* IVQGameOverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IVQGameOverViewController.m; path = Controllers/Game/IVQGameOverViewController.m; sourceTree = "<group>"; };
-		B2C0458B1CEC224B00F797FF /* VQQuestionsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = VQQuestionsView.xib; path = Views/Settings/VQQuestionsView.xib; sourceTree = "<group>"; };
+		B2C0458B1CEC224B00F797FF /* IVQQuestionsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = IVQQuestionsView.xib; path = Views/Settings/IVQQuestionsView.xib; sourceTree = "<group>"; };
 		B2C0458D1CEC272C00F797FF /* IVQHomeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = IVQHomeView.xib; path = Views/Home/IVQHomeView.xib; sourceTree = "<group>"; };
 		B2C0458F1CEC286E00F797FF /* IVQHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IVQHomeViewController.h; path = Controllers/Home/IVQHomeViewController.h; sourceTree = "<group>"; };
 		B2C045901CEC286E00F797FF /* IVQHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IVQHomeViewController.m; path = Controllers/Home/IVQHomeViewController.m; sourceTree = "<group>"; };
@@ -275,7 +275,7 @@
 			isa = PBXGroup;
 			children = (
 				B21434941CE96C5D00AE90E5 /* IVQQuestionDetailView.xib */,
-				B2C0458B1CEC224B00F797FF /* VQQuestionsView.xib */,
+				B2C0458B1CEC224B00F797FF /* IVQQuestionsView.xib */,
 			);
 			name = Settings;
 			sourceTree = "<group>";
@@ -413,7 +413,7 @@
 				B21434951CE96C5D00AE90E5 /* IVQQuestionDetailView.xib in Resources */,
 				B2B212201CE79087009244D6 /* LaunchScreen.storyboard in Resources */,
 				B2751C931CF56041005C33C5 /* IVQGameQuestionTableViewCell.xib in Resources */,
-				B2C0458C1CEC224B00F797FF /* VQQuestionsView.xib in Resources */,
+				B2C0458C1CEC224B00F797FF /* IVQQuestionsView.xib in Resources */,
 				B25E782B1CED6F8A00A12E8F /* IVQGameView.xib in Resources */,
 				B2B776921CF955F1009E77F4 /* IVQGameOverView.xib in Resources */,
 				B2C0458E1CEC272C00F797FF /* IVQHomeView.xib in Resources */,
