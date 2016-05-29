@@ -1,15 +1,20 @@
 PODS:
   - Firebase (2.5.1)
   - ionicons (2.0.3)
+  - Realm (0.103.1):
+    - Realm/Headers (= 0.103.1)
+  - Realm/Headers (0.103.1)
 
 DEPENDENCIES:
   - Firebase (>= 2.5.1)
   - ionicons (>= 2.0.3)
+  - Realm
 
 SPEC CHECKSUMS:
   Firebase: 3565ea88b830f28f2c77ecc524622bc71a20d085
   ionicons: ec1e86e6c3316bd9942a7f024080dd75c70dd6a5
+  Realm: 9ed57109332e95bdc48a7caedff80b70c51d5ef4
 
-PODFILE CHECKSUM: 215ed1ad6ae34d02b05395b1d18958d7ad2131f8
+PODFILE CHECKSUM: ee4e364079fb2fe6612521d2525ae547bcb58f26
 
 COCOAPODS: 1.0.0
