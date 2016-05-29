@@ -1,27 +1,12 @@
 #import <UIKit/UIKit.h>
 
-@protocol IVQGameQuestionTableViewCellDelegate;
-
 @interface IVQGameQuestionTableViewCell : UITableViewCell
-
-@property (weak, nonatomic) id<IVQGameQuestionTableViewCellDelegate> delegate;
 
 @property (assign, nonatomic) BOOL answer;
 @property (strong, nonatomic) NSString *questionLabelText;
 
-@property (weak, nonatomic) IBOutlet UIView *noView;
-@property (weak, nonatomic) IBOutlet UIView *yesView;
+@property (weak, nonatomic) IBOutlet UITextView *answerTextView;
 
 - (void)resetToolbar;
-
-@end
-
-@protocol IVQGameQuestionTableViewCellDelegate <NSObject>
-
-@required
-
-- (void)didClickNoButtonForCell:(IVQGameQuestionTableViewCell *)cell;
-- (void)didClickYesButtonForCell:(IVQGameQuestionTableViewCell *)cell;
-
 
 @end

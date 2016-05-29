@@ -1,14 +1,9 @@
 #import "IVQGameQuestionTableViewCell.h"
 
-@interface IVQGameQuestionTableViewCell()
+@interface IVQGameQuestionTableViewCell() <UITextViewDelegate>
 
-@property (weak, nonatomic) IBOutlet UIButton *noButton;
-@property (weak, nonatomic) IBOutlet UIButton *yesButton;
+@property (weak, nonatomic) IBOutlet UIView *questionView;
 @property (weak, nonatomic) IBOutlet UILabel *questionLabel;
-@property (weak, nonatomic) IBOutlet UIView *toolbarView;
-
-- (IBAction)noButtonTouchUpInside:(id)sender;
-- (IBAction)yesButtonTouchUpInside:(id)sender;
 
 @end
 
@@ -23,7 +18,6 @@
     else {
         self.contentView.backgroundColor = [UIColor redColor];
     }
-    self.toolbarView.hidden = YES;
 }
 
 - (void)setQuestionLabelText:(NSString *)questionLabelText {
@@ -41,29 +35,14 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
 
-    [self.noButton setTitle:@"Don't know" forState:UIControlStateNormal];
-    [self.yesButton setTitle:@"Answer" forState:UIControlStateNormal];
+    self.questionView.layer.masksToBounds = YES;
+    self.questionView.layer.cornerRadius = 8.0;
 }
 
 #pragma mark - UITableViewCell
 
 - (void)resetToolbar {
     self.contentView.backgroundColor = [UIColor whiteColor];
-    self.toolbarView.hidden = NO;
-}
-
-#pragma mark - IBActions
-
-- (IBAction)noButtonTouchUpInside:(id)sender {
-    if (self.delegate && [self.delegate respondsToSelector:@selector(didClickNoButtonForCell:)]) {
-        [self.delegate didClickNoButtonForCell:self];
-    }
-}
-
-- (IBAction)yesButtonTouchUpInside:(id)sender {
-    if (self.delegate && [self.delegate respondsToSelector:@selector(didClickYesButtonForCell:)]) {
-        [self.delegate didClickYesButtonForCell:self];
-    }
 }
 
 @end

@@ -6,10 +6,12 @@
 #import "IVQGameQuestion.h"
 #import <ionicons/IonIcons.h>
 
-@interface IVQGameViewController () <UITableViewDelegate, UITableViewDataSource, IVQGameQuestionTableViewCellDelegate>
+@interface IVQGameViewController () <UITableViewDelegate, UITableViewDataSource, UITextViewDelegate>
 
 @property (strong, nonatomic) IVQGame *game;
 @property (assign, nonatomic) NSInteger currentQuestionNumber;
+@property (nonatomic, strong) UIBarButtonItem *sendAnswerButton;
+@property (nonatomic, strong) UIToolbar *keyboardToolbar;
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
@@ -17,14 +19,21 @@
 
 @implementation IVQGameViewController
 
+#pragma mark - Mutators
+
+- (void)setCurrentQuestionNumber:(NSInteger)currentQuestionNumber {
+    _currentQuestionNumber = currentQuestionNumber;
+    self.title = [NSString stringWithFormat:@"Question #%li", self.currentQuestionNumber + 1];
+}
+
 #pragma mark - UIViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     __block AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
-    self.title = @"InterviewQuest";
-    UIImage *menuImage = [IonIcons imageWithIcon:ion_ios_more size:22.0f color:self.view.tintColor];
+
+    UIImage *menuImage = [IonIcons imageWithIcon:ion_ios_pause_outline size:22.0f color:self.view.tintColor];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:menuImage style:UIBarButtonItemStylePlain target:self action:@selector(pauseButtonTapped:)];
   
     self.tableView.delegate = self;
@@ -37,7 +46,25 @@
     NSArray *questions = [[NSArray alloc] initWithObjects:appDelegate.questions[0], appDelegate.questions[1], appDelegate.questions[2], nil];
     self.game = [[IVQGame alloc] initWithQuestions:questions];
     self.currentQuestionNumber = 0;
+
+    self.keyboardToolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, 320, 50)];
+    self.keyboardToolbar.barStyle = UIBarStyleDefault;
+    UIBarButtonItem *dontKnowButton = [[UIBarButtonItem alloc] initWithTitle:@"I don't know" style:UIBarButtonItemStylePlain target:self action:@selector(keyboardDontKnowButtonPressed)];
+    [dontKnowButton setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor redColor], NSForegroundColorAttributeName,nil] forState:UIControlStateNormal];
+    self.sendAnswerButton = [[UIBarButtonItem alloc] initWithTitle:@"Send answer" style:UIBarButtonItemStyleDone target:self action:@selector(keyboardAnswerButtonPressed)];
+    self.keyboardToolbar.items = @[dontKnowButton, [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:NULL], self.sendAnswerButton];
+    self.sendAnswerButton.enabled = NO;
 }
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+    IVQGameQuestionTableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+    [cell.answerTextView becomeFirstResponder];
+}
+
+#pragma mark - IVQGameViewController
 
 - (void)dismiss {
     [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
@@ -54,6 +81,7 @@
     }
     else {
         [self scrollToNextQuestionFromIndexPath:indexPath];
+        self.sendAnswerButton.enabled = NO;
     }
 }
 
@@ -61,66 +89,83 @@
     return self.game.gameQuestions.count;
 }
 
+- (void)keyboardDontKnowButtonPressed {
+    [self answerQuestionCell:[self currentQuestionCell] answer:NO];
+}
+
+- (void)keyboardAnswerButtonPressed {
+    [self answerQuestionCell:[self currentQuestionCell] answer:YES];
+}
+
+- (IVQGameQuestionTableViewCell *)currentQuestionCell {
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:self.currentQuestionNumber inSection:0];
+    return [self.tableView cellForRowAtIndexPath:indexPath];
+}
+
+- (void)scrollToNextQuestionFromIndexPath:(NSIndexPath *)indexPath {
+    self.currentQuestionNumber++;
+    NSIndexPath *nextIndexPath = [NSIndexPath indexPathForRow:indexPath.row+1 inSection:0];
+    [self.tableView scrollToRowAtIndexPath:nextIndexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
+    IVQGameQuestionTableViewCell *cell = [self currentQuestionCell];
+    [cell.answerTextView becomeFirstResponder];
+}
+
 #pragma mark - IBAction
 
 - (IBAction)pauseButtonTapped:(id)sender {
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Quest paused" message:@"Continue?" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Interview paused" message:nil preferredStyle:UIAlertControllerStyleAlert];
  
-    UIAlertAction *endGameAction = [UIAlertAction actionWithTitle:@"End quest"style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+    UIAlertAction *endGameAction = [UIAlertAction actionWithTitle:@"End interview"style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
         [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
         [self dismiss];
     }];
-    UIAlertAction *continueAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-        NSLog(@"OK action");
+    UIAlertAction *continueAction = [UIAlertAction actionWithTitle:@"Continue" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
     }];
     [alertController addAction:endGameAction];
     [alertController addAction:continueAction];
     [self presentViewController:alertController animated:YES completion:nil];
 }
 
-- (void)scrollToNextQuestionFromIndexPath:(NSIndexPath *)indexPath {
-    NSIndexPath *nextIndexPath = [NSIndexPath indexPathForRow:indexPath.row+1 inSection:0];
-    [self.tableView scrollToRowAtIndexPath:nextIndexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
-}
-
 #pragma mark - UITableViewDelegate
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    // @todo Last cell has some weird sizing issues.
+    // GameOverCell:
     if (indexPath.row == [self numberOfQuestionsInGame] - 1) {
-        // This gets rid of the previous cell appearing at the top of the last cell.. but the toolbar placement is still not consistent.
         return tableView.bounds.size.height;
     }
-    return tableView.bounds.size.height - 44;
+    // This is bizarre, but if you return height without offset, scrolling to the next cell the firstResponder won't fire (no cursor blinking).
+    return tableView.bounds.size.height - 22;
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-    [(IVQGameQuestionTableViewCell *)cell resetToolbar];
+    IVQGameQuestionTableViewCell *questionCell = (IVQGameQuestionTableViewCell *)cell;
+    [questionCell resetToolbar];
 }
 
 #pragma mark - UITableViewDataSource
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    IVQGameQuestionTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"questionCell" forIndexPath:indexPath];
-    cell.delegate = self;
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    IVQGameQuestionTableViewCell *questionCell = [tableView dequeueReusableCellWithIdentifier:@"questionCell" forIndexPath:indexPath];
     IVQGameQuestion *gameQuestion = self.game.gameQuestions[indexPath.row];
-    cell.questionLabelText = gameQuestion.question.title;
-    return cell;
+    questionCell.questionLabelText = gameQuestion.question.title;
+    questionCell.answerTextView.delegate = self;
+    questionCell.answerTextView.inputAccessoryView = self.keyboardToolbar;
+    questionCell.answerTextView.userInteractionEnabled = YES;
+    questionCell.selectionStyle = UITableViewCellSelectionStyleNone;
+
+    return questionCell;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return [self numberOfQuestionsInGame];
 }
 
-#pragma mark - IVQGameQuestionTableViewCellDelegate
+#pragma mark - UITextViewDelegate
 
-- (void)didClickNoButtonForCell:(IVQGameQuestionTableViewCell *)cell {
-    [self answerQuestionCell:cell answer:NO];
-}
-
-- (void)didClickYesButtonForCell:(IVQGameQuestionTableViewCell *)cell {
-    [self answerQuestionCell:cell answer:YES];
+- (void)textViewDidChange:(UITextView *)textView {
+    if (textView.text.length > 0) {
+        self.sendAnswerButton.enabled = YES;
+    }
 }
 
 @end
