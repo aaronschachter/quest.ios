@@ -6,6 +6,7 @@
 target 'InterviewQuest' do
     pod 'Firebase', '>= 2.5.1'
     pod 'ionicons', '>= 2.0.3'
+    pod 'Realm'
 end
 
 target 'InterviewQuestTests' do
