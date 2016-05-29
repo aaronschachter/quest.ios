@@ -7,6 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="IVQGameOverViewController">
             <connections>
+                <outlet property="tableView" destination="nWQ-S1-ut2" id="cPS-C2-MBW"/>
                 <outlet property="view" destination="iN0-l3-epB" id="2Fr-LD-4tg"/>
             </connections>
         </placeholder>
@@ -15,17 +16,17 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Quest complete" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4XC-OA-IZm">
-                    <rect key="frame" x="239" y="289.5" width="122" height="21"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="nWQ-S1-ut2">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </tableView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="4XC-OA-IZm" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="1Mo-NB-7I3"/>
-                <constraint firstItem="4XC-OA-IZm" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="QZI-cV-itZ"/>
+                <constraint firstAttribute="trailing" secondItem="nWQ-S1-ut2" secondAttribute="trailing" id="2OH-HZ-XQm"/>
+                <constraint firstItem="nWQ-S1-ut2" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="3WA-JD-maZ"/>
+                <constraint firstAttribute="bottom" secondItem="nWQ-S1-ut2" secondAttribute="bottom" id="Jsq-5G-oYg"/>
+                <constraint firstItem="nWQ-S1-ut2" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="rGl-cQ-5Wz"/>
             </constraints>
         </view>
     </objects>

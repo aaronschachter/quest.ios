@@ -33,7 +33,6 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self.tableView registerNib:[UINib nibWithNibName:@"IVQGameQuestionTableViewCell" bundle:nil] forCellReuseIdentifier:@"questionCell"];
-    [self.tableView registerNib:[UINib nibWithNibName:@"IVQGameOverTableViewCell" bundle:nil] forCellReuseIdentifier:@"gameOverCell"];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.scrollEnabled = NO;
     
