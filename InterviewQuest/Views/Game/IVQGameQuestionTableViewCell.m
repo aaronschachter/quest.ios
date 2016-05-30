@@ -16,19 +16,21 @@
 
 #pragma mark - Accessors
 
-- (void)setYes {
-    self.contentView.backgroundColor = [UIColor greenColor];
-    self.toolbarView.hidden = YES;
-}
-
-- (void)setNo {
-    self.contentView.backgroundColor = [UIColor redColor];
+- (void)setAnswer:(BOOL)answer {
+    if (answer) {
+        self.contentView.backgroundColor = [UIColor greenColor];
+    }
+    else {
+        self.contentView.backgroundColor = [UIColor redColor];
+    }
     self.toolbarView.hidden = YES;
 }
 
 - (void)setQuestionLabelText:(NSString *)questionLabelText {
     self.questionLabel.text = questionLabelText;
 }
+
+#pragma mark - UITableViewCell
 
 -(void)prepareForReuse{
     [super prepareForReuse];
@@ -43,11 +45,12 @@
     [self.yesButton setTitle:@"Answer" forState:UIControlStateNormal];
 }
 
+#pragma mark - UITableViewCell
+
 - (void)resetToolbar {
     self.contentView.backgroundColor = [UIColor whiteColor];
     self.toolbarView.hidden = NO;
 }
-
 
 #pragma mark - IBActions
 

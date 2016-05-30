@@ -47,13 +47,7 @@
     NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
     IVQGameQuestion *gameQuestion = self.game.gameQuestions[indexPath.row];
     gameQuestion.answer = answer;
-    if (answer) {
-        [cell setYes];
-    }
-    else {
-        [cell setNo];
-    }
-
+    cell.answer = answer;
     if (indexPath.row == [self numberOfQuestionsInGame] - 1) {
         IVQGameOverViewController *viewController = [[IVQGameOverViewController alloc] initWithGame:self.game];
         [self.navigationController pushViewController:viewController animated:YES];

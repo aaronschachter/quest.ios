@@ -13,8 +13,6 @@
 @property (weak, nonatomic) IBOutlet UIView *yesView;
 
 - (void)resetToolbar;
-- (void)setNo;
-- (void)setYes;
 
 @end
 
