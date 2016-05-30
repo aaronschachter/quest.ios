@@ -8,13 +8,8 @@
 
 @interface IVQGameViewController () <UITableViewDelegate, UITableViewDataSource, IVQGameQuestionTableViewCellDelegate>
 
-@property (assign, nonatomic) BOOL gameCompleted;
 @property (strong, nonatomic) IVQGame *game;
-@property (strong, nonatomic) NSArray *questions;
 @property (assign, nonatomic) NSInteger currentQuestionNumber;
-@property (assign, nonatomic) NSInteger countNo;
-@property (assign, nonatomic) NSInteger countYes;
-@property (strong, nonatomic) NSMutableArray *answers;
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
@@ -38,13 +33,10 @@
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.scrollEnabled = NO;
     
-    self.questions = appDelegate.questions;
-    self.game = [[IVQGame alloc] initWithQuestions:self.questions];
-    self.answers = [[NSMutableArray alloc] init];
+    // Hardcode to first few questions for now.
+    NSArray *questions = [[NSArray alloc] initWithObjects:appDelegate.questions[0], appDelegate.questions[1], appDelegate.questions[2], nil];
+    self.game = [[IVQGame alloc] initWithQuestions:questions];
     self.currentQuestionNumber = 0;
-    self.countYes = 0;
-    self.countNo = 0;
-    self.gameCompleted = NO;
 }
 
 - (void)dismiss {
@@ -62,8 +54,7 @@
         [cell setNo];
     }
 
-    NSInteger lastQuestionIndex = [self numberOfQuestionsInGame] - 1;
-    if (indexPath.row == lastQuestionIndex) {
+    if (indexPath.row == [self numberOfQuestionsInGame] - 1) {
         IVQGameOverViewController *viewController = [[IVQGameOverViewController alloc] initWithGame:self.game];
         [self.navigationController pushViewController:viewController animated:YES];
     }
@@ -73,13 +64,14 @@
 }
 
 - (NSInteger)numberOfQuestionsInGame {
-    return self.questions.count;
+    return self.game.gameQuestions.count;
 }
 
 #pragma mark - IBAction
 
 - (IBAction)pauseButtonTapped:(id)sender {
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Quest paused" message:@"Continue?" preferredStyle:UIAlertControllerStyleAlert];
+ 
     UIAlertAction *endGameAction = [UIAlertAction actionWithTitle:@"End quest"style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
         [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
         [self dismiss];
@@ -100,16 +92,14 @@
 #pragma mark - UITableViewDelegate
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSInteger lastQuestionIndex = [self numberOfQuestionsInGame] - 1;
     // @todo Last cell has some weird sizing issues.
-    if (indexPath.row == lastQuestionIndex) {
+    if (indexPath.row == [self numberOfQuestionsInGame] - 1) {
         // This gets rid of the previous cell appearing at the top of the last cell.. but the toolbar placement is still not consistent.
         return tableView.bounds.size.height;
     }
     return tableView.bounds.size.height - 44;
 }
 
-// Use tableView:willDisplayCell:forRowAtIndexPath: for changing cell background color.
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
     [(IVQGameQuestionTableViewCell *)cell resetToolbar];
 }
