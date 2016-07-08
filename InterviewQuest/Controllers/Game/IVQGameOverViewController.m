@@ -43,6 +43,7 @@
     [self.tableView registerNib:[UINib nibWithNibName:@"IVQGameOverQuestionTableViewCell" bundle:nil] forCellReuseIdentifier:@"questionCell"];
     self.tableView.estimatedRowHeight = 85.0;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 }
 
 - (void)dismiss {
@@ -61,7 +62,7 @@
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     IVQGameQuestion *gameQuestion = (IVQGameQuestion *)self.game.gameQuestions[indexPath.row];
     cell.questionLabelText = gameQuestion.question.title;
-    cell.answer = gameQuestion.answer;
+    cell.answerLabelText = gameQuestion.answer;
     return cell;
 }
 

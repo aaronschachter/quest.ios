@@ -73,7 +73,12 @@
 - (void)answerQuestionCell:(IVQGameQuestionTableViewCell *)cell answer:(BOOL)answer {
     NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
     IVQGameQuestion *gameQuestion = self.game.gameQuestions[indexPath.row];
-    gameQuestion.answer = answer;
+    if (answer) {
+        gameQuestion.answer = cell.answerTextView.text;
+    }
+    else {
+        gameQuestion.answer = nil;
+    }
     cell.answer = answer;
     if (indexPath.row == [self numberOfQuestionsInGame] - 1) {
         IVQGameOverViewController *viewController = [[IVQGameOverViewController alloc] initWithGame:self.game];

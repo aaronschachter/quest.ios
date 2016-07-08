@@ -4,7 +4,7 @@
 @interface IVQGameQuestion : NSObject
 
 @property (strong, nonatomic, readonly) IVQQuestion *question;
-@property (assign, nonatomic) BOOL answer;
+@property (strong, nonatomic) NSString *answer;
 
 - (instancetype)initWithQuestion:(IVQQuestion *)question;
 

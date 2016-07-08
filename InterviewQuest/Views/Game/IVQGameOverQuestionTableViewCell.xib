@@ -15,22 +15,58 @@
                 <rect key="frame" x="0.0" y="0.0" width="434" height="135.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sGl-Xf-o83" userLabel="Question TItle Label">
-                        <rect key="frame" x="8" y="8" width="418" height="119.5"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OG4-tz-H7a" userLabel="Question View">
+                        <rect key="frame" x="8" y="8" width="338" height="36.5"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Question text" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sGl-Xf-o83" userLabel="Question TItle Label">
+                                <rect key="frame" x="8" y="8" width="322" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="sGl-Xf-o83" firstAttribute="top" secondItem="OG4-tz-H7a" secondAttribute="top" constant="8" id="B2p-lO-qD4"/>
+                            <constraint firstItem="sGl-Xf-o83" firstAttribute="leading" secondItem="OG4-tz-H7a" secondAttribute="leading" constant="8" id="FSY-8Y-eUF"/>
+                            <constraint firstAttribute="bottom" secondItem="sGl-Xf-o83" secondAttribute="bottom" constant="8" id="PDa-9V-QGe"/>
+                            <constraint firstAttribute="trailing" secondItem="sGl-Xf-o83" secondAttribute="trailing" constant="8" id="fLq-da-zuw"/>
+                        </constraints>
+                    </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d50-cb-UnE" userLabel="Answer View">
+                        <rect key="frame" x="88" y="83" width="330" height="36.5"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Answer text" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lrl-Qp-unR" userLabel="Answer Label">
+                                <rect key="frame" x="8" y="8" width="314" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.40000000600000002" green="0.80000001190000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="lrl-Qp-unR" secondAttribute="bottom" constant="8" id="Ulj-B8-QHG"/>
+                            <constraint firstItem="lrl-Qp-unR" firstAttribute="top" secondItem="d50-cb-UnE" secondAttribute="top" constant="8" id="XbY-lE-Ke4"/>
+                            <constraint firstItem="lrl-Qp-unR" firstAttribute="leading" secondItem="d50-cb-UnE" secondAttribute="leading" constant="8" id="c4x-A2-ppd"/>
+                            <constraint firstAttribute="trailing" secondItem="lrl-Qp-unR" secondAttribute="trailing" constant="8" id="sTx-fN-Hfl"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="sGl-Xf-o83" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="HpU-O7-sCT"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="sGl-Xf-o83" secondAttribute="bottom" id="OWD-wQ-akd"/>
-                    <constraint firstItem="sGl-Xf-o83" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="VNR-3J-9eE"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="sGl-Xf-o83" secondAttribute="trailing" id="p6A-Ft-jxA"/>
+                    <constraint firstAttribute="leadingMargin" secondItem="OG4-tz-H7a" secondAttribute="leading" id="685-Zd-6Lb"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="OG4-tz-H7a" secondAttribute="trailing" constant="80" id="FBP-lB-bFs"/>
+                    <constraint firstItem="d50-cb-UnE" firstAttribute="top" secondItem="OG4-tz-H7a" secondAttribute="bottom" priority="50" constant="8" id="H10-X8-Pbf"/>
+                    <constraint firstItem="d50-cb-UnE" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="80" id="Sfc-Uw-W9i"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="d50-cb-UnE" secondAttribute="trailing" constant="8" id="YDw-S4-QaK"/>
+                    <constraint firstItem="OG4-tz-H7a" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="0.5" id="lLs-7M-057"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="d50-cb-UnE" secondAttribute="bottom" constant="8" id="ulN-l4-H9m"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="answerLabel" destination="lrl-Qp-unR" id="cMy-t8-rqr"/>
+                <outlet property="answerView" destination="d50-cb-UnE" id="VW0-P3-zDs"/>
                 <outlet property="questionTitleLabel" destination="sGl-Xf-o83" id="JhX-k9-a5E"/>
+                <outlet property="questionView" destination="OG4-tz-H7a" id="y0B-af-vcK"/>
             </connections>
             <point key="canvasLocation" x="364" y="411"/>
         </tableViewCell>
