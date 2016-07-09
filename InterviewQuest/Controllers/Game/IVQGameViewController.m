@@ -42,8 +42,14 @@
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.scrollEnabled = NO;
     
-    // Hardcode to first few questions for now.
-    NSArray *questions = [[NSArray alloc] initWithObjects:appDelegate.questions[0], appDelegate.questions[1], appDelegate.questions[2], nil];
+    NSMutableArray *mutableQuestions = [NSMutableArray arrayWithArray:appDelegate.questions];
+    NSUInteger count = [mutableQuestions count];
+    if (count > 1) {
+        for (NSUInteger i = count - 1; i > 0; --i) {
+            [mutableQuestions exchangeObjectAtIndex:i withObjectAtIndex:arc4random_uniform((int32_t)(i + 1))];
+        }
+    }
+    NSArray *questions = [[NSArray alloc] initWithObjects:mutableQuestions[0], mutableQuestions[1], mutableQuestions[2], nil];
     self.game = [[IVQGame alloc] initWithQuestions:questions];
     self.currentQuestionNumber = 0;
 
