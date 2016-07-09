@@ -3,6 +3,8 @@
 #import "IVQQuestionDetailViewController.h"
 #import <Firebase/Firebase.h>
 #import "AppDelegate.h"
+#import <ionicons/IonIcons.h>
+
 
 @interface IVQQuestionsViewController () <UITableViewDataSource, UITableViewDelegate>
 
@@ -26,7 +28,9 @@
 
     self.title = @"Questions";
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addButtonTapped:)];
-    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
+    
+    UIImage *menuImage = [IonIcons imageWithIcon:ion_ios_close_empty size:22.0f color:self.view.tintColor];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:menuImage style:UIBarButtonItemStylePlain target:self action:@selector(dismissModalViewControllerAnimated:)];
 
     NSString* cellIdentifier = @"questionCell";
     [self.questionsTableView registerClass:[UITableViewCell class] forCellReuseIdentifier:cellIdentifier];

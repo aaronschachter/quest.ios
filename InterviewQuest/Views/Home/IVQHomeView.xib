@@ -8,7 +8,8 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="IVQHomeViewController">
             <connections>
                 <outlet property="headlineLabel" destination="SLF-wu-VWS" id="U2s-Zz-Sfu"/>
-                <outlet property="startButtonTouchUpInside" destination="ga4-tD-Hvw" id="wvZ-KD-V4s"/>
+                <outlet property="imageView" destination="wcJ-QU-7bt" id="Maz-bZ-IEJ"/>
+                <outlet property="startButton" destination="ga4-tD-Hvw" id="dHT-kl-iew"/>
                 <outlet property="view" destination="iN0-l3-epB" id="yvk-l8-Yxa"/>
             </connections>
         </placeholder>
@@ -17,16 +18,36 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Headline" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SLF-wu-VWS">
-                    <rect key="frame" x="16" y="88" width="568" height="21"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wcJ-QU-7bt">
+                    <rect key="frame" x="275" y="200" width="50" height="50"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="50" id="AK0-Bf-QGN"/>
+                        <constraint firstAttribute="height" constant="50" id="UXn-E2-TpA"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="InterviewQuest" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Um4-nz-GU1">
+                    <rect key="frame" x="8" y="272" width="584" height="35"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="30"/>
+                    <color key="textColor" red="0.7019608021" green="0.7019608021" blue="0.7019608021" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Headline" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SLF-wu-VWS">
+                    <rect key="frame" x="44" y="315" width="512" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" red="0.40000000600000002" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l06-44-M1Z">
+                    <rect key="frame" x="272" y="548" width="57" height="30"/>
+                    <state key="normal" title="Settings"/>
+                    <connections>
+                        <action selector="settingsButtonTouchUpInside:" destination="-1" eventType="touchUpInside" id="r8N-GK-Jdk"/>
+                    </connections>
+                </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ga4-tD-Hvw" userLabel="Start Button">
-                    <rect key="frame" x="270" y="279.5" width="61" height="41"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                    <state key="normal" title="Begin"/>
+                    <rect key="frame" x="274.5" y="364" width="52" height="33"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <state key="normal" title="START"/>
                     <connections>
                         <action selector="startButtonTouchUpInside:" destination="-1" eventType="touchUpInside" id="tXs-K9-vqJ"/>
                     </connections>
@@ -34,13 +55,20 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="SLF-wu-VWS" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="7LS-E8-PZM"/>
-                <constraint firstAttribute="trailing" secondItem="SLF-wu-VWS" secondAttribute="trailing" constant="16" id="8zh-AL-XlN"/>
-                <constraint firstItem="SLF-wu-VWS" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="88" id="HbQ-yK-rEh"/>
-                <constraint firstItem="ga4-tD-Hvw" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="ZxW-v4-DEr"/>
-                <constraint firstItem="ga4-tD-Hvw" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="asz-dm-ty9"/>
-                <constraint firstItem="SLF-wu-VWS" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="gOQ-MF-wLl"/>
+                <constraint firstItem="Um4-nz-GU1" firstAttribute="top" secondItem="wcJ-QU-7bt" secondAttribute="bottom" constant="22" id="46e-73-9lK"/>
+                <constraint firstItem="wcJ-QU-7bt" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="200" id="7WW-VQ-Voa"/>
+                <constraint firstAttribute="trailing" secondItem="Um4-nz-GU1" secondAttribute="trailing" constant="8" id="80B-pJ-uhO"/>
+                <constraint firstItem="l06-44-M1Z" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Dga-4a-rXg"/>
+                <constraint firstItem="l06-44-M1Z" firstAttribute="top" secondItem="ga4-tD-Hvw" secondAttribute="bottom" constant="151" id="NLT-P0-IuB"/>
+                <constraint firstItem="SLF-wu-VWS" firstAttribute="top" secondItem="Um4-nz-GU1" secondAttribute="bottom" constant="8" id="PcK-Sc-Vfn"/>
+                <constraint firstItem="wcJ-QU-7bt" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Pgw-JY-duB"/>
+                <constraint firstItem="Um4-nz-GU1" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="TwO-ZU-SH6"/>
+                <constraint firstAttribute="trailing" secondItem="SLF-wu-VWS" secondAttribute="trailing" constant="44" id="e37-A2-Nr2"/>
+                <constraint firstItem="ga4-tD-Hvw" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="f98-2S-TWA"/>
+                <constraint firstItem="SLF-wu-VWS" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="44" id="vbM-xk-hjb"/>
+                <constraint firstAttribute="bottom" secondItem="l06-44-M1Z" secondAttribute="bottom" constant="22" id="zEU-UC-NBx"/>
             </constraints>
+            <point key="canvasLocation" x="167" y="417"/>
         </view>
     </objects>
 </document>

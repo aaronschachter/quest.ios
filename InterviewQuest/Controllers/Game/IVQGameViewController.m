@@ -126,7 +126,7 @@
 - (IBAction)pauseButtonTapped:(id)sender {
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Interview paused" message:nil preferredStyle:UIAlertControllerStyleAlert];
  
-    UIAlertAction *endGameAction = [UIAlertAction actionWithTitle:@"End interview"style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+    UIAlertAction *endGameAction = [UIAlertAction actionWithTitle:@"End interview"style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
         [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
         [self dismiss];
     }];
