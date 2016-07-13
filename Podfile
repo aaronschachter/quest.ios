@@ -4,7 +4,8 @@
 # use_frameworks!
 
 target 'InterviewQuest' do
-    pod 'Firebase', '>= 2.5.1'
+    pod 'Firebase/Core'
+    pod 'Firebase/Database'
     pod 'ionicons', '>= 2.0.3'
     pod 'Realm'
 end

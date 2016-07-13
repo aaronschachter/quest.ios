@@ -8,7 +8,6 @@
 
 @interface IVQQuestionsViewController () <UITableViewDataSource, UITableViewDelegate>
 
-@property (strong, nonatomic) Firebase *questionsRef;
 @property (strong, nonatomic) NSArray *questions;
 
 @property (weak, nonatomic) IBOutlet UITableView *questionsTableView;

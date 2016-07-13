@@ -10,12 +10,12 @@
 #import "IVQQuestionsViewController.h"
 #import "IVQHomeViewController.h"
 #import "IVQQuestion.h"
-#import <Firebase/Firebase.h>
 #import "AppDelegate.h"
 
 @interface AppDelegate ()
 
 @property (strong, nonatomic, readwrite) NSArray *questions;
+@property (strong, nonatomic, readwrite) FIRDatabaseReference *questionsRef;
 
 @end
 
@@ -23,9 +23,10 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    [Firebase defaultConfig].persistenceEnabled = YES;
-    Firebase *questionsRef = [[Firebase alloc] initWithUrl:@"https://blinding-heat-7380.firebaseio.com/questions"];
-    [questionsRef observeEventType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
+    [FIRApp configure];
+    [FIRDatabase database].persistenceEnabled = YES;
+    self.questionsRef = [[FIRDatabase database] referenceWithPath:@"questions"];
+    [self.questionsRef observeEventType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot *snapshot) {
         NSDictionary *questionsDict = (NSDictionary *)snapshot.value;
         self.questions = [[NSArray alloc] init];
         NSMutableArray *questions = [[NSMutableArray alloc] init];

@@ -19,3 +19,4 @@ xcuserdata/
 *.xcscmblueprint
 
 Pods/
+InterviewQuest/GoogleService-Info.plist

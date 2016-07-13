@@ -1,13 +1,10 @@
 #import "IVQQuestionDetailViewController.h"
 #import "IVQQuestionsViewController.h"
-#import <Firebase/Firebase.h>
+#import "AppDelegate.h"
 
 @interface IVQQuestionDetailViewController () <UITextViewDelegate>
 
 @property (strong, nonatomic) IVQQuestion *question;
-
-// @todo DRY with IVQAPI singleton class.
-@property (strong, nonatomic) Firebase *questionsRef;
 
 @property (weak, nonatomic) IBOutlet UITextView *questionTitleTextView;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *addQuestionBarButtonItem;
@@ -35,7 +32,6 @@
     
     self.questionTitleTextView.text = self.question.title;
     self.questionTitleTextView.delegate = self;
-    self.questionsRef = [[Firebase alloc] initWithUrl:@"https://blinding-heat-7380.firebaseio.com/questions"];
 
     if (self.question.questionId) {
         NSLog(@"%@", self.question.questionId);
@@ -69,16 +65,16 @@
     NSString *currentTimestamp = [NSString stringWithFormat:@"%.0f", [[NSDate date]timeIntervalSince1970] * 1000];
     NSString *questionTitle = self.questionTitleTextView.text;
     if (self.question.questionId) {
-        Firebase *questionRef = [self.questionsRef childByAppendingPath:self.question.questionId];
-        Firebase *titleRef = [questionRef childByAppendingPath:@"title"];
-        [titleRef setValue:questionTitle withCompletionBlock:^(NSError *error, Firebase *ref) {
+        FIRDatabaseReference *questionRef = [[self questionsRef] child:self.question.questionId];
+        FIRDatabaseReference *titleRef = [questionRef child:@"title"];
+        [titleRef setValue:questionTitle withCompletionBlock:^(NSError *error, FIRDatabaseReference *ref) {
             [self.navigationController popViewControllerAnimated:YES];
         }];
     }
     else {
         NSDictionary *newQuestion = @{@"created_at": currentTimestamp, @"title": questionTitle};
-        Firebase *newQuestionRef = [self.questionsRef childByAutoId];
-        [newQuestionRef setValue:newQuestion withCompletionBlock:^(NSError *error, Firebase *ref) {
+        FIRDatabaseReference *newQuestionRef = [[self questionsRef] childByAutoId];
+        [newQuestionRef setValue:newQuestion withCompletionBlock:^(NSError *error, FIRDatabaseReference *ref) {
             [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
         }];
     }
@@ -87,8 +83,8 @@
 - (IBAction)trashButtonTapped:(id)sender {
     UIAlertController *confirmDeleteAlertController = [UIAlertController alertControllerWithTitle:@"Delete Question?" message:@"This cannot be undone." preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *deleteAction = [UIAlertAction actionWithTitle:@"Delete" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * action) {
-        Firebase *questionRef = [self.questionsRef childByAppendingPath:self.question.questionId];
-        [questionRef removeValueWithCompletionBlock:^(NSError *error, Firebase *ref) {
+        FIRDatabaseReference *questionRef = [self.questionsRef child:self.question.questionId];
+        [questionRef removeValueWithCompletionBlock:^(NSError *error, FIRDatabaseReference *ref) {
             [self.navigationController popViewControllerAnimated:YES];
         }];
         
@@ -102,6 +98,10 @@
 
 #pragma mark - IVQQuestionDetailViewController
 
+- (FIRDatabaseReference *)questionsRef {
+    return ((AppDelegate *)[[UIApplication sharedApplication] delegate]).questionsRef;
+}
+         
 - (void)textChanged:(id)sender {
     self.navigationItem.rightBarButtonItem.enabled = YES;
 }
