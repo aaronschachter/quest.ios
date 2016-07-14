@@ -1,6 +1,8 @@
 #import "IVQHomeViewController.h"
 #import "IVQGameViewController.h"
 #import "IVQQuestionsViewController.h"
+#import "IVQProfileViewController.h"
+
 #import <ionicons/IonIcons.h>
 @import Firebase;
 #import <GoogleSignIn/GoogleSignIn.h>
@@ -11,6 +13,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *headlineLabel;
 @property (weak, nonatomic) IBOutlet UIButton *startButton;
 @property (weak, nonatomic) IBOutlet GIDSignInButton *signInButton;
+@property (weak, nonatomic) IBOutlet UIButton *profileButton;
 
 - (IBAction)settingsButtonTouchUpInside:(id)sender;
 - (IBAction)startButtonTouchUpInside:(id)sender;
@@ -44,12 +47,22 @@
     [super viewWillAppear:animated];
     
     [self.navigationController setNavigationBarHidden:YES animated:NO];
+    FIRUser *currentUser = [FIRAuth auth].currentUser;
+    if (!currentUser) {
+        self.signInButton.hidden = NO;
+        self.profileButton.hidden = YES;
+    }
+    else {
+        self.signInButton.hidden = YES;
+        self.profileButton.hidden = NO;
+    }
 }
 
 #pragma mark - IBActions
 
 - (IBAction)settingsButtonTouchUpInside:(id)sender {
-    IVQQuestionsViewController *viewController = [[IVQQuestionsViewController alloc] initWithNibName:@"IVQQuestionsView" bundle:nil];
+//    IVQQuestionsViewController *viewController = [[IVQQuestionsViewController alloc] initWithNibName:@"IVQQuestionsView" bundle:nil];
+    IVQProfileViewController *viewController = [[IVQProfileViewController alloc] initWithNibName:@"IVQProfileView" bundle:nil];
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:viewController];
     [self.navigationController presentViewController:navigationController animated:YES completion:nil];
 }

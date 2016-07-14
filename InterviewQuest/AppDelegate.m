@@ -65,9 +65,7 @@
 - (void)signIn:(GIDSignIn *)signIn didSignInForUser:(GIDGoogleUser *)user withError:(NSError *)error {
     if (error == nil) {
         GIDAuthentication *authentication = user.authentication;
-        FIRAuthCredential *credential =
-        [FIRGoogleAuthProvider credentialWithIDToken:authentication.idToken
-                                         accessToken:authentication.accessToken];
+        FIRAuthCredential *credential = [FIRGoogleAuthProvider credentialWithIDToken:authentication.idToken accessToken:authentication.accessToken];
         [[FIRAuth auth] signInWithCredential:credential completion:^(FIRUser *user, NSError *error) {
             FIRUser *firUser = [FIRAuth auth].currentUser;
             NSLog(@"uid %@", firUser.uid);

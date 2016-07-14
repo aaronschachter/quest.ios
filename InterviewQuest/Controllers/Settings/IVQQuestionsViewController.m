@@ -5,7 +5,6 @@
 #import "AppDelegate.h"
 #import <ionicons/IonIcons.h>
 
-
 @interface IVQQuestionsViewController () <UITableViewDataSource, UITableViewDelegate>
 
 @property (strong, nonatomic) NSArray *questions;
