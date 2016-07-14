@@ -9,6 +9,7 @@
             <connections>
                 <outlet property="headlineLabel" destination="SLF-wu-VWS" id="U2s-Zz-Sfu"/>
                 <outlet property="imageView" destination="wcJ-QU-7bt" id="Maz-bZ-IEJ"/>
+                <outlet property="signInButton" destination="6Dp-I4-MPy" id="dPL-iT-xgd"/>
                 <outlet property="startButton" destination="ga4-tD-Hvw" id="dHT-kl-iew"/>
                 <outlet property="view" destination="iN0-l3-epB" id="yvk-l8-Yxa"/>
             </connections>
@@ -52,19 +53,30 @@
                         <action selector="startButtonTouchUpInside:" destination="-1" eventType="touchUpInside" id="tXs-K9-vqJ"/>
                     </connections>
                 </button>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Dp-I4-MPy" customClass="GIDSignInButton">
+                    <rect key="frame" x="44" y="412" width="512" height="50"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="clD-Ta-fl8"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="6Dp-I4-MPy" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="44" id="1ZX-WQ-OIj"/>
                 <constraint firstItem="Um4-nz-GU1" firstAttribute="top" secondItem="wcJ-QU-7bt" secondAttribute="bottom" constant="22" id="46e-73-9lK"/>
                 <constraint firstItem="wcJ-QU-7bt" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="200" id="7WW-VQ-Voa"/>
+                <constraint firstItem="6Dp-I4-MPy" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="7YO-d7-8gV"/>
                 <constraint firstAttribute="trailing" secondItem="Um4-nz-GU1" secondAttribute="trailing" constant="8" id="80B-pJ-uhO"/>
                 <constraint firstItem="l06-44-M1Z" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Dga-4a-rXg"/>
                 <constraint firstItem="l06-44-M1Z" firstAttribute="top" secondItem="ga4-tD-Hvw" secondAttribute="bottom" constant="151" id="NLT-P0-IuB"/>
                 <constraint firstItem="SLF-wu-VWS" firstAttribute="top" secondItem="Um4-nz-GU1" secondAttribute="bottom" constant="8" id="PcK-Sc-Vfn"/>
                 <constraint firstItem="wcJ-QU-7bt" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Pgw-JY-duB"/>
                 <constraint firstItem="Um4-nz-GU1" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="TwO-ZU-SH6"/>
+                <constraint firstAttribute="trailing" secondItem="6Dp-I4-MPy" secondAttribute="trailing" constant="44" id="UZT-8b-8LI"/>
                 <constraint firstAttribute="trailing" secondItem="SLF-wu-VWS" secondAttribute="trailing" constant="44" id="e37-A2-Nr2"/>
                 <constraint firstItem="ga4-tD-Hvw" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="f98-2S-TWA"/>
+                <constraint firstItem="6Dp-I4-MPy" firstAttribute="top" secondItem="ga4-tD-Hvw" secondAttribute="bottom" constant="15" id="twf-ia-gJf"/>
                 <constraint firstItem="SLF-wu-VWS" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="44" id="vbM-xk-hjb"/>
                 <constraint firstAttribute="bottom" secondItem="l06-44-M1Z" secondAttribute="bottom" constant="22" id="zEU-UC-NBx"/>
             </constraints>

@@ -4,10 +4,11 @@
 # use_frameworks!
 
 target 'InterviewQuest' do
+    pod 'Firebase/Auth'
     pod 'Firebase/Core'
     pod 'Firebase/Database'
+    pod 'GoogleSignIn'
     pod 'ionicons', '>= 2.0.3'
-    pod 'Realm'
 end
 
 target 'InterviewQuestTests' do

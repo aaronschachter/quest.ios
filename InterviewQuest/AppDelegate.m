@@ -11,8 +11,9 @@
 #import "IVQHomeViewController.h"
 #import "IVQQuestion.h"
 #import "AppDelegate.h"
+#import <GoogleSignIn/GoogleSignIn.h>
 
-@interface AppDelegate ()
+@interface AppDelegate () <GIDSignInDelegate>
 
 @property (strong, nonatomic, readwrite) NSArray *questions;
 @property (strong, nonatomic, readwrite) FIRDatabaseReference *questionsRef;
@@ -21,9 +22,11 @@
 
 @implementation AppDelegate
 
-
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [FIRApp configure];
+    [GIDSignIn sharedInstance].clientID = [FIRApp defaultApp].options.clientID;
+    [GIDSignIn sharedInstance].delegate = self;
+
     [FIRDatabase database].persistenceEnabled = YES;
     self.questionsRef = [[FIRDatabase database] referenceWithPath:@"questions"];
     [self.questionsRef observeEventType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot *snapshot) {
@@ -53,6 +56,47 @@
     self.window.rootViewController = navigationContoller;
 
     return YES;
+}
+
+- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<NSString *, id> *)options {
+    return [[GIDSignIn sharedInstance] handleURL:url sourceApplication:options[UIApplicationOpenURLOptionsSourceApplicationKey] annotation:options[UIApplicationOpenURLOptionsAnnotationKey]];
+}
+
+- (void)signIn:(GIDSignIn *)signIn didSignInForUser:(GIDGoogleUser *)user withError:(NSError *)error {
+    if (error == nil) {
+        GIDAuthentication *authentication = user.authentication;
+        FIRAuthCredential *credential =
+        [FIRGoogleAuthProvider credentialWithIDToken:authentication.idToken
+                                         accessToken:authentication.accessToken];
+        [[FIRAuth auth] signInWithCredential:credential completion:^(FIRUser *user, NSError *error) {
+            FIRUser *firUser = [FIRAuth auth].currentUser;
+            NSLog(@"uid %@", firUser.uid);
+            if (firUser != nil) {
+                for (id<FIRUserInfo> profile in firUser.providerData) {
+                    NSString *providerID = profile.providerID;
+                    NSLog(@"provider %@", providerID);
+                    NSString *uid = profile.uid;  // Provider-specific UID
+                    NSLog(@"uid %@", uid);
+                    NSString *name = profile.displayName;
+                    NSLog(@"name %@", name);
+                    NSString *email = profile.email;
+                    NSLog(@"email %@", email);
+                    NSURL *photoURL = profile.photoURL;
+                    NSLog(@"photo %@", photoURL);
+                }
+            }
+            else {
+            }
+            NSLog(@"error %@", error);
+        }];
+    } else {
+        NSLog(@"%@", error.localizedDescription);
+    }
+}
+
+- (void)signIn:(GIDSignIn *)signIn didDisconnectWithUser:(GIDGoogleUser *)user withError:(NSError *)error {
+    // Perform any operations when the user disconnects from app here.
+    // ...
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

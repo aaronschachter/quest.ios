@@ -2,13 +2,15 @@
 #import "IVQGameViewController.h"
 #import "IVQQuestionsViewController.h"
 #import <ionicons/IonIcons.h>
+@import Firebase;
+#import <GoogleSignIn/GoogleSignIn.h>
 
-@interface IVQHomeViewController ()
+@interface IVQHomeViewController () <GIDSignInUIDelegate>
+
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
-
 @property (weak, nonatomic) IBOutlet UILabel *headlineLabel;
-
 @property (weak, nonatomic) IBOutlet UIButton *startButton;
+@property (weak, nonatomic) IBOutlet GIDSignInButton *signInButton;
 
 - (IBAction)settingsButtonTouchUpInside:(id)sender;
 - (IBAction)startButtonTouchUpInside:(id)sender;
@@ -31,8 +33,11 @@
     
 
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
-    UIImage *gearImage = [IonIcons imageWithIcon:ion_ios_gear_outline size:22.0f color:self.view.tintColor];
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:gearImage style:UIBarButtonItemStylePlain target:self action:@selector(settingsButtonTouchUpInside:)];
+
+    [GIDSignIn sharedInstance].uiDelegate = self;
+    
+    // Uncomment to automatically sign in the user.
+    [[GIDSignIn sharedInstance] signInSilently];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
