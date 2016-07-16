@@ -7,7 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="IVQProfileViewController">
             <connections>
-                <outlet property="userNameLabel" destination="e1G-lY-uR4" id="RfL-KP-KEG"/>
+                <outlet property="tableView" destination="q2j-Sa-E57" id="Pws-uK-r1K"/>
                 <outlet property="view" destination="iN0-l3-epB" id="ajN-oa-CSI"/>
             </connections>
         </placeholder>
@@ -16,35 +16,18 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9iM-pt-Z4B">
-                    <rect key="frame" x="8" y="304" width="584" height="30"/>
-                    <state key="normal" title="Sign out"/>
-                    <connections>
-                        <action selector="signoutButtonTouchUpInside:" destination="-1" eventType="touchUpInside" id="UNS-mM-Trg"/>
-                    </connections>
-                </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e1G-lY-uR4">
-                    <rect key="frame" x="8" y="219" width="584" height="21"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="q2j-Sa-E57">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </tableView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="e1G-lY-uR4" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="219" id="4na-7w-OLI"/>
-                <constraint firstAttribute="trailing" secondItem="9iM-pt-Z4B" secondAttribute="trailing" constant="8" id="BvM-34-NM4"/>
-                <constraint firstAttribute="trailing" secondItem="e1G-lY-uR4" secondAttribute="trailing" constant="8" id="MDl-g7-jxV"/>
-                <constraint firstItem="9iM-pt-Z4B" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="YJb-3G-YF6"/>
-                <constraint firstItem="9iM-pt-Z4B" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="Yvr-3l-Jce"/>
-                <constraint firstItem="e1G-lY-uR4" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="cqp-n2-tf2"/>
-                <constraint firstItem="9iM-pt-Z4B" firstAttribute="top" secondItem="e1G-lY-uR4" secondAttribute="bottom" constant="64" id="qoG-vF-Xfg"/>
+                <constraint firstItem="q2j-Sa-E57" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="BDQ-Ht-zsg"/>
+                <constraint firstAttribute="bottom" secondItem="q2j-Sa-E57" secondAttribute="bottom" id="Ynj-Gb-6bE"/>
+                <constraint firstAttribute="trailing" secondItem="q2j-Sa-E57" secondAttribute="trailing" id="dCK-av-SDl"/>
+                <constraint firstItem="q2j-Sa-E57" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="nCA-zu-Har"/>
             </constraints>
-            <variation key="default">
-                <mask key="constraints">
-                    <exclude reference="YJb-3G-YF6"/>
-                </mask>
-            </variation>
         </view>
     </objects>
 </document>
