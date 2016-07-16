@@ -103,15 +103,21 @@
     NSString *currentTimestamp = [NSString stringWithFormat:@"%.0f", [[NSDate date]timeIntervalSince1970] * 1000];
     NSDictionary *newGame = @{@"created_at": currentTimestamp, @"user": uid};
     FIRDatabaseReference *gamesRef = [[FIRDatabase database] referenceWithPath:@"games"];
-    FIRDatabaseReference *answersRef = [[FIRDatabase database] referenceWithPath:@"answers"];
+    FIRDatabaseReference *gameQuestionsRef = [[FIRDatabase database] referenceWithPath:@"game-questions"];
     FIRDatabaseReference *newGameRef = [gamesRef childByAutoId];
     NSString *gameId = newGameRef.key;
 
     [newGameRef setValue:newGame withCompletionBlock:^(NSError *error, FIRDatabaseReference *ref) {
         for (IVQGameQuestion *gameQuestion in self.game.gameQuestions) {
-            FIRDatabaseReference *newAnswerRef = [answersRef childByAutoId];
-            [newAnswerRef setValue:@{@"text": gameQuestion.answer, @"question": gameQuestion.question.questionId, @"game": gameId, @"user": uid}];
-            NSString *gameAnswerURL = [NSString stringWithFormat:@"%@/answers/%@", gameId, newAnswerRef.key];
+            FIRDatabaseReference *newGameQuestionRef = [gameQuestionsRef childByAutoId];
+            BOOL didAnswer = YES;
+            NSString *answer = gameQuestion.answer;
+            if (!answer) {
+                didAnswer = NO;
+                answer = @"";
+            }
+            [newGameQuestionRef setValue:@{@"answered": [NSNumber numberWithBool:didAnswer], @"content": answer, @"question": gameQuestion.question.questionId, @"game": gameId, @"user": uid}];
+            NSString *gameAnswerURL = [NSString stringWithFormat:@"%@/game-questions/%@", gameId, newGameQuestionRef.key];
             FIRDatabaseReference *newGameAnswerRef = [gamesRef child:gameAnswerURL];;
             [newGameAnswerRef setValue:@YES];
         }
