@@ -46,25 +46,28 @@
                         <action selector="settingsButtonTouchUpInside:" destination="-1" eventType="touchUpInside" id="r8N-GK-Jdk"/>
                     </connections>
                 </button>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Dp-I4-MPy" customClass="GIDSignInButton">
+                    <rect key="frame" x="144" y="506" width="312" height="50"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="312" id="ZNc-d1-uZy"/>
+                        <constraint firstAttribute="height" constant="50" id="clD-Ta-fl8"/>
+                    </constraints>
+                </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ga4-tD-Hvw" userLabel="Start Button">
-                    <rect key="frame" x="274" y="364" width="52" height="33"/>
+                    <rect key="frame" x="144" y="364" width="312" height="33"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="312" id="D2A-GL-bJ0"/>
+                    </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <state key="normal" title="START"/>
                     <connections>
                         <action selector="startButtonTouchUpInside:" destination="-1" eventType="touchUpInside" id="tXs-K9-vqJ"/>
                     </connections>
                 </button>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Dp-I4-MPy" customClass="GIDSignInButton">
-                    <rect key="frame" x="44" y="506" width="512" height="50"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="50" id="clD-Ta-fl8"/>
-                    </constraints>
-                </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="6Dp-I4-MPy" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="44" id="1ZX-WQ-OIj"/>
                 <constraint firstItem="Um4-nz-GU1" firstAttribute="top" secondItem="wcJ-QU-7bt" secondAttribute="bottom" constant="22" id="46e-73-9lK"/>
                 <constraint firstItem="wcJ-QU-7bt" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="200" id="7WW-VQ-Voa"/>
                 <constraint firstItem="6Dp-I4-MPy" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="7YO-d7-8gV"/>
@@ -74,7 +77,6 @@
                 <constraint firstItem="SLF-wu-VWS" firstAttribute="top" secondItem="Um4-nz-GU1" secondAttribute="bottom" constant="8" id="PcK-Sc-Vfn"/>
                 <constraint firstItem="wcJ-QU-7bt" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Pgw-JY-duB"/>
                 <constraint firstItem="Um4-nz-GU1" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="TwO-ZU-SH6"/>
-                <constraint firstAttribute="trailing" secondItem="6Dp-I4-MPy" secondAttribute="trailing" constant="44" id="UZT-8b-8LI"/>
                 <constraint firstAttribute="trailing" secondItem="SLF-wu-VWS" secondAttribute="trailing" constant="44" id="e37-A2-Nr2"/>
                 <constraint firstItem="ga4-tD-Hvw" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="f98-2S-TWA"/>
                 <constraint firstAttribute="bottom" secondItem="6Dp-I4-MPy" secondAttribute="bottom" constant="44" id="sEt-a5-xkA"/>

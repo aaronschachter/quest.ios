@@ -9,10 +9,10 @@
 
 @interface IVQHomeViewController () <GIDSignInUIDelegate>
 
+@property (weak, nonatomic) IBOutlet GIDSignInButton *signInButton;
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet UILabel *headlineLabel;
 @property (weak, nonatomic) IBOutlet UIButton *startButton;
-@property (weak, nonatomic) IBOutlet GIDSignInButton *signInButton;
 @property (weak, nonatomic) IBOutlet UIButton *profileButton;
 
 - (IBAction)settingsButtonTouchUpInside:(id)sender;
@@ -29,30 +29,40 @@
 
     self.headlineLabel.text = @"Practice for job interviews.";
     self.imageView.image = [UIImage imageNamed:@"Shield"];
-    self.startButton.backgroundColor = [[UIColor alloc] initWithRed:(102.0/255.0) green:(204.0/255.0) blue:(255.0/255.0) alpha:1.0];
+    self.startButton.backgroundColor = self.navigationController.navigationBar.tintColor;
     self.startButton.tintColor = [UIColor whiteColor];
-    self.startButton.layer.cornerRadius = 8.0;
     self.startButton.contentEdgeInsets = UIEdgeInsetsMake(15,15,15,15);
+    self.signInButton.style = kGIDSignInButtonStyleWide;
     
-
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
 
     [GIDSignIn sharedInstance].uiDelegate = self;
-    
-    // Uncomment to automatically sign in the user.
-    [[GIDSignIn sharedInstance] signInSilently];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveToggleAuthUINotification:) name:@"ToggleAuthUINotification" object:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
     [self.navigationController setNavigationBarHidden:YES animated:NO];
-    FIRUser *currentUser = [FIRAuth auth].currentUser;
-    if (!currentUser) {
+    [self toggleAuthUI];
+}
+
+#pragma mark - IVQHomeViewController
+
+- (void)receiveToggleAuthUINotification:(NSNotification *) notification {
+    if ([[notification name] isEqualToString:@"ToggleAuthUINotification"]) {
+        [self toggleAuthUI];
+    }
+}
+
+- (void)toggleAuthUI {
+    if ([FIRAuth auth].currentUser == nil) {
+        self.startButton.hidden = YES;
         self.signInButton.hidden = NO;
         self.profileButton.hidden = YES;
     }
     else {
+        self.startButton.hidden = NO;
         self.signInButton.hidden = YES;
         self.profileButton.hidden = NO;
     }

@@ -66,10 +66,14 @@
     if (error == nil) {
         GIDAuthentication *authentication = user.authentication;
         FIRAuthCredential *credential = [FIRGoogleAuthProvider credentialWithIDToken:authentication.idToken accessToken:authentication.accessToken];
+        NSString *fullName = user.profile.name;
         [[FIRAuth auth] signInWithCredential:credential completion:^(FIRUser *user, NSError *error) {
             FIRUser *firUser = [FIRAuth auth].currentUser;
             NSLog(@"uid %@", firUser.uid);
             if (firUser != nil) {
+                NSDictionary *statusText = @{@"statusText": [NSString stringWithFormat:@"Signed in user: %@", fullName]};
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"ToggleAuthUINotification" object:nil userInfo:statusText];
+                
                 for (id<FIRUserInfo> profile in firUser.providerData) {
                     NSString *providerID = profile.providerID;
                     NSLog(@"provider %@", providerID);
@@ -93,8 +97,8 @@
 }
 
 - (void)signIn:(GIDSignIn *)signIn didDisconnectWithUser:(GIDGoogleUser *)user withError:(NSError *)error {
-    // Perform any operations when the user disconnects from app here.
-    // ...
+    NSDictionary *statusText = @{@"statusText": @"Disconnected user" };
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"ToggleAuthUINotification" object:nil userInfo:statusText];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
