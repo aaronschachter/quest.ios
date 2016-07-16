@@ -108,6 +108,9 @@
     NSString *gameId = newGameRef.key;
 
     [newGameRef setValue:newGame withCompletionBlock:^(NSError *error, FIRDatabaseReference *ref) {
+        NSString *userGamePath = [NSString stringWithFormat:@"users/%@/games/%@", uid, gameId];;
+        FIRDatabaseReference *userGameRef = [[FIRDatabase database] referenceWithPath:userGamePath];
+        [userGameRef setValue:@YES];
         for (IVQGameQuestion *gameQuestion in self.game.gameQuestions) {
             FIRDatabaseReference *newGameQuestionRef = [gameQuestionsRef childByAutoId];
             BOOL didAnswer = YES;
