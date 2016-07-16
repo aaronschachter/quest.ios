@@ -5,6 +5,7 @@
 #import "IVQGame.h"
 #import "IVQGameQuestion.h"
 #import <ionicons/IonIcons.h>
+@import Firebase;
 
 @interface IVQGameViewController () <UITableViewDelegate, UITableViewDataSource, UITextViewDelegate>
 
@@ -87,6 +88,7 @@
     }
     cell.answer = answer;
     if (indexPath.row == [self numberOfQuestionsInGame] - 1) {
+        [self postGame];
         IVQGameOverViewController *viewController = [[IVQGameOverViewController alloc] initWithGame:self.game];
         [self.navigationController pushViewController:viewController animated:YES];
     }
@@ -94,6 +96,26 @@
         [self scrollToNextQuestionFromIndexPath:indexPath];
         self.sendAnswerButton.enabled = NO;
     }
+}
+
+- (void)postGame {
+    NSString *uid = [FIRAuth auth].currentUser.uid;
+    NSString *currentTimestamp = [NSString stringWithFormat:@"%.0f", [[NSDate date]timeIntervalSince1970] * 1000];
+    NSDictionary *newGame = @{@"created_at": currentTimestamp, @"user": uid};
+    FIRDatabaseReference *gamesRef = [[FIRDatabase database] referenceWithPath:@"games"];
+    FIRDatabaseReference *answersRef = [[FIRDatabase database] referenceWithPath:@"answers"];
+    FIRDatabaseReference *newGameRef = [gamesRef childByAutoId];
+    NSString *gameId = newGameRef.key;
+
+    [newGameRef setValue:newGame withCompletionBlock:^(NSError *error, FIRDatabaseReference *ref) {
+        for (IVQGameQuestion *gameQuestion in self.game.gameQuestions) {
+            FIRDatabaseReference *newAnswerRef = [answersRef childByAutoId];
+            [newAnswerRef setValue:@{@"text": gameQuestion.answer, @"question": gameQuestion.question.questionId, @"game": gameId, @"user": uid}];
+            NSString *gameAnswerURL = [NSString stringWithFormat:@"%@/answers/%@", gameId, newAnswerRef.key];
+            FIRDatabaseReference *newGameAnswerRef = [gamesRef child:gameAnswerURL];;
+            [newGameAnswerRef setValue:@YES];
+        }
+    }];
 }
 
 - (NSInteger)numberOfQuestionsInGame {

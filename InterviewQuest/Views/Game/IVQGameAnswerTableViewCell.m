@@ -29,7 +29,6 @@
         self.answerLabel.text = @"I don't know";
         self.answerView.backgroundColor = [UIColor redColor];
     }
-    
 }
 
 - (void)setQuestionLabelText:(NSString *)questionLabelText {
