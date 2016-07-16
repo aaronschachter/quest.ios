@@ -18,8 +18,8 @@
 		B2751C921CF56041005C33C5 /* IVQGameQuestionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B2751C901CF56041005C33C5 /* IVQGameQuestionTableViewCell.m */; };
 		B2751C931CF56041005C33C5 /* IVQGameQuestionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B2751C911CF56041005C33C5 /* IVQGameQuestionTableViewCell.xib */; };
 		B27DFD321D3760E50076260F /* IVQProfileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B27DFD311D3760E50076260F /* IVQProfileView.xib */; };
-		B2A831A61CFB8340009B6155 /* IVQGameOverQuestionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B2A831A41CFB8340009B6155 /* IVQGameOverQuestionTableViewCell.m */; };
-		B2A831A71CFB8340009B6155 /* IVQGameOverQuestionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B2A831A51CFB8340009B6155 /* IVQGameOverQuestionTableViewCell.xib */; };
+		B2A831A61CFB8340009B6155 /* IVQGameAnswerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B2A831A41CFB8340009B6155 /* IVQGameAnswerTableViewCell.m */; };
+		B2A831A71CFB8340009B6155 /* IVQGameAnswerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B2A831A51CFB8340009B6155 /* IVQGameAnswerTableViewCell.xib */; };
 		B2A831AA1CFB8CB9009B6155 /* IVQGame.m in Sources */ = {isa = PBXBuildFile; fileRef = B2A831A91CFB8CB9009B6155 /* IVQGame.m */; };
 		B2A831AD1CFB8D7C009B6155 /* IVQGameQuestion.m in Sources */ = {isa = PBXBuildFile; fileRef = B2A831AC1CFB8D7C009B6155 /* IVQGameQuestion.m */; };
 		B2B212121CE79087009244D6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B2B212111CE79087009244D6 /* main.m */; };
@@ -71,9 +71,9 @@
 		B2751C901CF56041005C33C5 /* IVQGameQuestionTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IVQGameQuestionTableViewCell.m; path = Views/Game/IVQGameQuestionTableViewCell.m; sourceTree = "<group>"; };
 		B2751C911CF56041005C33C5 /* IVQGameQuestionTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = IVQGameQuestionTableViewCell.xib; path = Views/Game/IVQGameQuestionTableViewCell.xib; sourceTree = "<group>"; };
 		B27DFD311D3760E50076260F /* IVQProfileView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = IVQProfileView.xib; path = Views/Profile/IVQProfileView.xib; sourceTree = "<group>"; };
-		B2A831A31CFB8340009B6155 /* IVQGameOverQuestionTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IVQGameOverQuestionTableViewCell.h; path = Views/Game/IVQGameOverQuestionTableViewCell.h; sourceTree = "<group>"; };
-		B2A831A41CFB8340009B6155 /* IVQGameOverQuestionTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IVQGameOverQuestionTableViewCell.m; path = Views/Game/IVQGameOverQuestionTableViewCell.m; sourceTree = "<group>"; };
-		B2A831A51CFB8340009B6155 /* IVQGameOverQuestionTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = IVQGameOverQuestionTableViewCell.xib; path = Views/Game/IVQGameOverQuestionTableViewCell.xib; sourceTree = "<group>"; };
+		B2A831A31CFB8340009B6155 /* IVQGameAnswerTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IVQGameAnswerTableViewCell.h; path = Views/Game/IVQGameAnswerTableViewCell.h; sourceTree = "<group>"; };
+		B2A831A41CFB8340009B6155 /* IVQGameAnswerTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IVQGameAnswerTableViewCell.m; path = Views/Game/IVQGameAnswerTableViewCell.m; sourceTree = "<group>"; };
+		B2A831A51CFB8340009B6155 /* IVQGameAnswerTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = IVQGameAnswerTableViewCell.xib; path = Views/Game/IVQGameAnswerTableViewCell.xib; sourceTree = "<group>"; };
 		B2A831A81CFB8CB9009B6155 /* IVQGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IVQGame.h; path = Models/IVQGame.h; sourceTree = "<group>"; };
 		B2A831A91CFB8CB9009B6155 /* IVQGame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IVQGame.m; path = Models/IVQGame.m; sourceTree = "<group>"; };
 		B2A831AB1CFB8D7C009B6155 /* IVQGameQuestion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IVQGameQuestion.h; path = Models/IVQGameQuestion.h; sourceTree = "<group>"; };
@@ -278,9 +278,9 @@
 				B2751C901CF56041005C33C5 /* IVQGameQuestionTableViewCell.m */,
 				B2751C911CF56041005C33C5 /* IVQGameQuestionTableViewCell.xib */,
 				B2B776911CF955F1009E77F4 /* IVQGameOverView.xib */,
-				B2A831A31CFB8340009B6155 /* IVQGameOverQuestionTableViewCell.h */,
-				B2A831A41CFB8340009B6155 /* IVQGameOverQuestionTableViewCell.m */,
-				B2A831A51CFB8340009B6155 /* IVQGameOverQuestionTableViewCell.xib */,
+				B2A831A31CFB8340009B6155 /* IVQGameAnswerTableViewCell.h */,
+				B2A831A41CFB8340009B6155 /* IVQGameAnswerTableViewCell.m */,
+				B2A831A51CFB8340009B6155 /* IVQGameAnswerTableViewCell.xib */,
 			);
 			name = Game;
 			sourceTree = "<group>";
@@ -455,7 +455,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B2A831A71CFB8340009B6155 /* IVQGameOverQuestionTableViewCell.xib in Resources */,
+				B2A831A71CFB8340009B6155 /* IVQGameAnswerTableViewCell.xib in Resources */,
 				B21434951CE96C5D00AE90E5 /* IVQQuestionDetailView.xib in Resources */,
 				B2B212201CE79087009244D6 /* LaunchScreen.storyboard in Resources */,
 				B2751C931CF56041005C33C5 /* IVQGameQuestionTableViewCell.xib in Resources */,
@@ -619,7 +619,7 @@
 				B2B776951CF95673009E77F4 /* IVQGameOverViewController.m in Sources */,
 				B2B2124A1CE7B79D009244D6 /* IVQQuestionDetailViewController.m in Sources */,
 				B2B212121CE79087009244D6 /* main.m in Sources */,
-				B2A831A61CFB8340009B6155 /* IVQGameOverQuestionTableViewCell.m in Sources */,
+				B2A831A61CFB8340009B6155 /* IVQGameAnswerTableViewCell.m in Sources */,
 				B2C045911CEC286E00F797FF /* IVQHomeViewController.m in Sources */,
 				B2751C921CF56041005C33C5 /* IVQGameQuestionTableViewCell.m in Sources */,
 				B2ECCFE91D376063009564D3 /* IVQProfileViewController.m in Sources */,

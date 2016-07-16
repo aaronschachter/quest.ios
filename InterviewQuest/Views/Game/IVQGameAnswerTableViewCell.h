@@ -1,6 +1,6 @@
 #import <UIKit/UIKit.h>
 
-@interface IVQGameOverQuestionTableViewCell : UITableViewCell
+@interface IVQGameAnswerTableViewCell : UITableViewCell
 
 @property (assign, nonatomic) BOOL answer;
 

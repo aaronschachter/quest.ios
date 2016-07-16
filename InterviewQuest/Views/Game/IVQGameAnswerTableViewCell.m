@@ -1,6 +1,6 @@
-#import "IVQGameOverQuestionTableViewCell.h"
+#import "IVQGameAnswerTableViewCell.h"
 
-@interface IVQGameOverQuestionTableViewCell()
+@interface IVQGameAnswerTableViewCell()
 
 @property (weak, nonatomic) IBOutlet UILabel *questionTitleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *answerLabel;
@@ -9,7 +9,7 @@
 
 @end
 
-@implementation IVQGameOverQuestionTableViewCell
+@implementation IVQGameAnswerTableViewCell
 
 #pragma mark - Accessors
 

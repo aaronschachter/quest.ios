@@ -2,7 +2,8 @@
 #import "AppDelegate.h"
 #import "IVQGame.h"
 #import "IVQGameQuestion.h"
-#import "IVQGameOverQuestionTableViewCell.h"
+#import "IVQGameAnswerTableViewCell.h"
+@import Firebase;
 
 @interface IVQGameOverViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -40,10 +41,13 @@
 
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    [self.tableView registerNib:[UINib nibWithNibName:@"IVQGameOverQuestionTableViewCell" bundle:nil] forCellReuseIdentifier:@"questionCell"];
+    [self.tableView registerNib:[UINib nibWithNibName:@"IVQGameAnswerTableViewCell" bundle:nil] forCellReuseIdentifier:@"answerCell"];
     self.tableView.estimatedRowHeight = 85.0;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    
+    FIRUser *currentUser = [FIRAuth auth].currentUser;
+    NSLog(@"currentUser.id %@", currentUser.uid);
 }
 
 - (void)dismiss {
@@ -58,7 +62,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView
          cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    IVQGameOverQuestionTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"questionCell" forIndexPath:indexPath];
+    IVQGameAnswerTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"answerCell" forIndexPath:indexPath];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     IVQGameQuestion *gameQuestion = (IVQGameQuestion *)self.game.gameQuestions[indexPath.row];
     cell.questionLabelText = gameQuestion.question.title;
