@@ -31,7 +31,7 @@
         }
     }
     __block AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
-    self.games = appDelegate.games;
+    self.games = [[appDelegate.games reverseObjectEnumerator] allObjects];
 
     UIImage *menuImage = [IonIcons imageWithIcon:ion_close size:22.0f color:self.view.tintColor];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:menuImage style:UIBarButtonItemStylePlain target:self action:@selector(dismiss)];
@@ -56,7 +56,7 @@
 
 - (void)handleSignoutTap:(id)sender {
     UIAlertController *logoutAlertController = [UIAlertController alertControllerWithTitle:@"Are you sure you want to sign out?" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
-    UIAlertAction *confirmLogoutAction = [UIAlertAction actionWithTitle:@"Sign Out" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
+    UIAlertAction *confirmLogoutAction = [UIAlertAction actionWithTitle:@"Sign out" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
         NSError *error;
         [[FIRAuth auth] signOut:&error];
         if (!error) {

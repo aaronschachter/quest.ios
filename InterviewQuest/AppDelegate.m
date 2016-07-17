@@ -50,26 +50,13 @@
         NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
         self.questions = [questions sortedArrayUsingDescriptors:sortDescriptors];
         self.questionsDict = [mutableQuestionsDict copy];
-        NSLog(@"questionsDict %@", self.questionsDict);
+    } withCancelBlock:^(NSError *error) {
+        NSLog(@"%@", error.description);
+    }];
 
-    } withCancelBlock:^(NSError *error) {
-        NSLog(@"%@", error.description);
-    }];
-    
-    NSString *gamesPath = [NSString stringWithFormat:@"users/%@/games", [FIRAuth auth].currentUser.uid];
-    FIRDatabaseReference *gamesRef = [[FIRDatabase database] referenceWithPath:gamesPath];
-    [gamesRef observeEventType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot *snapshot) {
-        NSMutableArray *mutableGames = [[NSMutableArray alloc] init];
-        if (snapshot.hasChildren) {
-            for (FIRDataSnapshot* child in snapshot.children) {
-                IVQGame *game = [[IVQGame alloc] initWithFirebaseId:child.key];
-                [mutableGames addObject:game];
-            }
-            self.games = [[mutableGames reverseObjectEnumerator] allObjects];
-        }
-    } withCancelBlock:^(NSError *error) {
-        NSLog(@"%@", error.description);
-    }];
+    if ([FIRAuth auth].currentUser) {
+        [self loadGames];
+    }
 
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     [self.window makeKeyAndVisible];
@@ -96,6 +83,7 @@
             if (firUser != nil) {
                 NSDictionary *statusText = @{@"statusText": [NSString stringWithFormat:@"Signed in user: %@", fullName]};
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"ToggleAuthUINotification" object:nil userInfo:statusText];
+                [self loadGames];
                 
                 for (id<FIRUserInfo> profile in firUser.providerData) {
                     NSString *providerID = profile.providerID;
@@ -122,6 +110,23 @@
 - (void)signIn:(GIDSignIn *)signIn didDisconnectWithUser:(GIDGoogleUser *)user withError:(NSError *)error {
     NSDictionary *statusText = @{@"statusText": @"Disconnected user" };
     [[NSNotificationCenter defaultCenter] postNotificationName:@"ToggleAuthUINotification" object:nil userInfo:statusText];
+}
+
+- (void)loadGames {
+    NSString *gamesPath = [NSString stringWithFormat:@"users/%@/games", [FIRAuth auth].currentUser.uid];
+    FIRDatabaseReference *gamesRef = [[FIRDatabase database] referenceWithPath:gamesPath];
+    [gamesRef observeEventType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot *snapshot) {
+        NSMutableArray *mutableGames = [[NSMutableArray alloc] init];
+        if (snapshot.hasChildren) {
+            for (FIRDataSnapshot* child in snapshot.children) {
+                IVQGame *game = [[IVQGame alloc] initWithFirebaseId:child.key];
+                [mutableGames addObject:game];
+            }
+            self.games = [mutableGames copy];
+        }
+    } withCancelBlock:^(NSError *error) {
+        NSLog(@"%@", error.description);
+    }];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

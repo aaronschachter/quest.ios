@@ -50,7 +50,6 @@
                 }
             }
             _gameQuestions = [mutableGameQuestions copy];
-            NSLog(@"game.gameQuestions %@", _gameQuestions);
         }];
         
     }
