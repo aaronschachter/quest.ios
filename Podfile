@@ -9,6 +9,7 @@ target 'InterviewQuest' do
     pod 'Firebase/Database'
     pod 'GoogleSignIn'
     pod 'ionicons', '>= 2.0.3'
+    pod 'NSDate+Helper'
 end
 
 target 'InterviewQuestTests' do

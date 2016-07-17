@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "IVQQuestionsViewController.h"
 #import "IVQHomeViewController.h"
+#import "IVQGame.h"
 #import "IVQQuestion.h"
 #import "AppDelegate.h"
 #import <GoogleSignIn/GoogleSignIn.h>
@@ -51,6 +52,21 @@
         self.questionsDict = [mutableQuestionsDict copy];
         NSLog(@"questionsDict %@", self.questionsDict);
 
+    } withCancelBlock:^(NSError *error) {
+        NSLog(@"%@", error.description);
+    }];
+    
+    NSString *gamesPath = [NSString stringWithFormat:@"users/%@/games", [FIRAuth auth].currentUser.uid];
+    FIRDatabaseReference *gamesRef = [[FIRDatabase database] referenceWithPath:gamesPath];
+    [gamesRef observeEventType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot *snapshot) {
+        NSMutableArray *mutableGames = [[NSMutableArray alloc] init];
+        if (snapshot.hasChildren) {
+            for (FIRDataSnapshot* child in snapshot.children) {
+                IVQGame *game = [[IVQGame alloc] initWithFirebaseId:child.key];
+                [mutableGames addObject:game];
+            }
+            self.games = [[mutableGames reverseObjectEnumerator] allObjects];
+        }
     } withCancelBlock:^(NSError *error) {
         NSLog(@"%@", error.description);
     }];

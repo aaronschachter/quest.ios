@@ -3,12 +3,14 @@
 #import "IVQGame.h"
 #import "IVQGameQuestion.h"
 #import "IVQGameAnswerTableViewCell.h"
+#import "AppDelegate.h"
 @import Firebase;
+#import <NSDate+Helper.h>
 
 @interface IVQProfileViewController () <UITableViewDataSource, UITableViewDelegate>
 
 @property (strong, nonatomic) FIRDatabaseReference *gamesRef;
-@property (strong, nonatomic) NSMutableArray *games;
+@property (strong, nonatomic) NSArray *games;
 @property (strong, nonatomic) NSString *uid;
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -28,8 +30,10 @@
             self.title = profile.displayName;
         }
     }
-    self.games = [[NSMutableArray alloc] init];
-    UIImage *menuImage = [IonIcons imageWithIcon:ion_ios_close_empty size:22.0f color:self.view.tintColor];
+    __block AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    self.games = appDelegate.games;
+
+    UIImage *menuImage = [IonIcons imageWithIcon:ion_close size:22.0f color:self.view.tintColor];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:menuImage style:UIBarButtonItemStylePlain target:self action:@selector(dismiss)];
 
     self.tableView.delegate = self;
@@ -38,21 +42,8 @@
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:cellIdentifier];
     [self.tableView registerNib:[UINib nibWithNibName:@"IVQGameAnswerTableViewCell" bundle:nil] forCellReuseIdentifier:@"answerCell"];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-
-    NSString *gamesPath = [NSString stringWithFormat:@"users/%@/games", self.uid];
-    self.gamesRef = [[FIRDatabase database] referenceWithPath:gamesPath];
-    [self.gamesRef observeEventType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot *snapshot) {
-        if (snapshot.hasChildren) {
-            for (FIRDataSnapshot* child in snapshot.children) {
-                IVQGame *game = [[IVQGame alloc] initWithFirebaseId:child.key];
-                [self.games addObject:game];
-                [self.tableView reloadData];
-            }
-        }
-        
-    } withCancelBlock:^(NSError *error) {
-        NSLog(@"%@", error.description);
-    }];
+    self.tableView.estimatedRowHeight = 85.0;
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
 }
 
 - (void)dismiss {
@@ -75,12 +66,13 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     IVQGame *game = self.games[section];
-    NSLog(@"gameQuestions %@", game.gameQuestions);
+
     return game.gameQuestions.count;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    return [NSString stringWithFormat:@"Section %li", section];
+    IVQGame *game = self.games[section];
+    return [NSDate stringForDisplayFromDate:game.date prefixed:NO alwaysDisplayTime:YES];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView
@@ -90,7 +82,12 @@
     IVQGame *game = self.games[indexPath.section];
     IVQGameQuestion *gameQuestion = (IVQGameQuestion *)game.gameQuestions[indexPath.row];
     cell.questionLabelText = gameQuestion.question.title;
-    cell.answerLabelText = gameQuestion.answer;
+    if (gameQuestion.answered) {
+        cell.answerLabelText = gameQuestion.content;
+    }
+    else {
+        cell.answerLabelText = nil;
+    }
 
     return cell;
 }

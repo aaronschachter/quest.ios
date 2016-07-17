@@ -5,6 +5,7 @@
 @interface IVQGame()
 
 @property (strong, nonatomic, readwrite) NSArray *gameQuestions;
+@property (strong, nonatomic, readwrite) NSDate *date;
 
 @end
 
@@ -36,7 +37,11 @@
         [gameRef observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot *snapshot) {
             if (snapshot.hasChildren) {
                 for (FIRDataSnapshot* child in snapshot.children) {
-                    if ([child.key isEqualToString:@"game-questions"]) {
+                    if ([child.key isEqualToString:@"created_at"]) {
+                        NSTimeInterval interval = [child.value doubleValue]/1000;
+                        _date = [NSDate dateWithTimeIntervalSince1970:interval];
+                    }
+                    else if ([child.key isEqualToString:@"game-questions"]) {
                         for (FIRDataSnapshot *gameQuestionSnapshot in child.children) {
                             IVQGameQuestion *gameQuestion = [[IVQGameQuestion alloc] initWithFirebaseId:gameQuestionSnapshot.key];
                             [mutableGameQuestions addObject:gameQuestion];

@@ -24,6 +24,7 @@
 - (void)setAnswerLabelText:(NSString *)answerLabelText {
     if (answerLabelText) {
         self.answerLabel.text = answerLabelText;
+        self.answerView.backgroundColor = [UIColor colorWithRed:(102.0/255.0) green:(204.0/255.0) blue:(255.0/255.0) alpha:1.0];
     }
     else {
         self.answerLabel.text = @"I don't know";
