@@ -44,18 +44,31 @@
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.estimatedRowHeight = 85.0;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
+    self.navigationController.toolbarHidden = NO;
+    UIBarButtonItem *flexibleItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+    UIBarButtonItem *signOutButton = [[UIBarButtonItem alloc] initWithTitle:@"Sign out" style:UIBarButtonItemStylePlain target:self action:@selector(handleSignoutTap:)];
+    self.toolbarItems = [NSArray arrayWithObjects:flexibleItem, signOutButton, flexibleItem, nil];
 }
 
 - (void)dismiss {
     [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (void)signOut {
-    NSError *error;
-    [[FIRAuth auth] signOut:&error];
-    if (!error) {
-        [self dismiss];
-    }
+- (void)handleSignoutTap:(id)sender {
+    UIAlertController *logoutAlertController = [UIAlertController alertControllerWithTitle:@"Are you sure you want to sign out?" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+    UIAlertAction *confirmLogoutAction = [UIAlertAction actionWithTitle:@"Sign Out" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
+        NSError *error;
+        [[FIRAuth auth] signOut:&error];
+        if (!error) {
+            [self dismiss];
+        }
+    }];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction * action) {
+        [logoutAlertController dismissViewControllerAnimated:YES completion:nil];
+    }];
+    [logoutAlertController addAction:confirmLogoutAction];
+    [logoutAlertController addAction:cancelAction];
+    [self presentViewController:logoutAlertController animated:YES completion:nil];
 }
 
 #pragma mark - UITableViewDataSource
