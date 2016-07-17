@@ -15,8 +15,10 @@
 
 @interface AppDelegate () <GIDSignInDelegate>
 
-@property (strong, nonatomic, readwrite) NSArray *questions;
 @property (strong, nonatomic, readwrite) FIRDatabaseReference *questionsRef;
+@property (strong, nonatomic, readwrite) NSArray *games;
+@property (strong, nonatomic, readwrite) NSArray *questions;
+@property (strong, nonatomic, readwrite) NSDictionary *questionsDict;
 
 @end
 
@@ -26,6 +28,7 @@
     [FIRApp configure];
     [GIDSignIn sharedInstance].clientID = [FIRApp defaultApp].options.clientID;
     [GIDSignIn sharedInstance].delegate = self;
+    NSMutableDictionary *mutableQuestionsDict = [[NSMutableDictionary alloc] init];
 
     [FIRDatabase database].persistenceEnabled = YES;
     self.questionsRef = [[FIRDatabase database] referenceWithPath:@"questions"];
@@ -39,11 +42,15 @@
             question.title = questionDict[@"title"];
             question.createdAt = questionDict[@"created_at"];
             [questions addObject:question];
+            mutableQuestionsDict[key] = question;
         }];
         NSSortDescriptor *sortDescriptor;
         sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"createdAt" ascending:NO];
         NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
         self.questions = [questions sortedArrayUsingDescriptors:sortDescriptors];
+        self.questionsDict = [mutableQuestionsDict copy];
+        NSLog(@"questionsDict %@", self.questionsDict);
+
     } withCancelBlock:^(NSError *error) {
         NSLog(@"%@", error.description);
     }];

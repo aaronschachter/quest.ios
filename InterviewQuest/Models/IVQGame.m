@@ -1,5 +1,6 @@
 #import "IVQGame.h"
 #import "IVQGameQuestion.h"
+@import Firebase;
 
 @interface IVQGame()
 
@@ -25,5 +26,31 @@
     return self;
 }
 
+- (instancetype)initWithFirebaseId:(NSString *)id {
+    self = [super init];
+
+    if (self) {
+        NSMutableArray *mutableGameQuestions = [[NSMutableArray alloc] init];
+        NSString *gamePath = [NSString stringWithFormat:@"games/%@", id];
+        FIRDatabaseReference *gameRef = [[FIRDatabase database] referenceWithPath:gamePath];
+        [gameRef observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot *snapshot) {
+            if (snapshot.hasChildren) {
+                for (FIRDataSnapshot* child in snapshot.children) {
+                    if ([child.key isEqualToString:@"game-questions"]) {
+                        for (FIRDataSnapshot *gameQuestionSnapshot in child.children) {
+                            IVQGameQuestion *gameQuestion = [[IVQGameQuestion alloc] initWithFirebaseId:gameQuestionSnapshot.key];
+                            [mutableGameQuestions addObject:gameQuestion];
+                        }
+                    }
+                }
+            }
+            _gameQuestions = [mutableGameQuestions copy];
+            NSLog(@"game.gameQuestions %@", _gameQuestions);
+        }];
+        
+    }
+    
+    return self;
+}
 
 @end
