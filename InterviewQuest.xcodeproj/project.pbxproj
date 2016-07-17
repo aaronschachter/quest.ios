@@ -430,7 +430,7 @@
 					};
 				};
 			};
-			buildConfigurationList = B2B212081CE79087009244D6 /* Build configuration list for PBXProject " InterviewQuest" */;
+			buildConfigurationList = B2B212081CE79087009244D6 /* Build configuration list for PBXProject "InterviewQuest" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -841,7 +841,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		B2B212081CE79087009244D6 /* Build configuration list for PBXProject " InterviewQuest" */ = {
+		B2B212081CE79087009244D6 /* Build configuration list for PBXProject "InterviewQuest" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B2B212381CE79087009244D6 /* Debug */,
