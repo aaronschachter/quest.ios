@@ -34,7 +34,7 @@
     
     __block AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
 
-    UIImage *menuImage = [IonIcons imageWithIcon:ion_ios_pause_outline size:22.0f color:self.view.tintColor];
+    UIImage *menuImage = [IonIcons imageWithIcon:ion_close size:22.0f color:self.view.tintColor];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:menuImage style:UIBarButtonItemStylePlain target:self action:@selector(pauseButtonTapped:)];
   
     self.tableView.delegate = self;
