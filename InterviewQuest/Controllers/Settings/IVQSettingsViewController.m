@@ -20,6 +20,7 @@
 
     [self.view addSubview:self.tableView];
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"defaultCell"];
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 
     FIRUser *currentUser = [FIRAuth auth].currentUser;
     for (id<FIRUserInfo> profile in currentUser.providerData) {
