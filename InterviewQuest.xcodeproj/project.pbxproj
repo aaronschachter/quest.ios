@@ -11,6 +11,7 @@
 		4BBC4E94A5A978AB1AEA661A /* libPods-InterviewQuestTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 291E92806537BB7B1B14A01B /* libPods-InterviewQuestTests.a */; };
 		6F570CF928F1243C4AF8C5FA /* libPods-InterviewQuestUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DEDDEA3D7FB59E8A8B288EAD /* libPods-InterviewQuestUITests.a */; };
 		B20B3FE31D3C540B000A0F80 /* IVQSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B20B3FE21D3C540B000A0F80 /* IVQSettingsViewController.m */; };
+		B20B3FE61D3CA3D1000A0F80 /* keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = B20B3FE51D3CA3D1000A0F80 /* keys.plist */; };
 		B21434951CE96C5D00AE90E5 /* IVQQuestionDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B21434941CE96C5D00AE90E5 /* IVQQuestionDetailView.xib */; };
 		B21434991CE96FD000AE90E5 /* IVQQuestion.m in Sources */ = {isa = PBXBuildFile; fileRef = B21434981CE96FD000AE90E5 /* IVQQuestion.m */; };
 		B221EEBF1D3601D400DFC657 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B221EEBE1D3601D400DFC657 /* GoogleService-Info.plist */; };
@@ -63,6 +64,7 @@
 		AF9D3EA2E2094633D99A19C2 /* Pods-InterviewQuestUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InterviewQuestUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-InterviewQuestUITests/Pods-InterviewQuestUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		B20B3FE11D3C540B000A0F80 /* IVQSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IVQSettingsViewController.h; path = Controllers/Settings/IVQSettingsViewController.h; sourceTree = "<group>"; };
 		B20B3FE21D3C540B000A0F80 /* IVQSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IVQSettingsViewController.m; path = Controllers/Settings/IVQSettingsViewController.m; sourceTree = "<group>"; };
+		B20B3FE51D3CA3D1000A0F80 /* keys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = keys.plist; sourceTree = "<group>"; };
 		B21434941CE96C5D00AE90E5 /* IVQQuestionDetailView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = IVQQuestionDetailView.xib; path = Views/Settings/IVQQuestionDetailView.xib; sourceTree = "<group>"; };
 		B21434971CE96FD000AE90E5 /* IVQQuestion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IVQQuestion.h; path = Models/IVQQuestion.h; sourceTree = "<group>"; };
 		B21434981CE96FD000AE90E5 /* IVQQuestion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IVQQuestion.m; path = Models/IVQQuestion.m; sourceTree = "<group>"; };
@@ -228,6 +230,7 @@
 				B221EEBE1D3601D400DFC657 /* GoogleService-Info.plist */,
 				B2B212211CE79087009244D6 /* Info.plist */,
 				B2B212111CE79087009244D6 /* main.m */,
+				B20B3FE51D3CA3D1000A0F80 /* keys.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -360,6 +363,7 @@
 				B2B2120B1CE79087009244D6 /* Resources */,
 				56B7C148FEFB3089C3FFD64C /* [CP] Embed Pods Frameworks */,
 				9536FD1B8220C0FB12A809FD /* [CP] Copy Pods Resources */,
+				B20B3FE41D3CA351000A0F80 /* Fabric */,
 			);
 			buildRules = (
 			);
@@ -468,6 +472,7 @@
 				B2C0458C1CEC224B00F797FF /* IVQQuestionsView.xib in Resources */,
 				B25E782B1CED6F8A00A12E8F /* IVQGameView.xib in Resources */,
 				B2B776921CF955F1009E77F4 /* IVQGameOverView.xib in Resources */,
+				B20B3FE61D3CA3D1000A0F80 /* keys.plist in Resources */,
 				B221EEBF1D3601D400DFC657 /* GoogleService-Info.plist in Resources */,
 				B2C0458E1CEC272C00F797FF /* IVQHomeView.xib in Resources */,
 				B2B2121D1CE79087009244D6 /* Assets.xcassets in Resources */,
@@ -565,6 +570,20 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-InterviewQuestTests/Pods-InterviewQuestTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		B20B3FE41D3CA351000A0F80 /* Fabric */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = Fabric;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Fabric/run\" `defaults read \"$PWD\"/InterviewQuest/keys.plist fabricApiKey` `defaults read \"$PWD\"/InterviewQuest/keys.plist fabricBuildSecret`";
 		};
 		B96E6901C1DBF88E444D0BDF /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;

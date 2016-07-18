@@ -4,6 +4,8 @@
 # use_frameworks!
 
 target 'InterviewQuest' do
+    pod 'Crashlytics'
+    pod 'Fabric'
     pod 'Firebase/Auth'
     pod 'Firebase/Core'
     pod 'Firebase/Database'
