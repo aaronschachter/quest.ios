@@ -10,6 +10,7 @@ target 'InterviewQuest' do
     pod 'GoogleSignIn'
     pod 'ionicons', '>= 2.0.3'
     pod 'NSDate+Helper'
+    pod 'SVProgressHUD'
 end
 
 target 'InterviewQuestTests' do

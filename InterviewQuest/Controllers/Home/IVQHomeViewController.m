@@ -2,6 +2,7 @@
 #import "IVQGameViewController.h"
 #import "IVQQuestionsViewController.h"
 #import "IVQProfileViewController.h"
+#import "IVQSettingsViewController.h"
 
 #import <ionicons/IonIcons.h>
 @import Firebase;
@@ -13,8 +14,10 @@
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet UILabel *headlineLabel;
 @property (weak, nonatomic) IBOutlet UIButton *startButton;
-@property (weak, nonatomic) IBOutlet UIButton *profileButton;
+@property (weak, nonatomic) IBOutlet UIButton *settingsButton;
+@property (weak, nonatomic) IBOutlet UIButton *historyButton;
 
+- (IBAction)historyButtonTouchUpInside:(id)sender;
 - (IBAction)settingsButtonTouchUpInside:(id)sender;
 - (IBAction)startButtonTouchUpInside:(id)sender;
 
@@ -38,16 +41,28 @@
 
     [GIDSignIn sharedInstance].uiDelegate = self;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveToggleAuthUINotification:) name:@"ToggleAuthUINotification" object:nil];
+    [self styleView];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    [self.navigationController setNavigationBarHidden:YES animated:NO];
+//    [self.navigationController setNavigationBarHidden:YES animated:NO];
     [self toggleAuthUI];
 }
 
 #pragma mark - IVQHomeViewController
+
+- (void)styleView {
+    UIColor *lightGrayColor = [UIColor colorWithRed:224/255.0 green:224/255.0 blue:224/255.0 alpha:1.0];
+    self.historyButton.backgroundColor = lightGrayColor;
+    self.historyButton.contentEdgeInsets = UIEdgeInsetsMake(15,15,15,15);
+    self.settingsButton.backgroundColor = lightGrayColor;
+    self.settingsButton.contentEdgeInsets = UIEdgeInsetsMake(15,15,15,15);
+    self.startButton.backgroundColor = self.navigationController.navigationBar.tintColor;
+    self.startButton.tintColor = [UIColor whiteColor];
+    self.startButton.contentEdgeInsets = UIEdgeInsetsMake(15,15,15,15);
+}
 
 - (void)receiveToggleAuthUINotification:(NSNotification *) notification {
     if ([[notification name] isEqualToString:@"ToggleAuthUINotification"]) {
@@ -59,22 +74,28 @@
     if ([FIRAuth auth].currentUser == nil) {
         self.startButton.hidden = YES;
         self.signInButton.hidden = NO;
-        self.profileButton.hidden = YES;
+        self.historyButton.hidden = YES;
+        self.settingsButton.hidden = YES;
     }
     else {
         self.startButton.hidden = NO;
         self.signInButton.hidden = YES;
-        self.profileButton.hidden = NO;
+        self.historyButton.hidden = NO;
+        self.settingsButton.hidden = NO;
     }
 }
 
 #pragma mark - IBActions
 
+- (IBAction)historyButtonTouchUpInside:(id)sender {
+    IVQProfileViewController *viewController = [[IVQProfileViewController alloc] initWithNibName:@"IVQProfileView" bundle:nil];
+    [self.navigationController pushViewController:viewController animated:YES];
+}
+
 - (IBAction)settingsButtonTouchUpInside:(id)sender {
 //    IVQQuestionsViewController *viewController = [[IVQQuestionsViewController alloc] initWithNibName:@"IVQQuestionsView" bundle:nil];
-    IVQProfileViewController *viewController = [[IVQProfileViewController alloc] initWithNibName:@"IVQProfileView" bundle:nil];
-    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:viewController];
-    [self.navigationController presentViewController:navigationController animated:YES completion:nil];
+    IVQSettingsViewController *viewController = [[IVQSettingsViewController alloc] init];
+    [self.navigationController pushViewController:viewController animated:YES];
 }
 
 - (IBAction)startButtonTouchUpInside:(id)sender {

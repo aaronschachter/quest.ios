@@ -44,6 +44,7 @@ PODS:
     - GoogleSymbolUtilities (~> 1.0)
   - ionicons (2.0.3)
   - NSDate+Helper (1.0.4)
+  - SVProgressHUD (2.0.3)
 
 DEPENDENCIES:
   - Firebase/Auth
@@ -52,6 +53,7 @@ DEPENDENCIES:
   - GoogleSignIn
   - ionicons (>= 2.0.3)
   - NSDate+Helper
+  - SVProgressHUD
 
 SPEC CHECKSUMS:
   Firebase: 6250071f0e2440a5c4c67b8cb6b868f868237ac3
@@ -69,7 +71,8 @@ SPEC CHECKSUMS:
   GoogleUtilities: 56c5ac05b7aa5dc417a1bb85221a9516e04d7032
   ionicons: ec1e86e6c3316bd9942a7f024080dd75c70dd6a5
   NSDate+Helper: 78f517ac1c67914096433466fa7d20b812b9d86c
+  SVProgressHUD: b0830714205bea1317ea1a2ebc71e5633af334d4
 
-PODFILE CHECKSUM: 3a0ae87906b61c4f60a6c41e6317eba48d2d410c
+PODFILE CHECKSUM: 9ccaf59c75f96829c12d4674796f585142fec985
 
 COCOAPODS: 1.0.1

@@ -10,6 +10,7 @@
 		0C307059AE7FB62820545FD0 /* libPods-InterviewQuest.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D72548F4C24F784C6F8A3F5 /* libPods-InterviewQuest.a */; };
 		4BBC4E94A5A978AB1AEA661A /* libPods-InterviewQuestTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 291E92806537BB7B1B14A01B /* libPods-InterviewQuestTests.a */; };
 		6F570CF928F1243C4AF8C5FA /* libPods-InterviewQuestUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DEDDEA3D7FB59E8A8B288EAD /* libPods-InterviewQuestUITests.a */; };
+		B20B3FE31D3C540B000A0F80 /* IVQSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B20B3FE21D3C540B000A0F80 /* IVQSettingsViewController.m */; };
 		B21434951CE96C5D00AE90E5 /* IVQQuestionDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B21434941CE96C5D00AE90E5 /* IVQQuestionDetailView.xib */; };
 		B21434991CE96FD000AE90E5 /* IVQQuestion.m in Sources */ = {isa = PBXBuildFile; fileRef = B21434981CE96FD000AE90E5 /* IVQQuestion.m */; };
 		B221EEBF1D3601D400DFC657 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B221EEBE1D3601D400DFC657 /* GoogleService-Info.plist */; };
@@ -60,6 +61,8 @@
 		51FB8934D82AF633FE7247A1 /* Pods-InterviewQuestUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InterviewQuestUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-InterviewQuestUITests/Pods-InterviewQuestUITests.release.xcconfig"; sourceTree = "<group>"; };
 		8D72548F4C24F784C6F8A3F5 /* libPods-InterviewQuest.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-InterviewQuest.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF9D3EA2E2094633D99A19C2 /* Pods-InterviewQuestUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InterviewQuestUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-InterviewQuestUITests/Pods-InterviewQuestUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		B20B3FE11D3C540B000A0F80 /* IVQSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IVQSettingsViewController.h; path = Controllers/Settings/IVQSettingsViewController.h; sourceTree = "<group>"; };
+		B20B3FE21D3C540B000A0F80 /* IVQSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IVQSettingsViewController.m; path = Controllers/Settings/IVQSettingsViewController.m; sourceTree = "<group>"; };
 		B21434941CE96C5D00AE90E5 /* IVQQuestionDetailView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = IVQQuestionDetailView.xib; path = Views/Settings/IVQQuestionDetailView.xib; sourceTree = "<group>"; };
 		B21434971CE96FD000AE90E5 /* IVQQuestion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IVQQuestion.h; path = Models/IVQQuestion.h; sourceTree = "<group>"; };
 		B21434981CE96FD000AE90E5 /* IVQQuestion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IVQQuestion.m; path = Models/IVQQuestion.m; sourceTree = "<group>"; };
@@ -299,6 +302,8 @@
 		B2B776881CF937E8009E77F4 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				B20B3FE11D3C540B000A0F80 /* IVQSettingsViewController.h */,
+				B20B3FE21D3C540B000A0F80 /* IVQSettingsViewController.m */,
 				B2B212161CE79087009244D6 /* IVQQuestionsViewController.h */,
 				B2B212171CE79087009244D6 /* IVQQuestionsViewController.m */,
 				B2B212481CE7B79D009244D6 /* IVQQuestionDetailViewController.h */,
@@ -625,6 +630,7 @@
 				B2ECCFE91D376063009564D3 /* IVQProfileViewController.m in Sources */,
 				B21434991CE96FD000AE90E5 /* IVQQuestion.m in Sources */,
 				B2A831AD1CFB8D7C009B6155 /* IVQGameQuestion.m in Sources */,
+				B20B3FE31D3C540B000A0F80 /* IVQSettingsViewController.m in Sources */,
 				B2A831AA1CFB8CB9009B6155 /* IVQGame.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -13,6 +13,7 @@
 #import "IVQQuestion.h"
 #import "AppDelegate.h"
 #import <GoogleSignIn/GoogleSignIn.h>
+#import <SVProgressHUD/SVProgressHUD.h>
 
 @interface AppDelegate () <GIDSignInDelegate>
 
@@ -74,6 +75,7 @@
 
 - (void)signIn:(GIDSignIn *)signIn didSignInForUser:(GIDGoogleUser *)user withError:(NSError *)error {
     if (error == nil) {
+        [SVProgressHUD show];
         GIDAuthentication *authentication = user.authentication;
         FIRAuthCredential *credential = [FIRGoogleAuthProvider credentialWithIDToken:authentication.idToken accessToken:authentication.accessToken];
         NSString *fullName = user.profile.name;
@@ -84,7 +86,7 @@
                 NSDictionary *statusText = @{@"statusText": [NSString stringWithFormat:@"Signed in user: %@", fullName]};
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"ToggleAuthUINotification" object:nil userInfo:statusText];
                 [self loadGames];
-                
+                [SVProgressHUD dismiss];
                 for (id<FIRUserInfo> profile in firUser.providerData) {
                     NSString *providerID = profile.providerID;
                     NSLog(@"provider %@", providerID);
@@ -103,6 +105,7 @@
             NSLog(@"error %@", error);
         }];
     } else {
+        [SVProgressHUD dismiss];
         NSLog(@"%@", error.localizedDescription);
     }
 }
@@ -113,6 +116,7 @@
 }
 
 - (void)loadGames {
+    [SVProgressHUD show];
     NSString *gamesPath = [NSString stringWithFormat:@"users/%@/games", [FIRAuth auth].currentUser.uid];
     FIRDatabaseReference *gamesRef = [[FIRDatabase database] referenceWithPath:gamesPath];
     [gamesRef observeEventType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot *snapshot) {
@@ -124,7 +128,9 @@
             }
             self.games = [mutableGames copy];
         }
+        [SVProgressHUD dismiss];
     } withCancelBlock:^(NSError *error) {
+        [SVProgressHUD dismiss];
         NSLog(@"%@", error.description);
     }];
 }
