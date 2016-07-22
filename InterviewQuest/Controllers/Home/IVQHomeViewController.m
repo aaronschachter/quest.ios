@@ -72,7 +72,6 @@
 
 - (void)toggleAuthUI {
     if ([FIRAuth auth].currentUser == nil) {
-        self.startButton.hidden = YES;
         self.signInButton.hidden = NO;
         self.historyButton.hidden = YES;
         self.settingsButton.hidden = YES;

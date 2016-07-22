@@ -37,14 +37,6 @@
                             <color key="textColor" red="0.7019608021" green="0.7019608021" blue="0.7019608021" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Dp-I4-MPy" customClass="GIDSignInButton">
-                            <rect key="frame" x="0.0" y="162" width="312" height="50"/>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="312" id="ZNc-d1-uZy"/>
-                                <constraint firstAttribute="height" constant="50" id="clD-Ta-fl8"/>
-                            </constraints>
-                        </view>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ga4-tD-Hvw" userLabel="Start Button">
                             <rect key="frame" x="0.0" y="184" width="312" height="48"/>
                             <constraints>
@@ -86,15 +78,12 @@
                     </subviews>
                     <constraints>
                         <constraint firstItem="Um4-nz-GU1" firstAttribute="leading" secondItem="smC-tb-Jfb" secondAttribute="leading" constant="8" id="0mc-mj-EAO"/>
-                        <constraint firstAttribute="trailing" secondItem="6Dp-I4-MPy" secondAttribute="trailing" id="7zg-zD-IYb"/>
                         <constraint firstItem="fa2-lq-MTR" firstAttribute="leading" secondItem="smC-tb-Jfb" secondAttribute="leading" id="9lk-AN-mNe"/>
                         <constraint firstAttribute="trailing" secondItem="ga4-tD-Hvw" secondAttribute="trailing" id="Av0-wy-38d"/>
                         <constraint firstItem="wcJ-QU-7bt" firstAttribute="centerX" secondItem="smC-tb-Jfb" secondAttribute="centerX" id="Dld-sj-aBw"/>
                         <constraint firstItem="l06-44-M1Z" firstAttribute="leading" secondItem="smC-tb-Jfb" secondAttribute="leading" id="GTB-De-hVy"/>
                         <constraint firstItem="l06-44-M1Z" firstAttribute="top" secondItem="fa2-lq-MTR" secondAttribute="bottom" constant="8" id="KD1-wN-G14"/>
                         <constraint firstAttribute="trailing" secondItem="fa2-lq-MTR" secondAttribute="trailing" id="Nh0-eo-KHx"/>
-                        <constraint firstItem="6Dp-I4-MPy" firstAttribute="top" secondItem="SLF-wu-VWS" secondAttribute="bottom" constant="40" id="PV0-eG-Ref"/>
-                        <constraint firstItem="6Dp-I4-MPy" firstAttribute="leading" secondItem="smC-tb-Jfb" secondAttribute="leading" id="Pus-6Q-v2G"/>
                         <constraint firstAttribute="height" constant="344" id="SQS-Z5-RCy"/>
                         <constraint firstAttribute="trailing" secondItem="Um4-nz-GU1" secondAttribute="trailing" constant="8" id="ToS-fN-xMv"/>
                         <constraint firstItem="ga4-tD-Hvw" firstAttribute="leading" secondItem="smC-tb-Jfb" secondAttribute="leading" id="XJ9-e1-eYS"/>
@@ -109,11 +98,21 @@
                         <constraint firstAttribute="width" constant="312" id="zdV-PE-gou"/>
                     </constraints>
                 </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Dp-I4-MPy" customClass="GIDSignInButton">
+                    <rect key="frame" x="144" y="506" width="312" height="50"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="312" id="ZNc-d1-uZy"/>
+                        <constraint firstAttribute="height" constant="50" id="clD-Ta-fl8"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="smC-tb-Jfb" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="Opt-vj-lsb"/>
+                <constraint firstItem="6Dp-I4-MPy" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="XNZ-My-U5H"/>
                 <constraint firstItem="smC-tb-Jfb" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="aNu-Pk-Q7Q"/>
+                <constraint firstAttribute="bottom" secondItem="6Dp-I4-MPy" secondAttribute="bottom" constant="44" id="qWq-gV-knz"/>
             </constraints>
             <point key="canvasLocation" x="167" y="417"/>
         </view>
