@@ -155,13 +155,15 @@
 #pragma mark - IBAction
 
 - (IBAction)pauseButtonTapped:(id)sender {
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Interview paused" message:nil preferredStyle:UIAlertControllerStyleAlert];
+    NSInteger numberLeft = self.numberOfQuestionsInGame - self.currentQuestionNumber;
+    NSString *alertMessage = [NSString stringWithFormat:@"Are you sure?\nThere's only %li questions left.", numberLeft];
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"End interview" message:alertMessage preferredStyle:UIAlertControllerStyleAlert];
  
-    UIAlertAction *endGameAction = [UIAlertAction actionWithTitle:@"End interview"style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
+    UIAlertAction *endGameAction = [UIAlertAction actionWithTitle:@"End it"style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
         [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
         [self dismiss];
     }];
-    UIAlertAction *continueAction = [UIAlertAction actionWithTitle:@"Continue" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+    UIAlertAction *continueAction = [UIAlertAction actionWithTitle:@"Keep going" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
     }];
     [alertController addAction:endGameAction];
     [alertController addAction:continueAction];
