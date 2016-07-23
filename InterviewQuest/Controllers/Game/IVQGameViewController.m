@@ -11,7 +11,9 @@
 
 @property (strong, nonatomic) IVQGame *game;
 @property (assign, nonatomic) NSInteger currentQuestionNumber;
-@property (nonatomic, strong) UIBarButtonItem *sendAnswerButton;
+
+@property (strong, nonatomic) UIButton *dontKnowButton;
+@property (nonatomic, strong) UIButton *sendAnswerButton;
 @property (nonatomic, strong) UIToolbar *keyboardToolbar;
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -54,13 +56,32 @@
     self.game = [[IVQGame alloc] initWithQuestions:questions];
     self.currentQuestionNumber = 0;
 
-    self.keyboardToolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, 320, 50)];
+    self.keyboardToolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 60)];
     self.keyboardToolbar.barStyle = UIBarStyleDefault;
-    UIBarButtonItem *dontKnowButton = [[UIBarButtonItem alloc] initWithTitle:@"I don't know" style:UIBarButtonItemStylePlain target:self action:@selector(keyboardDontKnowButtonPressed)];
-    [dontKnowButton setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor redColor], NSForegroundColorAttributeName,nil] forState:UIControlStateNormal];
-    self.sendAnswerButton = [[UIBarButtonItem alloc] initWithTitle:@"Send answer" style:UIBarButtonItemStyleDone target:self action:@selector(keyboardAnswerButtonPressed)];
-    self.keyboardToolbar.items = @[dontKnowButton, [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:NULL], self.sendAnswerButton];
-    self.sendAnswerButton.enabled = NO;
+    CGFloat buttonWidth = (self.view.frame.size.width / 2) - 136;
+    CGFloat buttonHeight = 40;
+
+    self.dontKnowButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [self.dontKnowButton setTitle:@"I don't know" forState:UIControlStateNormal];
+    self.dontKnowButton.layer.backgroundColor = [UIColor colorWithWhite:0.75 alpha:1].CGColor;
+    self.dontKnowButton.layer.cornerRadius = 4.0;
+    self.dontKnowButton.frame = CGRectMake(0, 0, buttonWidth, buttonHeight);
+    [self.dontKnowButton setTitleColor:[UIColor lightTextColor] forState:UIControlStateHighlighted];
+    [self.dontKnowButton addTarget:self action:@selector(keyboardDontKnowButtonPressed) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *dontKnowBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.dontKnowButton];
+
+    self.sendAnswerButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [self.sendAnswerButton setTitle:@"Send answer" forState:UIControlStateNormal];
+    self.sendAnswerButton.layer.cornerRadius = 4.0;
+    self.sendAnswerButton.frame = CGRectMake(0, 0, buttonWidth, buttonHeight);
+    self.sendAnswerButton.layer.borderColor = [UIColor colorWithWhite:0.80 alpha:1].CGColor;
+    [self.sendAnswerButton addTarget:self action:@selector(keyboardAnswerButtonPressed) forControlEvents:UIControlEventTouchUpInside];
+    [self.sendAnswerButton setTitleColor:[UIColor colorWithWhite:0.80 alpha:1] forState:UIControlStateDisabled];
+    [self.sendAnswerButton setTitleColor:[UIColor lightTextColor] forState:UIControlStateHighlighted];
+    UIBarButtonItem *sendAnswerBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.sendAnswerButton];
+
+    self.keyboardToolbar.items = @[dontKnowBarButtonItem, [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:NULL], sendAnswerBarButtonItem];
+    [self answerButtonEnabled:NO];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -77,16 +98,30 @@
     [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
+- (void)answerButtonEnabled:(BOOL)enabled {
+    if (enabled) {
+        self.sendAnswerButton.enabled = YES;
+        self.sendAnswerButton.backgroundColor = self.navigationController.navigationBar.tintColor;
+        self.sendAnswerButton.layer.borderWidth = 0.0;
+    }
+    else {
+        self.sendAnswerButton.enabled = NO;
+        self.sendAnswerButton.backgroundColor = [UIColor whiteColor];
+        self.sendAnswerButton.layer.borderWidth = 1.0;
+    }
+}
+
 - (void)answerQuestionCell:(IVQGameQuestionTableViewCell *)cell answer:(BOOL)answer {
     NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
     IVQGameQuestion *gameQuestion = self.game.gameQuestions[indexPath.row];
     if (answer) {
+        gameQuestion.answered = YES;
         gameQuestion.answer = cell.answerTextView.text;
     }
     else {
+        gameQuestion.answered = NO;
         gameQuestion.answer = nil;
     }
-    cell.answer = answer;
     if (indexPath.row == [self numberOfQuestionsInGame] - 1) {
         [self postGame];
         IVQGameOverViewController *viewController = [[IVQGameOverViewController alloc] initWithGame:self.game];
@@ -94,12 +129,15 @@
     }
     else {
         [self scrollToNextQuestionFromIndexPath:indexPath];
-        self.sendAnswerButton.enabled = NO;
+        [self answerButtonEnabled:NO];
     }
 }
 
 - (void)postGame {
     NSString *uid = [FIRAuth auth].currentUser.uid;
+    if (!uid) {
+        return;
+    }
     NSString *currentTimestamp = [NSString stringWithFormat:@"%.0f", [[NSDate date]timeIntervalSince1970] * 1000];
     NSDictionary *newGame = @{@"created_at": currentTimestamp, @"user": uid};
     FIRDatabaseReference *gamesRef = [[FIRDatabase database] referenceWithPath:@"games"];
@@ -113,15 +151,13 @@
         [userGameRef setValue:@YES];
         for (IVQGameQuestion *gameQuestion in self.game.gameQuestions) {
             FIRDatabaseReference *newGameQuestionRef = [gameQuestionsRef childByAutoId];
-            BOOL didAnswer = YES;
             NSString *answer = gameQuestion.answer;
-            if (!answer) {
-                didAnswer = NO;
+            if (!gameQuestion.answered) {
                 answer = @"";
             }
-            [newGameQuestionRef setValue:@{@"answered": [NSNumber numberWithBool:didAnswer], @"content": answer, @"question": gameQuestion.question.questionId, @"game": gameId, @"user": uid}];
+            [newGameQuestionRef setValue:@{@"answered": [NSNumber numberWithBool:gameQuestion.answered], @"content": answer, @"question": gameQuestion.question.questionId, @"game": gameId, @"user": uid}];
             NSString *gameAnswerURL = [NSString stringWithFormat:@"%@/game-questions/%@", gameId, newGameQuestionRef.key];
-            FIRDatabaseReference *newGameAnswerRef = [gamesRef child:gameAnswerURL];;
+            FIRDatabaseReference *newGameAnswerRef = [gamesRef child:gameAnswerURL];
             [newGameAnswerRef setValue:@YES];
         }
     }];
@@ -156,6 +192,7 @@
 
 - (IBAction)pauseButtonTapped:(id)sender {
     NSInteger numberLeft = self.numberOfQuestionsInGame - self.currentQuestionNumber;
+    [self.view endEditing:YES];
     NSString *alertMessage = [NSString stringWithFormat:@"Are you sure?\nThere's only %li questions left.", numberLeft];
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"End interview" message:alertMessage preferredStyle:UIAlertControllerStyleAlert];
  
@@ -164,6 +201,8 @@
         [self dismiss];
     }];
     UIAlertAction *continueAction = [UIAlertAction actionWithTitle:@"Keep going" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        IVQGameQuestionTableViewCell *cell = [self currentQuestionCell];
+        [cell.answerTextView becomeFirstResponder];
     }];
     [alertController addAction:endGameAction];
     [alertController addAction:continueAction];
@@ -179,11 +218,6 @@
     }
     // This is bizarre, but if you return height without offset, scrolling to the next cell the firstResponder won't fire (no cursor blinking).
     return tableView.bounds.size.height - 22;
-}
-
-- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-    IVQGameQuestionTableViewCell *questionCell = (IVQGameQuestionTableViewCell *)cell;
-    [questionCell resetToolbar];
 }
 
 #pragma mark - UITableViewDataSource
@@ -208,7 +242,10 @@
 
 - (void)textViewDidChange:(UITextView *)textView {
     if (textView.text.length > 0) {
-        self.sendAnswerButton.enabled = YES;
+        [self answerButtonEnabled:YES];
+    }
+    else {
+        [self answerButtonEnabled:NO];
     }
 }
 
