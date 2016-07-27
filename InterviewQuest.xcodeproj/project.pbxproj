@@ -15,6 +15,9 @@
 		B21434951CE96C5D00AE90E5 /* IVQQuestionDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B21434941CE96C5D00AE90E5 /* IVQQuestionDetailView.xib */; };
 		B21434991CE96FD000AE90E5 /* IVQQuestion.m in Sources */ = {isa = PBXBuildFile; fileRef = B21434981CE96FD000AE90E5 /* IVQQuestion.m */; };
 		B221EEBF1D3601D400DFC657 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B221EEBE1D3601D400DFC657 /* GoogleService-Info.plist */; };
+		B22C7FBC1D484E640072632A /* IVQOnboardingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B22C7FBB1D484E640072632A /* IVQOnboardingViewController.m */; };
+		B22C7FC01D484FFD0072632A /* IVQOnboardingScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B22C7FBF1D484FFD0072632A /* IVQOnboardingScreenViewController.m */; };
+		B22C7FC21D486C950072632A /* IVQOnboardingScreenView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B22C7FC11D486C950072632A /* IVQOnboardingScreenView.xib */; };
 		B25E78291CED6EC200A12E8F /* IVQGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B25E78281CED6EC200A12E8F /* IVQGameViewController.m */; };
 		B25E782B1CED6F8A00A12E8F /* IVQGameView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B25E782A1CED6F8A00A12E8F /* IVQGameView.xib */; };
 		B2751C921CF56041005C33C5 /* IVQGameQuestionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B2751C901CF56041005C33C5 /* IVQGameQuestionTableViewCell.m */; };
@@ -69,6 +72,11 @@
 		B21434971CE96FD000AE90E5 /* IVQQuestion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IVQQuestion.h; path = Models/IVQQuestion.h; sourceTree = "<group>"; };
 		B21434981CE96FD000AE90E5 /* IVQQuestion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IVQQuestion.m; path = Models/IVQQuestion.m; sourceTree = "<group>"; };
 		B221EEBE1D3601D400DFC657 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		B22C7FBA1D484E640072632A /* IVQOnboardingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IVQOnboardingViewController.h; path = Controllers/Onboarding/IVQOnboardingViewController.h; sourceTree = "<group>"; };
+		B22C7FBB1D484E640072632A /* IVQOnboardingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IVQOnboardingViewController.m; path = Controllers/Onboarding/IVQOnboardingViewController.m; sourceTree = "<group>"; };
+		B22C7FBE1D484FFD0072632A /* IVQOnboardingScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IVQOnboardingScreenViewController.h; path = Controllers/Onboarding/IVQOnboardingScreenViewController.h; sourceTree = "<group>"; };
+		B22C7FBF1D484FFD0072632A /* IVQOnboardingScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IVQOnboardingScreenViewController.m; path = Controllers/Onboarding/IVQOnboardingScreenViewController.m; sourceTree = "<group>"; };
+		B22C7FC11D486C950072632A /* IVQOnboardingScreenView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = IVQOnboardingScreenView.xib; path = Views/Onboarding/IVQOnboardingScreenView.xib; sourceTree = "<group>"; };
 		B25E78271CED6EC200A12E8F /* IVQGameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IVQGameViewController.h; path = Controllers/Game/IVQGameViewController.h; sourceTree = "<group>"; };
 		B25E78281CED6EC200A12E8F /* IVQGameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IVQGameViewController.m; path = Controllers/Game/IVQGameViewController.m; sourceTree = "<group>"; };
 		B25E782A1CED6F8A00A12E8F /* IVQGameView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = IVQGameView.xib; path = Views/Game/IVQGameView.xib; sourceTree = "<group>"; };
@@ -180,6 +188,25 @@
 			name = Models;
 			sourceTree = "<group>";
 		};
+		B22C7FBD1D484E6A0072632A /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				B22C7FBA1D484E640072632A /* IVQOnboardingViewController.h */,
+				B22C7FBB1D484E640072632A /* IVQOnboardingViewController.m */,
+				B22C7FBE1D484FFD0072632A /* IVQOnboardingScreenViewController.h */,
+				B22C7FBF1D484FFD0072632A /* IVQOnboardingScreenViewController.m */,
+			);
+			name = Onboarding;
+			sourceTree = "<group>";
+		};
+		B22C7FC31D486CA00072632A /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				B22C7FC11D486C950072632A /* IVQOnboardingScreenView.xib */,
+			);
+			name = Onboarding;
+			sourceTree = "<group>";
+		};
 		B27DFD331D3760ED0076260F /* Profile */ = {
 			isa = PBXGroup;
 			children = (
@@ -258,6 +285,7 @@
 			children = (
 				B2B776871CF937AA009E77F4 /* Game */,
 				B2B7768B1CF93F2C009E77F4 /* Home */,
+				B22C7FBD1D484E6A0072632A /* Onboarding */,
 				B2ECCFEA1D376087009564D3 /* Profile */,
 				B2B776881CF937E8009E77F4 /* Settings */,
 			);
@@ -269,6 +297,7 @@
 			children = (
 				B2B776861CF93782009E77F4 /* Game */,
 				B2B7768A1CF93F20009E77F4 /* Home */,
+				B22C7FC31D486CA00072632A /* Onboarding */,
 				B27DFD331D3760ED0076260F /* Profile */,
 				B2B776891CF9380D009E77F4 /* Settings */,
 				B2B2121E1CE79087009244D6 /* LaunchScreen.storyboard */,
@@ -464,6 +493,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B22C7FC21D486C950072632A /* IVQOnboardingScreenView.xib in Resources */,
 				B2A831A71CFB8340009B6155 /* IVQGameAnswerTableViewCell.xib in Resources */,
 				B21434951CE96C5D00AE90E5 /* IVQQuestionDetailView.xib in Resources */,
 				B2B212201CE79087009244D6 /* LaunchScreen.storyboard in Resources */,
@@ -638,6 +668,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B2B212181CE79087009244D6 /* IVQQuestionsViewController.m in Sources */,
+				B22C7FC01D484FFD0072632A /* IVQOnboardingScreenViewController.m in Sources */,
 				B2B212151CE79087009244D6 /* AppDelegate.m in Sources */,
 				B25E78291CED6EC200A12E8F /* IVQGameViewController.m in Sources */,
 				B2B776951CF95673009E77F4 /* IVQGameOverViewController.m in Sources */,
@@ -649,6 +680,7 @@
 				B2ECCFE91D376063009564D3 /* IVQProfileViewController.m in Sources */,
 				B21434991CE96FD000AE90E5 /* IVQQuestion.m in Sources */,
 				B2A831AD1CFB8D7C009B6155 /* IVQGameQuestion.m in Sources */,
+				B22C7FBC1D484E640072632A /* IVQOnboardingViewController.m in Sources */,
 				B20B3FE31D3C540B000A0F80 /* IVQSettingsViewController.m in Sources */,
 				B2A831AA1CFB8CB9009B6155 /* IVQGame.m in Sources */,
 			);

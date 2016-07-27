@@ -2,12 +2,9 @@
 //  AppDelegate.m
 //  InterviewQuest
 //
-//  Created by Aaron Schachter on 5/14/16.
-//  Copyright © 2016 New School Old School. All rights reserved.
-//
 
 #import "AppDelegate.h"
-#import "IVQQuestionsViewController.h"
+#import "IVQOnboardingViewController.h"
 #import "IVQHomeViewController.h"
 #import "IVQGame.h"
 #import "IVQQuestion.h"
@@ -29,6 +26,8 @@
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+
+
     NSDictionary *keysDict = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"keys" ofType:@"plist"]];
     [Fabric with:@[[Crashlytics startWithAPIKey:keysDict[@"fabricApiKey"]]]];
 
@@ -66,6 +65,10 @@
 
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     [self.window makeKeyAndVisible];
+    IVQOnboardingViewController *onboardingViewController = [[IVQOnboardingViewController alloc] init];
+    self.window.rootViewController = onboardingViewController;
+    return YES;
+
     IVQHomeViewController *viewController = [[IVQHomeViewController alloc] initWithNibName:@"IVQHomeView" bundle:nil];
     UINavigationController *navigationContoller = [[UINavigationController alloc] initWithRootViewController:viewController];
     navigationContoller.navigationBar.translucent = NO;
