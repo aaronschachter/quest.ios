@@ -37,18 +37,6 @@
                             <color key="textColor" red="0.7019608021" green="0.7019608021" blue="0.7019608021" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ga4-tD-Hvw" userLabel="Start Button">
-                            <rect key="frame" x="0.0" y="184" width="312" height="48"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="48" id="7M8-TD-xea"/>
-                                <constraint firstAttribute="width" constant="312" id="D2A-GL-bJ0"/>
-                            </constraints>
-                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                            <state key="normal" title="START"/>
-                            <connections>
-                                <action selector="startButtonTouchUpInside:" destination="-1" eventType="touchUpInside" id="tXs-K9-vqJ"/>
-                            </connections>
-                        </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fa2-lq-MTR" userLabel="History Button">
                             <rect key="frame" x="0.0" y="240" width="312" height="48"/>
                             <constraints>
@@ -75,6 +63,17 @@
                             <color key="textColor" red="0.40000000600000002" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ga4-tD-Hvw" userLabel="Start Button">
+                            <rect key="frame" x="0.0" y="184" width="312" height="48"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="48" id="7M8-TD-xea"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <state key="normal" title="START"/>
+                            <connections>
+                                <action selector="startButtonTouchUpInside:" destination="-1" eventType="touchUpInside" id="tXs-K9-vqJ"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <constraints>
                         <constraint firstItem="Um4-nz-GU1" firstAttribute="leading" secondItem="smC-tb-Jfb" secondAttribute="leading" constant="8" id="0mc-mj-EAO"/>
@@ -99,20 +98,29 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Dp-I4-MPy" customClass="GIDSignInButton">
-                    <rect key="frame" x="144" y="506" width="312" height="50"/>
+                    <rect key="frame" x="144" y="426" width="312" height="50"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="312" id="ZNc-d1-uZy"/>
                         <constraint firstAttribute="height" constant="50" id="clD-Ta-fl8"/>
                     </constraints>
                 </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Connect to save your InterviewQuest answers." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0wN-1r-XdF">
+                    <rect key="frame" x="16" y="497.5" width="568" height="14.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <color key="textColor" red="0.40000000600000002" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="0wN-1r-XdF" firstAttribute="top" secondItem="6Dp-I4-MPy" secondAttribute="bottom" constant="22" id="KVx-Ad-dTr"/>
                 <constraint firstItem="smC-tb-Jfb" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="Opt-vj-lsb"/>
                 <constraint firstItem="6Dp-I4-MPy" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="XNZ-My-U5H"/>
                 <constraint firstItem="smC-tb-Jfb" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="aNu-Pk-Q7Q"/>
-                <constraint firstAttribute="bottom" secondItem="6Dp-I4-MPy" secondAttribute="bottom" constant="44" id="qWq-gV-knz"/>
+                <constraint firstItem="0wN-1r-XdF" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="bTe-ez-d37"/>
+                <constraint firstAttribute="bottom" secondItem="0wN-1r-XdF" secondAttribute="bottom" constant="88" id="rLR-fR-WiX"/>
+                <constraint firstAttribute="trailing" secondItem="0wN-1r-XdF" secondAttribute="trailing" constant="16" id="vrE-Bd-cX5"/>
             </constraints>
             <point key="canvasLocation" x="167" y="417"/>
         </view>

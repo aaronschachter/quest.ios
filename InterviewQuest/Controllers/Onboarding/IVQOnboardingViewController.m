@@ -21,15 +21,15 @@
     self.view = [[UIView alloc] init];
     NSDictionary *firstScreen = @{
                                   @"title": @"Welcome to InterviewQuest!",
-                                  @"description": @"Train for your next job interview from your phone."
+                                  @"description": @"Train for your next job interview\nfrom your phone."
                                   };
     NSDictionary *secondScreen = @{
                                   @"title": @"We ask questions,\nyou answer",
-                                  @"description": @"A round of InterviewQuest lasts 3 questions."
+                                  @"description": @"A round of InterviewQuest\nis 3 questions."
                                   };
     NSDictionary *lastScreen = @{
                                    @"title": @"Track your progress",
-                                   @"description": @"Sign in with your Google account to save your interviews, and view from any device."
+                                   @"description": @"Sign in with your Google account to save your answers and review past rounds of InterviewQuest."
                                    };
     self.screenContent = @[firstScreen, secondScreen, lastScreen];
 

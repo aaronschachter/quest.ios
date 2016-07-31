@@ -33,13 +33,13 @@
     
     self.completedOnboarding = NO;
     
-    self.headlineLabel.text = @"Practice for job interviews.";
+    self.headlineLabel.text = @"Train for your next job interview.";
     self.imageView.image = [UIImage imageNamed:@"Shield"];
     self.startButton.backgroundColor = self.navigationController.navigationBar.tintColor;
     self.startButton.tintColor = [UIColor whiteColor];
     self.startButton.contentEdgeInsets = UIEdgeInsetsMake(15,15,15,15);
     self.signInButton.style = kGIDSignInButtonStyleWide;
-    
+
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
 
     [GIDSignIn sharedInstance].uiDelegate = self;
