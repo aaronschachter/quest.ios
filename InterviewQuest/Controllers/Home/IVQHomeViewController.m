@@ -3,13 +3,14 @@
 #import "IVQQuestionsViewController.h"
 #import "IVQProfileViewController.h"
 #import "IVQSettingsViewController.h"
-
+#import "IVQOnboardingViewController.h"
 #import <ionicons/IonIcons.h>
 @import Firebase;
 #import <GoogleSignIn/GoogleSignIn.h>
 
 @interface IVQHomeViewController () <GIDSignInUIDelegate>
 
+@property (assign, nonatomic) BOOL completedOnboarding;
 @property (weak, nonatomic) IBOutlet GIDSignInButton *signInButton;
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet UILabel *headlineLabel;
@@ -29,7 +30,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    
+    self.completedOnboarding = NO;
+    
     self.headlineLabel.text = @"Practice for job interviews.";
     self.imageView.image = [UIImage imageNamed:@"Shield"];
     self.startButton.backgroundColor = self.navigationController.navigationBar.tintColor;
@@ -47,8 +50,16 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-//    [self.navigationController setNavigationBarHidden:YES animated:NO];
     [self toggleAuthUI];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+
+    if (![[NSUserDefaults standardUserDefaults] boolForKey:@"hasCompletedOnboarding"]) {
+        IVQOnboardingViewController *onboardingViewController = [[IVQOnboardingViewController alloc] init];
+        [self presentViewController:onboardingViewController animated:YES completion:nil];
+    }
 }
 
 #pragma mark - IVQHomeViewController

@@ -65,10 +65,6 @@
 
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     [self.window makeKeyAndVisible];
-    IVQOnboardingViewController *onboardingViewController = [[IVQOnboardingViewController alloc] init];
-    self.window.rootViewController = onboardingViewController;
-    return YES;
-
     IVQHomeViewController *viewController = [[IVQHomeViewController alloc] initWithNibName:@"IVQHomeView" bundle:nil];
     UINavigationController *navigationContoller = [[UINavigationController alloc] initWithRootViewController:viewController];
     navigationContoller.navigationBar.translucent = NO;

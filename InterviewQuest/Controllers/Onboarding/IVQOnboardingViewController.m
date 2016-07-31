@@ -6,8 +6,9 @@
 #import "IVQOnboardingViewController.h"
 #import "IVQOnboardingScreenViewController.h"
 
-@interface IVQOnboardingViewController () <UIPageViewControllerDataSource, UIPageViewControllerDelegate>
+@interface IVQOnboardingViewController () <UIPageViewControllerDataSource, UIPageViewControllerDelegate, IVQOnboardingScreenViewDelegate>
 
+@property (strong, nonatomic) NSArray *screenContent;
 @property (strong, nonatomic) UIPageViewController *pageViewController;
 
 @end
@@ -18,6 +19,19 @@
     [super viewDidLoad];
 
     self.view = [[UIView alloc] init];
+    NSDictionary *firstScreen = @{
+                                  @"title": @"Welcome to InterviewQuest!",
+                                  @"description": @"Train for your next job interview from your phone."
+                                  };
+    NSDictionary *secondScreen = @{
+                                  @"title": @"We ask questions,\nyou answer",
+                                  @"description": @"A round of InterviewQuest lasts 3 questions."
+                                  };
+    NSDictionary *lastScreen = @{
+                                   @"title": @"Track your progress",
+                                   @"description": @"Sign in with your Google account to save your interviews, and view from any device."
+                                   };
+    self.screenContent = @[firstScreen, secondScreen, lastScreen];
 
     self.pageViewController = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
     self.pageViewController.dataSource = self;
@@ -43,14 +57,12 @@
 }
 
 - (IVQOnboardingScreenViewController *)viewControllerAtIndex:(NSInteger)index {
-    NSString *description = @"Welcome to InterviewQuest!";
-    if (index < 0 || index >= 2) {
+    if (index < 0 || index >= self.screenContent.count) {
         return nil;
     }
-    if (index == 1) {
-        description = @"Sign in with your Google account to store your answers and track your progress.";
-    }
-    IVQOnboardingScreenViewController *viewController = [[IVQOnboardingScreenViewController alloc] initWithIndex:index description:description];
+    NSDictionary *content = (NSDictionary *)self.screenContent[index];
+    IVQOnboardingScreenViewController *viewController = [[IVQOnboardingScreenViewController alloc] initWithIndex:index title:content[@"title"] description:content[@"description"]];
+    viewController.delegate = self;
     return viewController;
 }
 
@@ -61,7 +73,6 @@
     NSUInteger index = [(IVQOnboardingScreenViewController *)viewController index];
     index--;
     return [self viewControllerAtIndex:index];
-    
 }
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController {
@@ -71,11 +82,18 @@
 }
 
 - (NSInteger)presentationCountForPageViewController:(UIPageViewController *)pageViewController {
-    return 2;
+    return self.screenContent.count;
 }
 
 - (NSInteger)presentationIndexForPageViewController:(UIPageViewController *)pageViewController {
     return 0;
+}
+
+#pragma mark - IVQOnboardingScreenViewDelegate
+
+- (void)didTouchDoneButtonForViewController:(IVQOnboardingScreenViewController *)viewController {
+    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"hasCompletedOnboarding"];
+    [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end
