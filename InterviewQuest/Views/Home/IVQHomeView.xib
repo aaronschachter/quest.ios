@@ -12,6 +12,7 @@
                 <outlet property="imageView" destination="wcJ-QU-7bt" id="Maz-bZ-IEJ"/>
                 <outlet property="settingsButton" destination="l06-44-M1Z" id="x0E-i4-Nks"/>
                 <outlet property="signInButton" destination="6Dp-I4-MPy" id="dPL-iT-xgd"/>
+                <outlet property="signInLabel" destination="0wN-1r-XdF" id="lBe-RH-vWo"/>
                 <outlet property="startButton" destination="ga4-tD-Hvw" id="dHT-kl-iew"/>
                 <outlet property="view" destination="iN0-l3-epB" id="yvk-l8-Yxa"/>
             </connections>

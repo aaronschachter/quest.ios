@@ -17,6 +17,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *startButton;
 @property (weak, nonatomic) IBOutlet UIButton *settingsButton;
 @property (weak, nonatomic) IBOutlet UIButton *historyButton;
+@property (weak, nonatomic) IBOutlet UILabel *signInLabel;
 
 - (IBAction)historyButtonTouchUpInside:(id)sender;
 - (IBAction)settingsButtonTouchUpInside:(id)sender;
@@ -84,12 +85,15 @@
 - (void)toggleAuthUI {
     if ([FIRAuth auth].currentUser == nil) {
         self.signInButton.hidden = NO;
+        self.signInLabel.hidden = NO;
         self.historyButton.hidden = YES;
         self.settingsButton.hidden = YES;
+        self.signInLabel.hidden = NO;
     }
     else {
         self.startButton.hidden = NO;
         self.signInButton.hidden = YES;
+        self.signInLabel.hidden = YES;
         self.historyButton.hidden = NO;
         self.settingsButton.hidden = NO;
     }
