@@ -192,9 +192,18 @@
 
 - (IBAction)pauseButtonTapped:(id)sender {
     NSInteger numberLeft = self.numberOfQuestionsInGame - self.currentQuestionNumber;
+    NSString *questionsLeftMessage = [NSString stringWithFormat:@"There's only %li questions left!", numberLeft];
+    NSString *loseAnswersMessage = @"\n\nYou will lose your answers from this round if you end the interview early.";
+    if (numberLeft == 1) {
+        questionsLeftMessage = @"This is the last question!";
+    }
+    else if (numberLeft == self.numberOfQuestionsInGame) {
+        loseAnswersMessage = @"";
+    }
     [self.view endEditing:YES];
-    NSString *alertMessage = [NSString stringWithFormat:@"Are you sure?\nThere's only %li questions left.", numberLeft];
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"End interview" message:alertMessage preferredStyle:UIAlertControllerStyleAlert];
+
+    NSString *alertMessage = [NSString stringWithFormat:@"%@%@", questionsLeftMessage, loseAnswersMessage];
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Are you sure?" message:alertMessage preferredStyle:UIAlertControllerStyleAlert];
  
     UIAlertAction *endGameAction = [UIAlertAction actionWithTitle:@"End it"style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
         [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];

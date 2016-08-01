@@ -48,39 +48,29 @@
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    if (section == 1) {
+        return 1;
+    }
     return 2;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    if (section == 1) {
+        return @"About InterviewQuest";
+    }
     return @"Account";
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView
          cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"defaultCell" forIndexPath:indexPath];
-    
-//    if (indexPath.section == 0) {
-//        NSString *label;
-//        switch (indexPath.row) {
-//            case 0:
-//                label = @"General";
-//                break;
-//            case 1:
-//                label = @"iOS";
-//                break;
-//            case 2:
-//                label = @"Databases";
-//                break;
-//        }
-//        cell.textLabel.text = label;
-//    }
     if (indexPath.section == 0) {
         if (indexPath.row == 0) {
-            NSString *text = [NSString stringWithFormat:@"Logged in as %@", self.email];
+            NSString *text = [NSString stringWithFormat:@"Signed in as %@", self.email];
             cell.textLabel.text = text;
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
@@ -88,6 +78,10 @@
             cell.textLabel.text = @"Sign out";
             cell.selectionStyle = UITableViewCellSelectionStyleBlue;
         }
+    }
+    else {
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.textLabel.text = [NSString stringWithFormat:@"Version %@",[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"]];
     }
 
     return cell;
