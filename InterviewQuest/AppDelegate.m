@@ -46,7 +46,6 @@
             IVQQuestion *question = [[IVQQuestion alloc] init];
             question.questionId = key;
             question.title = questionDict[@"title"];
-            question.createdAt = questionDict[@"created_at"];
             [questions addObject:question];
             mutableQuestionsDict[key] = question;
         }];
