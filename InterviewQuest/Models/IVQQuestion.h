@@ -12,6 +12,6 @@
 
 @property (strong, nonatomic) NSString *questionId;
 @property (strong, nonatomic) NSString *title;
-@property (strong, nonatomic) NSString *createdAt;
+@property (assign, nonatomic) NSInteger categoryId;
 
 @end

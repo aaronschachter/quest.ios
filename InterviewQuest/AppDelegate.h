@@ -11,6 +11,7 @@
 @property (strong, nonatomic, readonly) FIRDatabaseReference *questionsRef;
 @property (strong, nonatomic, readonly) NSArray *games;
 @property (strong, nonatomic, readonly) NSArray *questions;
+@property (strong, nonatomic, readonly) NSDictionary *categoriesDict;
 @property (strong, nonatomic, readonly) NSDictionary *questionsDict;
 @property (strong, nonatomic) UIWindow *window;
 

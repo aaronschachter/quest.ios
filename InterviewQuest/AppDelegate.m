@@ -19,6 +19,7 @@
 @property (strong, nonatomic, readwrite) FIRDatabaseReference *questionsRef;
 @property (strong, nonatomic, readwrite) NSArray *games;
 @property (strong, nonatomic, readwrite) NSArray *questions;
+@property (strong, nonatomic, readwrite) NSDictionary *categoriesDict;
 @property (strong, nonatomic, readwrite) NSDictionary *questionsDict;
 
 @end
@@ -34,6 +35,8 @@
     [FIRApp configure];
     [GIDSignIn sharedInstance].clientID = [FIRApp defaultApp].options.clientID;
     [GIDSignIn sharedInstance].delegate = self;
+    
+    NSMutableDictionary *mutableCategoriesDict = [[NSMutableDictionary alloc] init];
     NSMutableDictionary *mutableQuestionsDict = [[NSMutableDictionary alloc] init];
 
     [FIRDatabase database].persistenceEnabled = YES;
@@ -46,14 +49,20 @@
             IVQQuestion *question = [[IVQQuestion alloc] init];
             question.questionId = key;
             question.title = questionDict[@"title"];
+            question.categoryId = [questionDict[@"category"] integerValue];
+            NSNumber *category = [NSNumber numberWithInteger:question.categoryId];
+            if (mutableCategoriesDict[category] == nil) {
+                mutableCategoriesDict[category] = [[NSMutableArray alloc] init];
+            }
+            [mutableCategoriesDict[category] addObject:question];
             [questions addObject:question];
             mutableQuestionsDict[key] = question;
         }];
-        NSSortDescriptor *sortDescriptor;
-        sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"createdAt" ascending:NO];
-        NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
-        self.questions = [questions sortedArrayUsingDescriptors:sortDescriptors];
+        self.categoriesDict = [mutableCategoriesDict copy];
         self.questionsDict = [mutableQuestionsDict copy];
+        self.questions = [questions copy];
+        NSLog(@"categories %@", _categoriesDict);
+        NSLog(@"questions %@", _questionsDict);
     } withCancelBlock:^(NSError *error) {
         NSLog(@"%@", error.description);
     }];
