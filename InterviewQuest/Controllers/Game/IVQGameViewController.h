@@ -2,4 +2,6 @@
 
 @interface IVQGameViewController : UIViewController
 
+- (instancetype)initWithCategoryName:(NSString *)categoryName;
+
 @end

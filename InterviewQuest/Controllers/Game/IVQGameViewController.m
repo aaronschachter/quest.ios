@@ -11,6 +11,7 @@
 
 @property (strong, nonatomic) IVQGame *game;
 @property (assign, nonatomic) NSInteger currentQuestionNumber;
+@property (strong, nonatomic) NSString *categoryName;
 
 @property (strong, nonatomic) UIButton *dontKnowButton;
 @property (nonatomic, strong) UIButton *sendAnswerButton;
@@ -21,6 +22,18 @@
 @end
 
 @implementation IVQGameViewController
+
+#pragma mark - NSObject
+
+- (instancetype)initWithCategoryName:(NSString *)categoryName {
+    self = [super initWithNibName:@"IVQGameView" bundle:nil];
+    
+    if (self) {
+        _categoryName = categoryName;
+    }
+    
+    return self;
+}
 
 #pragma mark - Mutators
 
