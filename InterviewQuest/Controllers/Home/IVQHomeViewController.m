@@ -7,6 +7,7 @@
 #import <ionicons/IonIcons.h>
 @import Firebase;
 #import <GoogleSignIn/GoogleSignIn.h>
+#import <DownPicker/DownPicker.h>
 
 @interface IVQHomeViewController () <GIDSignInUIDelegate>
 
@@ -18,6 +19,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *settingsButton;
 @property (weak, nonatomic) IBOutlet UIButton *historyButton;
 @property (weak, nonatomic) IBOutlet UILabel *signInLabel;
+@property (weak, nonatomic) IBOutlet UITextField *categoryTextField;
+@property (strong, nonatomic) DownPicker *downPicker;
 
 - (IBAction)historyButtonTouchUpInside:(id)sender;
 - (IBAction)settingsButtonTouchUpInside:(id)sender;
@@ -46,7 +49,12 @@
     [GIDSignIn sharedInstance].uiDelegate = self;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveToggleAuthUINotification:) name:@"ToggleAuthUINotification" object:nil];
     [self styleView];
+    
+    NSArray *categories = @[@"General", @"iOS", @"Databases", @"Programming"];
+    self.downPicker = [[DownPicker alloc] initWithTextField:self.categoryTextField      withData:categories];
+    self.downPicker.text = categories[0];
 }
+
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];

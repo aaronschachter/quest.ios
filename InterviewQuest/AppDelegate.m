@@ -61,8 +61,6 @@
         self.categoriesDict = [mutableCategoriesDict copy];
         self.questionsDict = [mutableQuestionsDict copy];
         self.questions = [questions copy];
-        NSLog(@"categories %@", _categoriesDict);
-        NSLog(@"questions %@", _questionsDict);
     } withCancelBlock:^(NSError *error) {
         NSLog(@"%@", error.description);
     }];

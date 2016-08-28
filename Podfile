@@ -13,6 +13,7 @@ target 'InterviewQuest' do
     pod 'ionicons', '>= 2.0.3'
     pod 'NSDate+Helper'
     pod 'SVProgressHUD'
+    pod 'DownPicker'
 end
 
 target 'InterviewQuestTests' do
