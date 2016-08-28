@@ -21,6 +21,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *signInLabel;
 @property (weak, nonatomic) IBOutlet UITextField *categoryTextField;
 @property (strong, nonatomic) DownPicker *downPicker;
+@property (strong, nonatomic) NSArray *categories;
 
 - (IBAction)historyButtonTouchUpInside:(id)sender;
 - (IBAction)settingsButtonTouchUpInside:(id)sender;
@@ -50,9 +51,8 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveToggleAuthUINotification:) name:@"ToggleAuthUINotification" object:nil];
     [self styleView];
     
-    NSArray *categories = @[@"General", @"iOS", @"Databases", @"Programming"];
-    self.downPicker = [[DownPicker alloc] initWithTextField:self.categoryTextField      withData:categories];
-    self.downPicker.text = categories[0];
+    self.categories = @[@"General", @"iOS", @"Databases", @"Programming"];
+    self.downPicker = [[DownPicker alloc] initWithTextField:self.categoryTextField      withData:self.categories];
 }
 
 
@@ -60,6 +60,11 @@
     [super viewWillAppear:animated];
     
     [self toggleAuthUI];
+    NSString *selectedCategory = [[NSUserDefaults standardUserDefaults] stringForKey:@"selectedCategory"];
+    if (selectedCategory == nil) {
+        selectedCategory = self.categories[0];
+    }
+    self.downPicker.text = selectedCategory;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -69,6 +74,12 @@
         IVQOnboardingViewController *onboardingViewController = [[IVQOnboardingViewController alloc] init];
         [self presentViewController:onboardingViewController animated:YES completion:nil];
     }
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    
+    [[NSUserDefaults standardUserDefaults] setObject:self.downPicker.text forKey:@"selectedCategory"];
 }
 
 #pragma mark - IVQHomeViewController
