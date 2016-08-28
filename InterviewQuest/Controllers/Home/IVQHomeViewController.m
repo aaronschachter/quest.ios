@@ -1,6 +1,5 @@
 #import "IVQHomeViewController.h"
 #import "IVQGameViewController.h"
-#import "IVQQuestionsViewController.h"
 #import "IVQProfileViewController.h"
 #import "IVQSettingsViewController.h"
 #import "IVQOnboardingViewController.h"
@@ -126,7 +125,6 @@
 }
 
 - (IBAction)settingsButtonTouchUpInside:(id)sender {
-//    IVQQuestionsViewController *viewController = [[IVQQuestionsViewController alloc] initWithNibName:@"IVQQuestionsView" bundle:nil];
     IVQSettingsViewController *viewController = [[IVQSettingsViewController alloc] init];
     [self.navigationController pushViewController:viewController animated:YES];
 }
