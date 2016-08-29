@@ -57,8 +57,20 @@
     [self.tableView registerNib:[UINib nibWithNibName:@"IVQGameQuestionTableViewCell" bundle:nil] forCellReuseIdentifier:@"questionCell"];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.scrollEnabled = NO;
+
+    NSNumber *categoryId = [NSNumber numberWithInt:1];
+    if ([self.categoryName isEqualToString:@"iOS"]) {
+        categoryId = [NSNumber numberWithInt:2];
+    }
+    else if ([self.categoryName isEqualToString:@"Databases"]) {
+        categoryId = [NSNumber numberWithInt:3];
+    }
+    else if ([self.categoryName isEqualToString:@"Programming"]) {
+        categoryId = [NSNumber numberWithInt:4];
+    }
+    NSArray *categoryQuestions = (NSArray *)appDelegate.categoriesDict[categoryId];
     
-    NSMutableArray *mutableQuestions = [NSMutableArray arrayWithArray:appDelegate.questions];
+    NSMutableArray *mutableQuestions = [NSMutableArray arrayWithArray:categoryQuestions];
     NSUInteger count = [mutableQuestions count];
     if (count > 1) {
         for (NSUInteger i = count - 1; i > 0; --i) {
