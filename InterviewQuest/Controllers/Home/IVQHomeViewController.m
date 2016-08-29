@@ -50,7 +50,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveToggleAuthUINotification:) name:@"ToggleAuthUINotification" object:nil];
     [self styleView];
     
-    self.categories = @[@"General", @"iOS", @"Databases", @"Programming"];
+    self.categories = @[@"General", @"Programming", @"iOS"];
     self.downPicker = [[DownPicker alloc] initWithTextField:self.categoryTextField      withData:self.categories];
 }
 
