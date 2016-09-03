@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -24,23 +24,23 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="smC-tb-Jfb" userLabel="Container View">
-                    <rect key="frame" x="160" y="96.5" width="280" height="407.5"/>
+                    <rect key="frame" x="150" y="89.5" width="300" height="421.5"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wcJ-QU-7bt">
-                            <rect key="frame" x="115" y="0.0" width="50" height="50"/>
+                            <rect key="frame" x="125" y="0.0" width="50" height="50"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="50" id="AK0-Bf-QGN"/>
                                 <constraint firstAttribute="height" constant="50" id="UXn-E2-TpA"/>
                             </constraints>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="InterviewQuest" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Um4-nz-GU1">
-                            <rect key="frame" x="8" y="58" width="264" height="35"/>
+                            <rect key="frame" x="8" y="58" width="284" height="35"/>
                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="30"/>
                             <color key="textColor" red="0.7019608021" green="0.7019608021" blue="0.7019608021" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fa2-lq-MTR" userLabel="History Button">
-                            <rect key="frame" x="0.0" y="303.5" width="280" height="48"/>
+                            <rect key="frame" x="0.0" y="317.5" width="300" height="48"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="48" id="MeU-x2-qfw"/>
                             </constraints>
@@ -50,7 +50,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l06-44-M1Z" userLabel="Settings Button">
-                            <rect key="frame" x="0.0" y="359.5" width="280" height="48"/>
+                            <rect key="frame" x="0.0" y="373.5" width="300" height="48"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="48" id="pLM-0C-uqZ"/>
                             </constraints>
@@ -60,13 +60,13 @@
                             </connections>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Headline" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SLF-wu-VWS">
-                            <rect key="frame" x="8" y="101" width="264" height="20.5"/>
+                            <rect key="frame" x="8" y="101" width="284" height="20.5"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <color key="textColor" red="0.40000000600000002" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ga4-tD-Hvw" userLabel="Start Button">
-                            <rect key="frame" x="0.0" y="247.5" width="280" height="48"/>
+                            <rect key="frame" x="0.0" y="261.5" width="300" height="48"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="48" id="7M8-TD-xea"/>
                             </constraints>
@@ -77,7 +77,10 @@
                             </connections>
                         </button>
                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rfJ-Ew-OdY">
-                            <rect key="frame" x="0.0" y="169.5" width="280" height="30"/>
+                            <rect key="frame" x="0.0" y="169.5" width="300" height="44"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="44" id="fdQ-4q-aBP"/>
+                            </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits"/>
                         </textField>
@@ -104,7 +107,7 @@
                         <constraint firstItem="fa2-lq-MTR" firstAttribute="top" secondItem="ga4-tD-Hvw" secondAttribute="bottom" constant="8" id="ixy-oo-cqm"/>
                         <constraint firstItem="wcJ-QU-7bt" firstAttribute="top" secondItem="smC-tb-Jfb" secondAttribute="top" id="lZp-zi-q7s"/>
                         <constraint firstAttribute="bottom" secondItem="l06-44-M1Z" secondAttribute="bottom" id="ycO-qe-5cG"/>
-                        <constraint firstAttribute="width" constant="280" id="zdV-PE-gou"/>
+                        <constraint firstAttribute="width" constant="300" id="zdV-PE-gou"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Dp-I4-MPy" customClass="GIDSignInButton">
