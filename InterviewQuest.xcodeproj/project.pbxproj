@@ -105,6 +105,7 @@
 		B2C0458D1CEC272C00F797FF /* IVQHomeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = IVQHomeView.xib; path = Views/Home/IVQHomeView.xib; sourceTree = "<group>"; };
 		B2C0458F1CEC286E00F797FF /* IVQHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IVQHomeViewController.h; path = Controllers/Home/IVQHomeViewController.h; sourceTree = "<group>"; };
 		B2C045901CEC286E00F797FF /* IVQHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IVQHomeViewController.m; path = Controllers/Home/IVQHomeViewController.m; sourceTree = "<group>"; };
+		B2E3602D1DF6425600AA8283 /* InterviewQuest.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = InterviewQuest.entitlements; sourceTree = "<group>"; };
 		B2ECCFE71D376063009564D3 /* IVQProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IVQProfileViewController.h; path = Controllers/Profile/IVQProfileViewController.h; sourceTree = "<group>"; };
 		B2ECCFE81D376063009564D3 /* IVQProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IVQProfileViewController.m; path = Controllers/Profile/IVQProfileViewController.m; sourceTree = "<group>"; };
 		B824CE1DCABAC582149587BD /* Pods-InterviewQuest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InterviewQuest.release.xcconfig"; path = "Pods/Target Support Files/Pods-InterviewQuest/Pods-InterviewQuest.release.xcconfig"; sourceTree = "<group>"; };
@@ -230,6 +231,7 @@
 		B2B2120F1CE79087009244D6 /* InterviewQuest */ = {
 			isa = PBXGroup;
 			children = (
+				B2E3602D1DF6425600AA8283 /* InterviewQuest.entitlements */,
 				B2B212131CE79087009244D6 /* AppDelegate.h */,
 				B2B212141CE79087009244D6 /* AppDelegate.m */,
 				B21434961CE96F9300AE90E5 /* Models */,
@@ -433,6 +435,11 @@
 					B2B2120C1CE79087009244D6 = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = 7UK3DU72Q2;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
 					};
 					B2B212251CE79087009244D6 = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -792,6 +799,7 @@
 			baseConfigurationReference = BB07D56BF09BB88601BEE3CC /* Pods-InterviewQuest.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = InterviewQuest/InterviewQuest.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 7UK3DU72Q2;
@@ -809,6 +817,7 @@
 			baseConfigurationReference = B824CE1DCABAC582149587BD /* Pods-InterviewQuest.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = InterviewQuest/InterviewQuest.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 7UK3DU72Q2;
