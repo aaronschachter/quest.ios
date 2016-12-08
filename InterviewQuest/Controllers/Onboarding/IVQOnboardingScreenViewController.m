@@ -42,7 +42,7 @@
 
     self.descriptionLabel.text = self.descriptionLabelText;
     self.titleLabel.text = self.titleLabelText;
-    if (self.index < 2) {
+    if (self.index < 1) {
         self.doneButton.hidden = YES;
     }
     else {

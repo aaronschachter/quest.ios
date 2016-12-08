@@ -20,18 +20,15 @@
 
     self.view = [[UIView alloc] init];
     NSDictionary *firstScreen = @{
-                                  @"title": @"Welcome to InterviewQuest!",
-                                  @"description": @"Train for your next job interview\nfrom your phone."
+                                  @"title": @"Welcome to Interviewbud!",
+                                  @"description": @"Practice for your next job interview.\n\nEach round of Interviewbud lasts 3 questions."
                                   };
-    NSDictionary *secondScreen = @{
-                                  @"title": @"We ask questions,\nyou answer",
-                                  @"description": @"A round of InterviewQuest\nis 3 questions."
-                                  };
+
     NSDictionary *lastScreen = @{
                                    @"title": @"Track your progress",
-                                   @"description": @"Sign in with your Google account to save your answers and review past rounds of InterviewQuest."
+                                   @"description": @"Sign in with your Google account to save your answers."
                                    };
-    self.screenContent = @[firstScreen, secondScreen, lastScreen];
+    self.screenContent = @[firstScreen, lastScreen];
 
     self.pageViewController = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
     self.pageViewController.dataSource = self;
