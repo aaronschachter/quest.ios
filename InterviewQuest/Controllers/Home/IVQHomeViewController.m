@@ -36,13 +36,13 @@
     [super viewDidLoad];
     
     self.completedOnboarding = NO;
-    
-    self.headlineLabel.text = @"Train for your next job interview.";
+//    self.title = @"Interviewbud";
+
     self.imageView.image = [UIImage imageNamed:@"Shield"];
     self.startButton.backgroundColor = self.navigationController.navigationBar.tintColor;
     self.startButton.tintColor = [UIColor whiteColor];
     self.startButton.contentEdgeInsets = UIEdgeInsetsMake(15,15,15,15);
-    self.signInButton.style = kGIDSignInButtonStyleWide;
+    self.signInButton.style = kGIDSignInButtonStyleIconOnly;
 
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
 
@@ -51,7 +51,9 @@
     [self styleView];
     
     self.categories = @[@"General", @"Programming", @"iOS"];
-    self.downPicker = [[DownPicker alloc] initWithTextField:self.categoryTextField      withData:self.categories];
+    self.categoryTextField.hidden = YES;
+
+//    self.downPicker = [[DownPicker alloc] initWithTextField:self.categoryTextField      withData:self.categories];
 }
 
 

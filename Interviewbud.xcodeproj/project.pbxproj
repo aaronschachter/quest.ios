@@ -86,17 +86,17 @@
 		B2A831A91CFB8CB9009B6155 /* IVQGame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IVQGame.m; path = Models/IVQGame.m; sourceTree = "<group>"; };
 		B2A831AB1CFB8D7C009B6155 /* IVQGameQuestion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IVQGameQuestion.h; path = Models/IVQGameQuestion.h; sourceTree = "<group>"; };
 		B2A831AC1CFB8D7C009B6155 /* IVQGameQuestion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IVQGameQuestion.m; path = Models/IVQGameQuestion.m; sourceTree = "<group>"; };
-		B2B2120D1CE79087009244D6 /* InterviewQuest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InterviewQuest.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B2B2120D1CE79087009244D6 /* Interviewbud.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Interviewbud.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B2B212111CE79087009244D6 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		B2B212131CE79087009244D6 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		B2B212141CE79087009244D6 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		B2B2121C1CE79087009244D6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B2B2121F1CE79087009244D6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B2B212211CE79087009244D6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B2B212261CE79087009244D6 /* InterviewQuestTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InterviewQuestTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B2B212261CE79087009244D6 /* InterviewbudTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InterviewbudTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B2B2122A1CE79087009244D6 /* InterviewQuestTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InterviewQuestTests.m; sourceTree = "<group>"; };
 		B2B2122C1CE79087009244D6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B2B212311CE79087009244D6 /* InterviewQuestUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InterviewQuestUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B2B212311CE79087009244D6 /* InterviewbudUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InterviewbudUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B2B212351CE79087009244D6 /* InterviewQuestUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InterviewQuestUITests.m; sourceTree = "<group>"; };
 		B2B212371CE79087009244D6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B2B776911CF955F1009E77F4 /* IVQGameOverView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = IVQGameOverView.xib; path = Views/Game/IVQGameOverView.xib; sourceTree = "<group>"; };
@@ -105,6 +105,7 @@
 		B2C0458D1CEC272C00F797FF /* IVQHomeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = IVQHomeView.xib; path = Views/Home/IVQHomeView.xib; sourceTree = "<group>"; };
 		B2C0458F1CEC286E00F797FF /* IVQHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IVQHomeViewController.h; path = Controllers/Home/IVQHomeViewController.h; sourceTree = "<group>"; };
 		B2C045901CEC286E00F797FF /* IVQHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IVQHomeViewController.m; path = Controllers/Home/IVQHomeViewController.m; sourceTree = "<group>"; };
+		B2E3602D1DF6425600AA8283 /* Interviewbud.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Interviewbud.entitlements; sourceTree = "<group>"; };
 		B2ECCFE71D376063009564D3 /* IVQProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IVQProfileViewController.h; path = Controllers/Profile/IVQProfileViewController.h; sourceTree = "<group>"; };
 		B2ECCFE81D376063009564D3 /* IVQProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IVQProfileViewController.m; path = Controllers/Profile/IVQProfileViewController.m; sourceTree = "<group>"; };
 		B824CE1DCABAC582149587BD /* Pods-InterviewQuest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InterviewQuest.release.xcconfig"; path = "Pods/Target Support Files/Pods-InterviewQuest/Pods-InterviewQuest.release.xcconfig"; sourceTree = "<group>"; };
@@ -208,9 +209,9 @@
 		B2B212041CE79087009244D6 = {
 			isa = PBXGroup;
 			children = (
-				B2B2120F1CE79087009244D6 /* InterviewQuest */,
-				B2B212291CE79087009244D6 /* InterviewQuestTests */,
-				B2B212341CE79087009244D6 /* InterviewQuestUITests */,
+				B2B2120F1CE79087009244D6 /* Interviewbud */,
+				B2B212291CE79087009244D6 /* InterviewbudTests */,
+				B2B212341CE79087009244D6 /* InterviewbudUITests */,
 				B2B2120E1CE79087009244D6 /* Products */,
 				AD9C208015BC8497EA0BBFF5 /* Pods */,
 				A300A6F5E4B587A94231510A /* Frameworks */,
@@ -220,16 +221,17 @@
 		B2B2120E1CE79087009244D6 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				B2B2120D1CE79087009244D6 /* InterviewQuest.app */,
-				B2B212261CE79087009244D6 /* InterviewQuestTests.xctest */,
-				B2B212311CE79087009244D6 /* InterviewQuestUITests.xctest */,
+				B2B2120D1CE79087009244D6 /* Interviewbud.app */,
+				B2B212261CE79087009244D6 /* InterviewbudTests.xctest */,
+				B2B212311CE79087009244D6 /* InterviewbudUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		B2B2120F1CE79087009244D6 /* InterviewQuest */ = {
+		B2B2120F1CE79087009244D6 /* Interviewbud */ = {
 			isa = PBXGroup;
 			children = (
+				B2E3602D1DF6425600AA8283 /* Interviewbud.entitlements */,
 				B2B212131CE79087009244D6 /* AppDelegate.h */,
 				B2B212141CE79087009244D6 /* AppDelegate.m */,
 				B21434961CE96F9300AE90E5 /* Models */,
@@ -237,6 +239,7 @@
 				B2B212431CE7B5E9009244D6 /* Controllers */,
 				B2B212101CE79087009244D6 /* Supporting Files */,
 			);
+			name = Interviewbud;
 			path = InterviewQuest;
 			sourceTree = "<group>";
 		};
@@ -252,21 +255,23 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		B2B212291CE79087009244D6 /* InterviewQuestTests */ = {
+		B2B212291CE79087009244D6 /* InterviewbudTests */ = {
 			isa = PBXGroup;
 			children = (
 				B2B2122A1CE79087009244D6 /* InterviewQuestTests.m */,
 				B2B2122C1CE79087009244D6 /* Info.plist */,
 			);
+			name = InterviewbudTests;
 			path = InterviewQuestTests;
 			sourceTree = "<group>";
 		};
-		B2B212341CE79087009244D6 /* InterviewQuestUITests */ = {
+		B2B212341CE79087009244D6 /* InterviewbudUITests */ = {
 			isa = PBXGroup;
 			children = (
 				B2B212351CE79087009244D6 /* InterviewQuestUITests.m */,
 				B2B212371CE79087009244D6 /* Info.plist */,
 			);
+			name = InterviewbudUITests;
 			path = InterviewQuestUITests;
 			sourceTree = "<group>";
 		};
@@ -358,9 +363,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		B2B2120C1CE79087009244D6 /* InterviewQuest */ = {
+		B2B2120C1CE79087009244D6 /* Interviewbud */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B2B2123A1CE79087009244D6 /* Build configuration list for PBXNativeTarget "InterviewQuest" */;
+			buildConfigurationList = B2B2123A1CE79087009244D6 /* Build configuration list for PBXNativeTarget "Interviewbud" */;
 			buildPhases = (
 				F26E4BAC0C95E8143D61146E /* [CP] Check Pods Manifest.lock */,
 				B2B212091CE79087009244D6 /* Sources */,
@@ -374,14 +379,14 @@
 			);
 			dependencies = (
 			);
-			name = InterviewQuest;
+			name = Interviewbud;
 			productName = InterviewQuest;
-			productReference = B2B2120D1CE79087009244D6 /* InterviewQuest.app */;
+			productReference = B2B2120D1CE79087009244D6 /* Interviewbud.app */;
 			productType = "com.apple.product-type.application";
 		};
-		B2B212251CE79087009244D6 /* InterviewQuestTests */ = {
+		B2B212251CE79087009244D6 /* InterviewbudTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B2B2123D1CE79087009244D6 /* Build configuration list for PBXNativeTarget "InterviewQuestTests" */;
+			buildConfigurationList = B2B2123D1CE79087009244D6 /* Build configuration list for PBXNativeTarget "InterviewbudTests" */;
 			buildPhases = (
 				B96E6901C1DBF88E444D0BDF /* [CP] Check Pods Manifest.lock */,
 				B2B212221CE79087009244D6 /* Sources */,
@@ -395,14 +400,14 @@
 			dependencies = (
 				B2B212281CE79087009244D6 /* PBXTargetDependency */,
 			);
-			name = InterviewQuestTests;
+			name = InterviewbudTests;
 			productName = InterviewQuestTests;
-			productReference = B2B212261CE79087009244D6 /* InterviewQuestTests.xctest */;
+			productReference = B2B212261CE79087009244D6 /* InterviewbudTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		B2B212301CE79087009244D6 /* InterviewQuestUITests */ = {
+		B2B212301CE79087009244D6 /* InterviewbudUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B2B212401CE79087009244D6 /* Build configuration list for PBXNativeTarget "InterviewQuestUITests" */;
+			buildConfigurationList = B2B212401CE79087009244D6 /* Build configuration list for PBXNativeTarget "InterviewbudUITests" */;
 			buildPhases = (
 				E2E690BC006A88F639BBFB68 /* [CP] Check Pods Manifest.lock */,
 				B2B2122D1CE79087009244D6 /* Sources */,
@@ -415,9 +420,9 @@
 			dependencies = (
 				B2B212331CE79087009244D6 /* PBXTargetDependency */,
 			);
-			name = InterviewQuestUITests;
+			name = InterviewbudUITests;
 			productName = InterviewQuestUITests;
-			productReference = B2B212311CE79087009244D6 /* InterviewQuestUITests.xctest */;
+			productReference = B2B212311CE79087009244D6 /* InterviewbudUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -433,6 +438,11 @@
 					B2B2120C1CE79087009244D6 = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = 7UK3DU72Q2;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
 					};
 					B2B212251CE79087009244D6 = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -444,7 +454,7 @@
 					};
 				};
 			};
-			buildConfigurationList = B2B212081CE79087009244D6 /* Build configuration list for PBXProject "InterviewQuest" */;
+			buildConfigurationList = B2B212081CE79087009244D6 /* Build configuration list for PBXProject "Interviewbud" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -457,9 +467,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				B2B2120C1CE79087009244D6 /* InterviewQuest */,
-				B2B212251CE79087009244D6 /* InterviewQuestTests */,
-				B2B212301CE79087009244D6 /* InterviewQuestUITests */,
+				B2B2120C1CE79087009244D6 /* Interviewbud */,
+				B2B212251CE79087009244D6 /* InterviewbudTests */,
+				B2B212301CE79087009244D6 /* InterviewbudUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -679,12 +689,12 @@
 /* Begin PBXTargetDependency section */
 		B2B212281CE79087009244D6 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = B2B2120C1CE79087009244D6 /* InterviewQuest */;
+			target = B2B2120C1CE79087009244D6 /* Interviewbud */;
 			targetProxy = B2B212271CE79087009244D6 /* PBXContainerItemProxy */;
 		};
 		B2B212331CE79087009244D6 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = B2B2120C1CE79087009244D6 /* InterviewQuest */;
+			target = B2B2120C1CE79087009244D6 /* Interviewbud */;
 			targetProxy = B2B212321CE79087009244D6 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -792,6 +802,7 @@
 			baseConfigurationReference = BB07D56BF09BB88601BEE3CC /* Pods-InterviewQuest.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = InterviewQuest/Interviewbud.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 7UK3DU72Q2;
@@ -809,6 +820,7 @@
 			baseConfigurationReference = B824CE1DCABAC582149587BD /* Pods-InterviewQuest.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = InterviewQuest/Interviewbud.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 7UK3DU72Q2;
@@ -830,7 +842,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.newschoololdschool.InterviewQuestTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/InterviewQuest.app/InterviewQuest";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Interviewbud.app/Interviewbud";
 			};
 			name = Debug;
 		};
@@ -843,7 +855,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.newschoololdschool.InterviewQuestTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/InterviewQuest.app/InterviewQuest";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Interviewbud.app/Interviewbud";
 			};
 			name = Release;
 		};
@@ -874,7 +886,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		B2B212081CE79087009244D6 /* Build configuration list for PBXProject "InterviewQuest" */ = {
+		B2B212081CE79087009244D6 /* Build configuration list for PBXProject "Interviewbud" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B2B212381CE79087009244D6 /* Debug */,
@@ -883,7 +895,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		B2B2123A1CE79087009244D6 /* Build configuration list for PBXNativeTarget "InterviewQuest" */ = {
+		B2B2123A1CE79087009244D6 /* Build configuration list for PBXNativeTarget "Interviewbud" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B2B2123B1CE79087009244D6 /* Debug */,
@@ -892,7 +904,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		B2B2123D1CE79087009244D6 /* Build configuration list for PBXNativeTarget "InterviewQuestTests" */ = {
+		B2B2123D1CE79087009244D6 /* Build configuration list for PBXNativeTarget "InterviewbudTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B2B2123E1CE79087009244D6 /* Debug */,
@@ -901,7 +913,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		B2B212401CE79087009244D6 /* Build configuration list for PBXNativeTarget "InterviewQuestUITests" */ = {
+		B2B212401CE79087009244D6 /* Build configuration list for PBXNativeTarget "InterviewbudUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B2B212411CE79087009244D6 /* Debug */,
