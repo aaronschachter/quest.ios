@@ -3,7 +3,7 @@
 # Uncomment this line if you're using Swift
 # use_frameworks!
 
-target 'InterviewQuest' do
+target 'Interviewbud' do
     pod 'Crashlytics'
     pod 'Fabric'
     pod 'Firebase/Auth'
@@ -16,11 +16,11 @@ target 'InterviewQuest' do
     pod 'DownPicker'
 end
 
-target 'InterviewQuestTests' do
+target 'InterviewbudTests' do
 
 end
 
-target 'InterviewQuestUITests' do
+target 'InterviewbudUITests' do
 
 end
 
