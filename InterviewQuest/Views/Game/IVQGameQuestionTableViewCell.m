@@ -22,6 +22,7 @@
 
     self.questionView.layer.masksToBounds = YES;
     self.questionView.layer.cornerRadius = 8.0;
+    self.helpTextLabel.text = @"Type your answer, or tap \"I don't know\"";
 }
 
 @end

@@ -1,9 +1,13 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -12,9 +16,15 @@
             <rect key="frame" x="0.0" y="0.0" width="456" height="279"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="456" height="278.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="456" height="278"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fjw-y2-aVy">
+                        <rect key="frame" x="24" y="76" width="416" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Wnk-je-5kp">
                         <rect key="frame" x="16" y="68.5" width="424" height="186"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -26,11 +36,11 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Question title here" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZCv-MD-B7s">
                                 <rect key="frame" x="12" y="12" width="400" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="ZCv-MD-B7s" firstAttribute="leading" secondItem="fle-zY-2Gs" secondAttribute="leading" constant="12" id="BcG-f0-JbC"/>
                             <constraint firstAttribute="trailing" secondItem="ZCv-MD-B7s" secondAttribute="trailing" constant="12" id="SKn-kY-r99"/>
@@ -44,6 +54,9 @@
                     <constraint firstAttribute="leadingMargin" secondItem="fle-zY-2Gs" secondAttribute="leading" constant="-8" id="7eX-tb-D9Y"/>
                     <constraint firstAttribute="topMargin" secondItem="fle-zY-2Gs" secondAttribute="top" constant="-8" id="95k-2F-olS"/>
                     <constraint firstItem="Wnk-je-5kp" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="8" id="Sjy-sv-iSD"/>
+                    <constraint firstItem="fjw-y2-aVy" firstAttribute="leading" secondItem="Wnk-je-5kp" secondAttribute="leading" constant="8" id="XL4-vY-mBR"/>
+                    <constraint firstItem="fjw-y2-aVy" firstAttribute="trailing" secondItem="Wnk-je-5kp" secondAttribute="trailing" id="hhH-ob-kQ2"/>
+                    <constraint firstItem="fjw-y2-aVy" firstAttribute="top" secondItem="Wnk-je-5kp" secondAttribute="top" constant="8" id="nBI-5t-1lt"/>
                     <constraint firstItem="Wnk-je-5kp" firstAttribute="top" secondItem="fle-zY-2Gs" secondAttribute="bottom" constant="8" id="qSS-bI-H4f"/>
                     <constraint firstAttribute="trailingMargin" secondItem="Wnk-je-5kp" secondAttribute="trailing" constant="8" id="tLj-IF-0Oi"/>
                     <constraint firstAttribute="trailingMargin" secondItem="fle-zY-2Gs" secondAttribute="trailing" constant="8" id="zE1-he-jrA"/>
@@ -51,6 +64,7 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="answerTextView" destination="Wnk-je-5kp" id="weA-QA-xsk"/>
+                <outlet property="helpTextLabel" destination="fjw-y2-aVy" id="xYx-w8-hnf"/>
                 <outlet property="questionLabel" destination="ZCv-MD-B7s" id="KGy-Bx-twh"/>
                 <outlet property="questionView" destination="fle-zY-2Gs" id="NsB-cD-Ibi"/>
             </connections>

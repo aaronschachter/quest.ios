@@ -83,7 +83,7 @@
 
     self.keyboardToolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 60)];
     self.keyboardToolbar.barStyle = UIBarStyleDefault;
-    CGFloat buttonWidth = (self.view.frame.size.width / 2) - 136;
+    CGFloat buttonWidth = (self.view.frame.size.width / 2) - 20;
     CGFloat buttonHeight = 40;
 
     self.dontKnowButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -275,10 +275,15 @@
 #pragma mark - UITextViewDelegate
 
 - (void)textViewDidChange:(UITextView *)textView {
+    NSIndexPath *path = [NSIndexPath indexPathForRow:self.currentQuestionNumber inSection:0];
+    IVQGameQuestionTableViewCell *cell = (IVQGameQuestionTableViewCell *)[self.tableView cellForRowAtIndexPath:path];
+    
     if (textView.text.length > 0) {
+        cell.helpTextLabel.hidden = YES;
         [self answerButtonEnabled:YES];
     }
     else {
+        cell.helpTextLabel.hidden = NO;
         [self answerButtonEnabled:NO];
     }
 }
