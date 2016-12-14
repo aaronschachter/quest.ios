@@ -53,14 +53,14 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (section == 1) {
-        return 1;
+        return 3;
     }
     return 2;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     if (section == 1) {
-        return @"About InterviewQuest";
+        return @"About Interviewbud";
     }
     return @"Account";
 }
@@ -80,8 +80,20 @@
         }
     }
     else {
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.textLabel.text = [NSString stringWithFormat:@"Version %@",[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"]];
+        if (indexPath.row == 0) {
+            cell.selectionStyle = UITableViewCellSelectionStyleDefault;
+            cell.textLabel.text = [NSString stringWithFormat:@"Version %@",[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"]];
+            return cell;
+        }
+    
+        cell.selectionStyle = UITableViewCellSelectionStyleDefault;
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        if (indexPath.row == 1) {
+            cell.textLabel.text = @"Terms of Service";
+        }
+        else if (indexPath.row == 2) {
+            cell.textLabel.text = @"Privacy Policy";
+        }
     }
 
     return cell;
@@ -90,8 +102,17 @@
 #pragma mark - UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.row == 1) {
+    if (indexPath.section == 0 && indexPath.row == 1) {
         [self handleSignoutTap];
+    }
+
+    if (indexPath.section == 1) {
+        if (indexPath.row == 1) {
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://interviewbud.com/terms"]];
+        }
+        else if (indexPath.row == 2) {
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://interviewbud.com/privacy"]];
+        }
     }
 }
 
