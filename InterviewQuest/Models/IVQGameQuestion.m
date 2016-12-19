@@ -1,6 +1,6 @@
 #import "IVQGameQuestion.h"
 @import Firebase;
-#import "AppDelegate.h"
+#import "IVQAPI.h"
 
 @interface IVQGameQuestion ()
 
@@ -24,7 +24,6 @@
     self = [super init];
     
     if (self) {
-        __block AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
         NSString *gameQuestionPath = [NSString stringWithFormat:@"game-questions/%@", id];
         FIRDatabaseReference *gameQuestionRef = [[FIRDatabase database] referenceWithPath:gameQuestionPath];
         [gameQuestionRef observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot *snapshot) {
@@ -37,7 +36,7 @@
                         self.content = child.value;
                     }
                     else if ([child.key isEqualToString:@"question"]) {
-                        self.question = appDelegate.questionsDict[child.value];
+                        self.question = [IVQAPI sharedInstance].questionsDict[child.value];
                     }
                 }
             }

@@ -19,6 +19,7 @@
 		B22C7FBC1D484E640072632A /* IVQOnboardingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B22C7FBB1D484E640072632A /* IVQOnboardingViewController.m */; };
 		B22C7FC01D484FFD0072632A /* IVQOnboardingScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B22C7FBF1D484FFD0072632A /* IVQOnboardingScreenViewController.m */; };
 		B22C7FC21D486C950072632A /* IVQOnboardingScreenView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B22C7FC11D486C950072632A /* IVQOnboardingScreenView.xib */; };
+		B23B3F2A1E07A8BA00DAE866 /* IVQAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = B23B3F291E07A8BA00DAE866 /* IVQAPI.m */; };
 		B25E78291CED6EC200A12E8F /* IVQGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B25E78281CED6EC200A12E8F /* IVQGameViewController.m */; };
 		B25E782B1CED6F8A00A12E8F /* IVQGameView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B25E782A1CED6F8A00A12E8F /* IVQGameView.xib */; };
 		B2751C921CF56041005C33C5 /* IVQGameQuestionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B2751C901CF56041005C33C5 /* IVQGameQuestionTableViewCell.m */; };
@@ -79,6 +80,8 @@
 		B22C7FBE1D484FFD0072632A /* IVQOnboardingScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IVQOnboardingScreenViewController.h; path = Controllers/Onboarding/IVQOnboardingScreenViewController.h; sourceTree = "<group>"; };
 		B22C7FBF1D484FFD0072632A /* IVQOnboardingScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IVQOnboardingScreenViewController.m; path = Controllers/Onboarding/IVQOnboardingScreenViewController.m; sourceTree = "<group>"; };
 		B22C7FC11D486C950072632A /* IVQOnboardingScreenView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = IVQOnboardingScreenView.xib; path = Views/Onboarding/IVQOnboardingScreenView.xib; sourceTree = "<group>"; };
+		B23B3F281E07A8BA00DAE866 /* IVQAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IVQAPI.h; path = Networking/IVQAPI.h; sourceTree = "<group>"; };
+		B23B3F291E07A8BA00DAE866 /* IVQAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IVQAPI.m; path = Networking/IVQAPI.m; sourceTree = "<group>"; };
 		B25E78271CED6EC200A12E8F /* IVQGameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IVQGameViewController.h; path = Controllers/Game/IVQGameViewController.h; sourceTree = "<group>"; };
 		B25E78281CED6EC200A12E8F /* IVQGameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IVQGameViewController.m; path = Controllers/Game/IVQGameViewController.m; sourceTree = "<group>"; };
 		B25E782A1CED6F8A00A12E8F /* IVQGameView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = IVQGameView.xib; path = Views/Game/IVQGameView.xib; sourceTree = "<group>"; };
@@ -220,6 +223,15 @@
 			name = Onboarding;
 			sourceTree = "<group>";
 		};
+		B23B3F2B1E07A8BF00DAE866 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				B23B3F281E07A8BA00DAE866 /* IVQAPI.h */,
+				B23B3F291E07A8BA00DAE866 /* IVQAPI.m */,
+			);
+			name = Networking;
+			sourceTree = "<group>";
+		};
 		B27DFD331D3760ED0076260F /* Profile */ = {
 			isa = PBXGroup;
 			children = (
@@ -256,6 +268,7 @@
 				B2E3602D1DF6425600AA8283 /* Interviewbud.entitlements */,
 				B2B212131CE79087009244D6 /* AppDelegate.h */,
 				B2B212141CE79087009244D6 /* AppDelegate.m */,
+				B23B3F2B1E07A8BF00DAE866 /* Networking */,
 				B21434961CE96F9300AE90E5 /* Models */,
 				B2B212471CE7B66D009244D6 /* Views */,
 				B2B212431CE7B5E9009244D6 /* Controllers */,
@@ -689,6 +702,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B23B3F2A1E07A8BA00DAE866 /* IVQAPI.m in Sources */,
 				B22C7FC01D484FFD0072632A /* IVQOnboardingScreenViewController.m in Sources */,
 				B2B212151CE79087009244D6 /* AppDelegate.m in Sources */,
 				B25E78291CED6EC200A12E8F /* IVQGameViewController.m in Sources */,
@@ -854,6 +868,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.newschoololdschool.interviewquest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -872,6 +887,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.newschoololdschool.interviewquest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

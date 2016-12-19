@@ -1,5 +1,5 @@
 #import "IVQGameViewController.h"
-#import "AppDelegate.h"
+#import "IVQAPI.h"
 #import "IVQGameQuestionTableViewCell.h"
 #import "IVQGameOverViewController.h"
 #import "IVQGame.h"
@@ -46,8 +46,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    __block AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
 
     UIImage *menuImage = [IonIcons imageWithIcon:ion_close size:22.0f color:self.view.tintColor];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:menuImage style:UIBarButtonItemStylePlain target:self action:@selector(pauseButtonTapped:)];
@@ -68,7 +66,7 @@
     else if ([self.categoryName isEqualToString:@"Programming"]) {
         categoryId = [NSNumber numberWithInt:4];
     }
-    NSArray *categoryQuestions = (NSArray *)appDelegate.categoriesDict[categoryId];
+    NSArray *categoryQuestions = (NSArray *)[IVQAPI sharedInstance].categoriesDict[categoryId];
     
     NSMutableArray *mutableQuestions = [NSMutableArray arrayWithArray:categoryQuestions];
     NSUInteger count = [mutableQuestions count];

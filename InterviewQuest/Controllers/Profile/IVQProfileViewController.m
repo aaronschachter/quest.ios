@@ -3,7 +3,7 @@
 #import "IVQGame.h"
 #import "IVQGameQuestion.h"
 #import "IVQGameAnswerTableViewCell.h"
-#import "AppDelegate.h"
+#import "IVQAPI.h"
 @import Firebase;
 #import <NSDate+Helper.h>
 
@@ -21,10 +21,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+
     self.title = @"History";
-    __block AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
-    self.games = [[appDelegate.games reverseObjectEnumerator] allObjects];
+    self.games = [[[IVQAPI sharedInstance].games reverseObjectEnumerator] allObjects];
 
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
@@ -74,10 +73,5 @@
     return cell;
 }
 
-#pragma mark - UITableViewDelegate
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-//    [self signOut];
-}
 
 @end

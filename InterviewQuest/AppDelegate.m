@@ -9,6 +9,7 @@
 #import "IVQGame.h"
 #import "IVQQuestion.h"
 #import "AppDelegate.h"
+#import "IVQAPI.h"
 #import <GoogleSignIn/GoogleSignIn.h>
 #import <SVProgressHUD/SVProgressHUD.h>
 #import <Fabric/Fabric.h>
@@ -16,6 +17,7 @@
 
 @interface AppDelegate () <GIDSignInDelegate>
 
+@property (assign, nonatomic, readwrite) bool networkConnected;
 @property (strong, nonatomic, readwrite) FIRDatabaseReference *questionsRef;
 @property (strong, nonatomic, readwrite) NSArray *games;
 @property (strong, nonatomic, readwrite) NSArray *questions;
@@ -27,46 +29,16 @@
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-
-
     NSDictionary *keysDict = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"keys" ofType:@"plist"]];
     [Fabric with:@[[Crashlytics startWithAPIKey:keysDict[@"fabricApiKey"]]]];
-
-    [FIRApp configure];
+    
+    [IVQAPI sharedInstance];
+    
     [GIDSignIn sharedInstance].clientID = [FIRApp defaultApp].options.clientID;
     [GIDSignIn sharedInstance].delegate = self;
     
-    NSMutableDictionary *mutableCategoriesDict = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *mutableQuestionsDict = [[NSMutableDictionary alloc] init];
-
-    [FIRDatabase database].persistenceEnabled = YES;
-    self.questionsRef = [[FIRDatabase database] referenceWithPath:@"questions"];
-    [self.questionsRef observeEventType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot *snapshot) {
-        NSDictionary *questionsDict = (NSDictionary *)snapshot.value;
-        self.questions = [[NSArray alloc] init];
-        NSMutableArray *questions = [[NSMutableArray alloc] init];
-        [questionsDict enumerateKeysAndObjectsUsingBlock:^(id key, id questionDict, BOOL *stop) {
-            IVQQuestion *question = [[IVQQuestion alloc] init];
-            question.questionId = key;
-            question.title = questionDict[@"title"];
-            question.categoryId = [questionDict[@"category"] integerValue];
-            NSNumber *category = [NSNumber numberWithInteger:question.categoryId];
-            if (mutableCategoriesDict[category] == nil) {
-                mutableCategoriesDict[category] = [[NSMutableArray alloc] init];
-            }
-            [mutableCategoriesDict[category] addObject:question];
-            [questions addObject:question];
-            mutableQuestionsDict[key] = question;
-        }];
-        self.categoriesDict = [mutableCategoriesDict copy];
-        self.questionsDict = [mutableQuestionsDict copy];
-        self.questions = [questions copy];
-    } withCancelBlock:^(NSError *error) {
-        NSLog(@"%@", error.description);
-    }];
-
     if ([FIRAuth auth].currentUser) {
-        [self loadGames];
+        [[IVQAPI sharedInstance] loadGames];
     }
 
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
@@ -95,7 +67,7 @@
             if (firUser != nil) {
                 NSDictionary *statusText = @{@"statusText": [NSString stringWithFormat:@"Signed in user: %@", fullName]};
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"ToggleAuthUINotification" object:nil userInfo:statusText];
-                [self loadGames];
+                [[IVQAPI sharedInstance] loadGames];
                 [SVProgressHUD dismiss];
                 for (id<FIRUserInfo> profile in firUser.providerData) {
                     NSString *providerID = profile.providerID;
@@ -123,26 +95,6 @@
 - (void)signIn:(GIDSignIn *)signIn didDisconnectWithUser:(GIDGoogleUser *)user withError:(NSError *)error {
     NSDictionary *statusText = @{@"statusText": @"Disconnected user" };
     [[NSNotificationCenter defaultCenter] postNotificationName:@"ToggleAuthUINotification" object:nil userInfo:statusText];
-}
-
-- (void)loadGames {
-    [SVProgressHUD show];
-    NSString *gamesPath = [NSString stringWithFormat:@"users/%@/games", [FIRAuth auth].currentUser.uid];
-    FIRDatabaseReference *gamesRef = [[FIRDatabase database] referenceWithPath:gamesPath];
-    [gamesRef observeEventType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot *snapshot) {
-        NSMutableArray *mutableGames = [[NSMutableArray alloc] init];
-        if (snapshot.hasChildren) {
-            for (FIRDataSnapshot* child in snapshot.children) {
-                IVQGame *game = [[IVQGame alloc] initWithFirebaseId:child.key];
-                [mutableGames addObject:game];
-            }
-            self.games = [mutableGames copy];
-        }
-        [SVProgressHUD dismiss];
-    } withCancelBlock:^(NSError *error) {
-        [SVProgressHUD dismiss];
-        NSLog(@"%@", error.description);
-    }];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

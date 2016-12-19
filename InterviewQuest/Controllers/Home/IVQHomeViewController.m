@@ -3,6 +3,7 @@
 #import "IVQProfileViewController.h"
 #import "IVQSettingsViewController.h"
 #import "IVQOnboardingViewController.h"
+#import "IVQAPI.h"
 #import <ionicons/IonIcons.h>
 @import Firebase;
 #import <GoogleSignIn/GoogleSignIn.h>
@@ -36,8 +37,6 @@
     [super viewDidLoad];
     
     self.completedOnboarding = NO;
-//    self.title = @"Interviewbud";
-
     self.imageView.image = [UIImage imageNamed:@"Shield"];
     self.startButton.backgroundColor = self.navigationController.navigationBar.tintColor;
     self.startButton.tintColor = [UIColor whiteColor];
@@ -132,6 +131,14 @@
 }
 
 - (IBAction)startButtonTouchUpInside:(id)sender {
+    if ([IVQAPI sharedInstance].questions.count < 1) {
+        UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"No network connection." message:@"Your device is offline. Please check your connection and try again." preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {}];
+        [alert addAction:defaultAction];
+        [self presentViewController:alert animated:YES completion:nil];
+        return;
+    }
+
     IVQGameViewController *viewController = [[IVQGameViewController alloc] initWithCategoryName:self.downPicker.text];
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:viewController];
     navigationController.navigationBar.translucent = NO;
