@@ -42,7 +42,9 @@
                 NSLog(@"networkConnected");
                 _sharedInstance.networkConnected = YES;
                 [_sharedInstance loadQuestions];
-            } else {
+                [_sharedInstance loadGames];
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"ToggleAuthUINotification" object:nil userInfo:@{}];
+                            } else {
                 _sharedInstance.networkConnected = NO;
                 NSLog(@"!networkConnected");
             }
@@ -55,6 +57,10 @@
 #pragma mark - IVQAPI
 
 - (void)loadGames {
+    if (![FIRAuth auth].currentUser) {
+        return;
+    }
+
     NSString *gamesPath = [NSString stringWithFormat:@"users/%@/games", [FIRAuth auth].currentUser.uid];
     FIRDatabaseReference *gamesRef = [[FIRDatabase database] referenceWithPath:gamesPath];
     [gamesRef observeEventType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot *snapshot) {

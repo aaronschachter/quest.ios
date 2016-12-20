@@ -94,6 +94,7 @@
         else {
             cell.textLabel.text = @"Sign out";
             cell.selectionStyle = UITableViewCellSelectionStyleBlue;
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         }
     }
     else {

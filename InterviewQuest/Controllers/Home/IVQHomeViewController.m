@@ -105,13 +105,17 @@
         self.signInButton.hidden = NO;
         self.signInLabel.hidden = NO;
         self.historyButton.hidden = YES;
-        self.signInLabel.hidden = NO;
     }
     else {
         self.startButton.hidden = NO;
         self.signInButton.hidden = YES;
         self.signInLabel.hidden = YES;
-        self.historyButton.hidden = NO;
+        if ([IVQAPI sharedInstance].games.count) {
+            self.historyButton.hidden = NO;
+        }
+        else {
+            self.historyButton.hidden = YES;
+        }
     }
 }
 
