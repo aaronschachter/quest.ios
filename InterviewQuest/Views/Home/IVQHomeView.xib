@@ -14,7 +14,6 @@
                 <outlet property="categoryTextField" destination="rfJ-Ew-OdY" id="Eue-NJ-Owa"/>
                 <outlet property="headlineLabel" destination="SLF-wu-VWS" id="U2s-Zz-Sfu"/>
                 <outlet property="historyButton" destination="fa2-lq-MTR" id="GGk-i4-qUr"/>
-                <outlet property="settingsButton" destination="l06-44-M1Z" id="x0E-i4-Nks"/>
                 <outlet property="signInButton" destination="6Dp-I4-MPy" id="dPL-iT-xgd"/>
                 <outlet property="signInLabel" destination="0wN-1r-XdF" id="lBe-RH-vWo"/>
                 <outlet property="startButton" destination="ga4-tD-Hvw" id="dHT-kl-iew"/>
@@ -27,7 +26,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="smC-tb-Jfb" userLabel="Container View">
-                    <rect key="frame" x="38" y="136" width="300" height="396"/>
+                    <rect key="frame" x="38" y="164" width="300" height="340"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Interviewbud" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Um4-nz-GU1">
                             <rect key="frame" x="8" y="58" width="284" height="35"/>
@@ -35,6 +34,35 @@
                             <color key="textColor" red="0.7019608021" green="0.7019608021" blue="0.7019608021" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sbM-Wp-c8T" userLabel="Sign In Container View">
+                            <rect key="frame" x="0.0" y="306" width="300" height="79"/>
+                            <subviews>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Dp-I4-MPy" customClass="GIDSignInButton">
+                                    <rect key="frame" x="0.0" y="0.0" width="300" height="50"/>
+                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="50" id="clD-Ta-fl8"/>
+                                    </constraints>
+                                </view>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign in to save your interviews." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0wN-1r-XdF">
+                                    <rect key="frame" x="0.0" y="56" width="300" height="15"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                    <color key="textColor" red="0.40000000600000002" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="trailing" secondItem="0wN-1r-XdF" secondAttribute="trailing" id="5aR-er-f8M"/>
+                                <constraint firstAttribute="width" constant="300" id="IDk-G6-oHN"/>
+                                <constraint firstAttribute="trailing" secondItem="6Dp-I4-MPy" secondAttribute="trailing" id="S28-RA-hxs"/>
+                                <constraint firstItem="0wN-1r-XdF" firstAttribute="leading" secondItem="sbM-Wp-c8T" secondAttribute="leading" id="mZp-23-700"/>
+                                <constraint firstItem="6Dp-I4-MPy" firstAttribute="leading" secondItem="sbM-Wp-c8T" secondAttribute="leading" id="oEc-iw-qfk"/>
+                                <constraint firstItem="0wN-1r-XdF" firstAttribute="top" secondItem="6Dp-I4-MPy" secondAttribute="bottom" constant="6" id="pNf-C1-7XD"/>
+                                <constraint firstAttribute="bottom" secondItem="0wN-1r-XdF" secondAttribute="bottom" constant="8" id="pcg-8B-AZk"/>
+                                <constraint firstItem="6Dp-I4-MPy" firstAttribute="top" secondItem="sbM-Wp-c8T" secondAttribute="top" id="x81-1f-n89"/>
+                            </constraints>
+                        </view>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fa2-lq-MTR" userLabel="History Button">
                             <rect key="frame" x="0.0" y="292" width="300" height="48"/>
                             <constraints>
@@ -43,16 +71,6 @@
                             <state key="normal" title="History"/>
                             <connections>
                                 <action selector="historyButtonTouchUpInside:" destination="-1" eventType="touchUpInside" id="SPC-32-0Iy"/>
-                            </connections>
-                        </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l06-44-M1Z" userLabel="Settings Button">
-                            <rect key="frame" x="0.0" y="348" width="300" height="48"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="48" id="pLM-0C-uqZ"/>
-                            </constraints>
-                            <state key="normal" title="Settings"/>
-                            <connections>
-                                <action selector="settingsButtonTouchUpInside:" destination="-1" eventType="touchUpInside" id="r8N-GK-Jdk"/>
                             </connections>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Let's practice for a job interview." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SLF-wu-VWS">
@@ -80,35 +98,6 @@
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits"/>
                         </textField>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sbM-Wp-c8T" userLabel="Sign In Container View">
-                            <rect key="frame" x="0.0" y="306" width="300" height="79"/>
-                            <subviews>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Dp-I4-MPy" customClass="GIDSignInButton">
-                                    <rect key="frame" x="0.0" y="0.0" width="300" height="50"/>
-                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="50" id="clD-Ta-fl8"/>
-                                    </constraints>
-                                </view>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign in to save your interviews." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0wN-1r-XdF">
-                                    <rect key="frame" x="0.0" y="56" width="300" height="15"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                    <color key="textColor" red="0.40000000600000002" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
-                            </subviews>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <constraints>
-                                <constraint firstAttribute="trailing" secondItem="0wN-1r-XdF" secondAttribute="trailing" id="5aR-er-f8M"/>
-                                <constraint firstAttribute="width" constant="300" id="IDk-G6-oHN"/>
-                                <constraint firstAttribute="trailing" secondItem="6Dp-I4-MPy" secondAttribute="trailing" id="S28-RA-hxs"/>
-                                <constraint firstItem="0wN-1r-XdF" firstAttribute="leading" secondItem="sbM-Wp-c8T" secondAttribute="leading" id="mZp-23-700"/>
-                                <constraint firstItem="6Dp-I4-MPy" firstAttribute="leading" secondItem="sbM-Wp-c8T" secondAttribute="leading" id="oEc-iw-qfk"/>
-                                <constraint firstItem="0wN-1r-XdF" firstAttribute="top" secondItem="6Dp-I4-MPy" secondAttribute="bottom" constant="6" id="pNf-C1-7XD"/>
-                                <constraint firstAttribute="bottom" secondItem="0wN-1r-XdF" secondAttribute="bottom" constant="8" id="pcg-8B-AZk"/>
-                                <constraint firstItem="6Dp-I4-MPy" firstAttribute="top" secondItem="sbM-Wp-c8T" secondAttribute="top" id="x81-1f-n89"/>
-                            </constraints>
-                        </view>
                     </subviews>
                     <constraints>
                         <constraint firstItem="Um4-nz-GU1" firstAttribute="leading" secondItem="smC-tb-Jfb" secondAttribute="leading" constant="8" id="0mc-mj-EAO"/>
@@ -117,14 +106,12 @@
                         <constraint firstItem="fa2-lq-MTR" firstAttribute="leading" secondItem="smC-tb-Jfb" secondAttribute="leading" id="9lk-AN-mNe"/>
                         <constraint firstAttribute="trailing" secondItem="ga4-tD-Hvw" secondAttribute="trailing" id="Av0-wy-38d"/>
                         <constraint firstItem="Um4-nz-GU1" firstAttribute="top" secondItem="smC-tb-Jfb" secondAttribute="top" constant="58" id="Cu8-hT-i85"/>
-                        <constraint firstItem="l06-44-M1Z" firstAttribute="leading" secondItem="smC-tb-Jfb" secondAttribute="leading" id="GTB-De-hVy"/>
-                        <constraint firstItem="l06-44-M1Z" firstAttribute="top" secondItem="fa2-lq-MTR" secondAttribute="bottom" constant="8" id="KD1-wN-G14"/>
+                        <constraint firstAttribute="bottom" secondItem="fa2-lq-MTR" secondAttribute="bottom" id="GT2-c5-rn0"/>
                         <constraint firstAttribute="trailing" secondItem="fa2-lq-MTR" secondAttribute="trailing" id="Nh0-eo-KHx"/>
                         <constraint firstAttribute="trailing" secondItem="rfJ-Ew-OdY" secondAttribute="trailing" id="SAd-WA-Pm4"/>
                         <constraint firstAttribute="trailing" secondItem="Um4-nz-GU1" secondAttribute="trailing" constant="8" id="ToS-fN-xMv"/>
                         <constraint firstItem="ga4-tD-Hvw" firstAttribute="top" secondItem="rfJ-Ew-OdY" secondAttribute="bottom" constant="22" id="VJj-jV-MUS"/>
                         <constraint firstItem="ga4-tD-Hvw" firstAttribute="leading" secondItem="smC-tb-Jfb" secondAttribute="leading" id="XJ9-e1-eYS"/>
-                        <constraint firstAttribute="trailing" secondItem="l06-44-M1Z" secondAttribute="trailing" id="Xs7-sz-fbD"/>
                         <constraint firstItem="rfJ-Ew-OdY" firstAttribute="leading" secondItem="smC-tb-Jfb" secondAttribute="leading" id="e9H-HY-VVU"/>
                         <constraint firstItem="sbM-Wp-c8T" firstAttribute="leading" secondItem="smC-tb-Jfb" secondAttribute="leading" id="ebQ-We-Uge"/>
                         <constraint firstAttribute="trailing" secondItem="SLF-wu-VWS" secondAttribute="trailing" constant="8" id="fmc-e6-MR6"/>
@@ -132,7 +119,6 @@
                         <constraint firstItem="SLF-wu-VWS" firstAttribute="leading" secondItem="smC-tb-Jfb" secondAttribute="leading" constant="8" id="i1Q-BH-hvd"/>
                         <constraint firstItem="fa2-lq-MTR" firstAttribute="top" secondItem="ga4-tD-Hvw" secondAttribute="bottom" constant="8" id="ixy-oo-cqm"/>
                         <constraint firstAttribute="trailing" secondItem="sbM-Wp-c8T" secondAttribute="trailing" id="ouc-w2-8g6"/>
-                        <constraint firstAttribute="bottom" secondItem="l06-44-M1Z" secondAttribute="bottom" id="ycO-qe-5cG"/>
                         <constraint firstAttribute="width" constant="300" id="zdV-PE-gou"/>
                     </constraints>
                 </view>

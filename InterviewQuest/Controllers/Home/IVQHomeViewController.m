@@ -16,7 +16,6 @@
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet UILabel *headlineLabel;
 @property (weak, nonatomic) IBOutlet UIButton *startButton;
-@property (weak, nonatomic) IBOutlet UIButton *settingsButton;
 @property (weak, nonatomic) IBOutlet UIButton *historyButton;
 @property (weak, nonatomic) IBOutlet UILabel *signInLabel;
 @property (weak, nonatomic) IBOutlet UITextField *categoryTextField;
@@ -24,7 +23,6 @@
 @property (strong, nonatomic) NSArray *categories;
 
 - (IBAction)historyButtonTouchUpInside:(id)sender;
-- (IBAction)settingsButtonTouchUpInside:(id)sender;
 - (IBAction)startButtonTouchUpInside:(id)sender;
 
 @end
@@ -35,7 +33,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+
+    UIImage *menuImage = [IonIcons imageWithIcon:ion_navicon size:22.0f color:self.view.tintColor];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:menuImage style:UIBarButtonItemStylePlain target:self action:@selector(settingsButtonTouchUpInside:)];
+
     self.completedOnboarding = NO;
     self.imageView.image = [UIImage imageNamed:@"Shield"];
     self.startButton.backgroundColor = self.navigationController.navigationBar.tintColor;
@@ -88,8 +89,6 @@
     UIColor *lightGrayColor = [UIColor colorWithRed:224/255.0 green:224/255.0 blue:224/255.0 alpha:1.0];
     self.historyButton.backgroundColor = lightGrayColor;
     self.historyButton.contentEdgeInsets = UIEdgeInsetsMake(15,15,15,15);
-    self.settingsButton.backgroundColor = lightGrayColor;
-    self.settingsButton.contentEdgeInsets = UIEdgeInsetsMake(15,15,15,15);
     self.startButton.backgroundColor = self.navigationController.navigationBar.tintColor;
     self.startButton.tintColor = [UIColor whiteColor];
     self.startButton.contentEdgeInsets = UIEdgeInsetsMake(15,15,15,15);
@@ -106,7 +105,6 @@
         self.signInButton.hidden = NO;
         self.signInLabel.hidden = NO;
         self.historyButton.hidden = YES;
-        self.settingsButton.hidden = YES;
         self.signInLabel.hidden = NO;
     }
     else {
@@ -114,7 +112,6 @@
         self.signInButton.hidden = YES;
         self.signInLabel.hidden = YES;
         self.historyButton.hidden = NO;
-        self.settingsButton.hidden = NO;
     }
 }
 

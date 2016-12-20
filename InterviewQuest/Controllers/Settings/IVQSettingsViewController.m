@@ -3,6 +3,7 @@
 
 @interface IVQSettingsViewController () <UITableViewDataSource, UITableViewDelegate>
 
+@property (strong, nonatomic) FIRUser *currentUser;
 @property (strong, nonatomic) NSString *email;
 @property (strong, nonatomic) UITableView *tableView;
 
@@ -13,17 +14,19 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    self.title = @"Settings";
+    self.title = @"Interviewbud";
     self.tableView = [[UITableView alloc] initWithFrame:self.view.bounds];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-
+    self.tableView.estimatedRowHeight = 44;
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    
     [self.view addSubview:self.tableView];
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"defaultCell"];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 
-    FIRUser *currentUser = [FIRAuth auth].currentUser;
-    for (id<FIRUserInfo> profile in currentUser.providerData) {
+    self.currentUser = [FIRAuth auth].currentUser;
+    for (id<FIRUserInfo> profile in self.currentUser.providerData) {
         self.email = profile.email;
     }
 }
@@ -55,13 +58,19 @@
     if (section == 1) {
         return 3;
     }
-    return 2;
+
+    if (self.currentUser) {
+        return 2;
+    }
+
+    return 1;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     if (section == 1) {
-        return @"About Interviewbud";
+        return @"About";
     }
+
     return @"Account";
 }
 
@@ -69,6 +78,14 @@
          cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"defaultCell" forIndexPath:indexPath];
     if (indexPath.section == 0) {
+        if (!self.currentUser) {
+            cell.textLabel.text = @"You're not signed in.\n\nTo save your Interviewbud interviews, sign into your Google account on the previous screen.";
+            cell.textLabel.lineBreakMode = NSLineBreakByWordWrapping;
+            cell.textLabel.numberOfLines = 0;
+
+            return cell;
+        }
+
         if (indexPath.row == 0) {
             NSString *text = [NSString stringWithFormat:@"Signed in as %@", self.email];
             cell.textLabel.text = text;

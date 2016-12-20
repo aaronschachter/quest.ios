@@ -53,6 +53,10 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     IVQGame *game = self.games[section];
+    if (!game.date) {
+        return @"";
+    }
+
     return [NSDate stringForDisplayFromDate:game.date prefixed:NO alwaysDisplayTime:YES];
 }
 
