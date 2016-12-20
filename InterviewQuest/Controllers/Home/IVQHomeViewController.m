@@ -41,7 +41,7 @@
     self.startButton.backgroundColor = self.navigationController.navigationBar.tintColor;
     self.startButton.tintColor = [UIColor whiteColor];
     self.startButton.contentEdgeInsets = UIEdgeInsetsMake(15,15,15,15);
-    self.signInButton.style = kGIDSignInButtonStyleIconOnly;
+    self.signInButton.style = kGIDSignInButtonStyleWide;
 
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
 
