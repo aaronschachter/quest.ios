@@ -81,11 +81,11 @@
 
     self.keyboardToolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 60)];
     self.keyboardToolbar.barStyle = UIBarStyleDefault;
-    CGFloat buttonWidth = (self.view.frame.size.width / 2) - 20;
+    CGFloat buttonWidth = (self.view.frame.size.width / 2) - 50;
     CGFloat buttonHeight = 40;
 
     self.dontKnowButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [self.dontKnowButton setTitle:@"I don't know" forState:UIControlStateNormal];
+    [self.dontKnowButton setTitle:@"Don't know" forState:UIControlStateNormal];
     self.dontKnowButton.layer.backgroundColor = [UIColor colorWithWhite:0.75 alpha:1].CGColor;
     self.dontKnowButton.layer.cornerRadius = 4.0;
     self.dontKnowButton.frame = CGRectMake(0, 0, buttonWidth, buttonHeight);
@@ -94,7 +94,7 @@
     UIBarButtonItem *dontKnowBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.dontKnowButton];
 
     self.sendAnswerButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [self.sendAnswerButton setTitle:@"Send answer" forState:UIControlStateNormal];
+    [self.sendAnswerButton setTitle:@"Submit" forState:UIControlStateNormal];
     self.sendAnswerButton.layer.cornerRadius = 4.0;
     self.sendAnswerButton.frame = CGRectMake(0, 0, buttonWidth, buttonHeight);
     self.sendAnswerButton.layer.borderColor = [UIColor colorWithWhite:0.80 alpha:1].CGColor;
