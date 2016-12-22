@@ -99,8 +99,10 @@
     }
     else {
         if (indexPath.row == 0) {
-            cell.selectionStyle = UITableViewCellSelectionStyleDefault;
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"detailCell"];
             cell.textLabel.text = [NSString stringWithFormat:@"Version %@",[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"]];
+            cell.detailTextLabel.text = @"Rate in App Store";
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
             return cell;
         }
     
@@ -122,15 +124,19 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0 && indexPath.row == 1) {
         [self handleSignoutTap];
+        return;
     }
 
     if (indexPath.section == 1) {
+        NSString *url = @"itms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=1133808097";
         if (indexPath.row == 1) {
-            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://interviewbud.com/terms"]];
+            url = @"http://interviewbud.com/terms";
         }
         else if (indexPath.row == 2) {
-            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://interviewbud.com/privacy"]];
+            url = @"http://interviewbud.com/privacy";;
         }
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
+        return;
     }
 }
 
