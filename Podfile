@@ -6,6 +6,7 @@
 target 'Interviewbud' do
     pod 'Crashlytics'
     pod 'Fabric'
+    pod 'FBSDKLoginKit'
     pod 'Firebase/Auth'
     pod 'Firebase/Core'
     pod 'Firebase/Database'

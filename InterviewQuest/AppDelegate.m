@@ -11,6 +11,8 @@
 #import "AppDelegate.h"
 #import "IVQAPI.h"
 #import <GoogleSignIn/GoogleSignIn.h>
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
+
 #import <SVProgressHUD/SVProgressHUD.h>
 #import <Fabric/Fabric.h>
 #import <Crashlytics/Crashlytics.h>
@@ -36,6 +38,7 @@
     
     [GIDSignIn sharedInstance].clientID = [FIRApp defaultApp].options.clientID;
     [GIDSignIn sharedInstance].delegate = self;
+    [[FBSDKApplicationDelegate sharedInstance] application:application didFinishLaunchingWithOptions:launchOptions];
     
     if ([FIRAuth auth].currentUser) {
         [[IVQAPI sharedInstance] loadGames];
@@ -52,7 +55,10 @@
 }
 
 - (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<NSString *, id> *)options {
-    return [[GIDSignIn sharedInstance] handleURL:url sourceApplication:options[UIApplicationOpenURLOptionsSourceApplicationKey] annotation:options[UIApplicationOpenURLOptionsAnnotationKey]];
+    BOOL handled = [[GIDSignIn sharedInstance] handleURL:url sourceApplication:options[UIApplicationOpenURLOptionsSourceApplicationKey] annotation:options[UIApplicationOpenURLOptionsAnnotationKey]];
+    handled = handled || [[FBSDKApplicationDelegate sharedInstance] application:app openURL:url sourceApplication:options[UIApplicationOpenURLOptionsSourceApplicationKey] annotation:options[UIApplicationOpenURLOptionsAnnotationKey]];
+
+    return handled;
 }
 
 - (void)signIn:(GIDSignIn *)signIn didSignInForUser:(GIDGoogleUser *)user withError:(NSError *)error {

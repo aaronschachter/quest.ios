@@ -6,12 +6,14 @@
 #import "IVQAPI.h"
 #import <ionicons/IonIcons.h>
 @import Firebase;
+#import <FBSDKLoginKit/FBSDKLoginButton.h>
 #import <GoogleSignIn/GoogleSignIn.h>
 #import <DownPicker/DownPicker.h>
 
-@interface IVQHomeViewController () <GIDSignInUIDelegate>
+@interface IVQHomeViewController () <GIDSignInUIDelegate, FBSDKLoginButtonDelegate>
 
 @property (assign, nonatomic) BOOL completedOnboarding;
+@property (weak, nonatomic) IBOutlet FBSDKLoginButton *facebookSignInButton;
 @property (weak, nonatomic) IBOutlet GIDSignInButton *signInButton;
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet UILabel *headlineLabel;
@@ -49,6 +51,8 @@
     [GIDSignIn sharedInstance].uiDelegate = self;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveToggleAuthUINotification:) name:@"ToggleAuthUINotification" object:nil];
     [self styleView];
+    
+    self.facebookSignInButton.delegate = self;
     
     self.categories = @[@"General", @"Programming", @"iOS"];
     self.categoryTextField.hidden = YES;
@@ -145,5 +149,15 @@
     navigationController.navigationBar.translucent = NO;
     [self.navigationController presentViewController:navigationController animated:YES completion:nil];
 }
+    
+
+- (void)loginButton:(FBSDKLoginButton *)loginButton didCompleteWithResult:(FBSDKLoginManagerLoginResult *)result error:(NSError *)error {
+    NSLog(@"testing FB button");
+        if (error == nil) {
+            NSLog(@"%@", result);
+        } else {
+            NSLog(@"%@", error.localizedDescription);
+        }
+    }
 
 @end
